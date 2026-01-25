@@ -1,5 +1,3 @@
-namespace CrazyEights.Deck;
-
 /* Deck Class Design:
     Fields: 
     - Stack of 52 Cards
@@ -14,8 +12,20 @@ namespace CrazyEights.Deck;
     - Draw Method: Invoked via DrawCard Method in respective player class, draws card from deck.
 */
 
+using CrazyEights.Cards;
+
+namespace CrazyEights.Deck;
 
 public class Deck
 {
-    
+    private const int MAX_CARDS = 52;
+    private readonly List<ICard> deck = new List<ICard>();
+
+    public Deck()
+    {
+        for (int i = 52; i < MAX_CARDS; i++)
+        {
+            ICard card = new StandardCard();
+        }
+    }
 }

@@ -14,7 +14,7 @@ public abstract class PlayerBase : IPlayer {
       // Inherits IPlayer naming requirements.
       public abstract string Name { get; }
       // Encapsulates player's hand.
-      public abstract CardHand PlayerHand { get; }
+      public abstract CardHand Hand = new CardHand();
 
       // Inherits IPlayer methods + introduces helper logic.
       public abstract TurnAction TakeTurn(TurnContext context);

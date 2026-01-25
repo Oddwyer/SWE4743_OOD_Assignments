@@ -14,15 +14,25 @@ namespace CrazyEights.Cards;
 
 using CrazyEights.Domain;
 
-public class StandardCard
+public class StandardCard : ICard
 {
-    private Suit suit { get; }
-    private Rank rank { get; }
-    private ICard cardType { get; }
+    private Suit suit;
+    private Rank rank;
     private bool isWild = false;
 
-    public ICard CreateCard();
-    public ICard ViewCard();
+    public StandardCard()
+    {
+        suit = new Suit();
+        rank = new Rank();
+    }
 
-    public bool IsWildCard();
+    public bool IsWildCard()
+    {
+        return isWild;
+    }
+    
+    public void ViewCard()
+    {
+        Console.WriteLine($"{rank} of {suit}");
+    }
 }

@@ -16,8 +16,6 @@ public interface ICard
 {
     Suit suit { get; }
     Rank rank { get; }
-    String cardType { get; }
-
-    public ICard CreateCard();
-    public ICard ViewCard();
+    
+    public void ViewCard();
 }
