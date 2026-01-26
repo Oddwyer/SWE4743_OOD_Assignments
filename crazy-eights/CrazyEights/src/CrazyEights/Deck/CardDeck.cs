@@ -17,12 +17,12 @@ using CrazyEights.Domain;
 
 namespace CrazyEights.Deck;
 
-public class Deck
+public class CardDeck
 {
     public readonly List<ICard> Cards = new List<ICard>();
     public bool IsShuffled { get; private set; } 
 
-    public Deck()
+    public CardDeck()
     {
         for (Suit suit = 0; suit <= Suit.Spades; suit++)
         {

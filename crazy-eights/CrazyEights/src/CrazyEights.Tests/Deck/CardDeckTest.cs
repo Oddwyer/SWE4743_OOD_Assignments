@@ -1,4 +1,4 @@
-using CrazyEights.Deck ;
+using CrazyEights.Deck;
 using CrazyEights.Domain;
 using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,15 +7,15 @@ namespace CrazyEights.Tests.Deck;
 
 
 [TestClass]
-[TestSubject(typeof(CrazyEights.Deck.Deck))]
-public class DeckTest
+[TestSubject(typeof(CrazyEights.Deck.CardDeck))]
+public class CardDeckTest
 {
 
     [TestMethod]
     public void TestCreate()
     {
         // arrange
-        var deck = new CrazyEights.Deck.Deck();
+        var deck = new CrazyEights.Deck.CardDeck();
 
         // act
         
@@ -34,7 +34,7 @@ public class DeckTest
     [TestMethod]
     public void TestDeckRemaining()
     {
-       var deck = new CrazyEights.Deck.Deck();
+       var deck = new CrazyEights.Deck.CardDeck();
 
        int remaining = deck.DeckRemaining();
        
@@ -44,7 +44,7 @@ public class DeckTest
     [TestMethod]
     public void TestIsDeckEmpty()
     {
-        var deck = new CrazyEights.Deck.Deck();
+        var deck = new CrazyEights.Deck.CardDeck();
 
         bool isEmpty = deck.IsDeckEmpty();
        
@@ -54,7 +54,7 @@ public class DeckTest
     [TestMethod]
     public void TestDrawCard()
     {
-        var deck = new CrazyEights.Deck.Deck();
+        var deck = new CrazyEights.Deck.CardDeck();
 
         var expectedCard = deck.Cards[0];
         var actualCard = deck.DrawCard();

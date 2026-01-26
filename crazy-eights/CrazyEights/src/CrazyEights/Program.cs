@@ -1,3 +1,21 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using CrazyEights.Cards;
+using CrazyEights.Deck;
+using CrazyEights.Game;
+using CrazyEights.Players;
 
-Console.WriteLine("Hello, World!");
+
+namespace CrazyEights;
+
+public static class Program
+{
+    public static void Main(string[] args)
+    {
+        IPlayer human = new HumanPlayer("You");
+        IPlayer cpu = new CpuPlayer("CPU");
+
+        CardDeck deck = new CardDeck();
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
+
+        game.PlayGame();
+    }
+}

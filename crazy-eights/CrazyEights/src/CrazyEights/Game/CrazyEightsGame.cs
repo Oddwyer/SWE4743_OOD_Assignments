@@ -17,14 +17,14 @@ using CrazyEights.Cards;
 public class CrazyEightsGame
 {
     Queue<IPlayer> players = new Queue<IPlayer>();
-    private Deck deck;
+    private CardDeck cardDeck;
     private String winner = "";
     private bool gameOver = false;
     private DiscardPile discardPile;
 
-    public CrazyEightsGame(String human, String cpu, Deck deck)
+    public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu)
     {
-        this.deck =  deck;
+        this.cardDeck =  cardDeck;
     }
 
     private void PlayerAction(TurnAction action)
@@ -41,5 +41,9 @@ public class CrazyEightsGame
     {
         
     }
-    
+
+    public void PlayGame()
+    {
+        throw new NotImplementedException();
+    }
 }
