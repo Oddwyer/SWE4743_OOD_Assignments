@@ -26,6 +26,9 @@ public class StandardCard : ICard
     {
         this.Suit = suit;
         this.Rank = rank;
+        if(rank == Rank.Eight){
+            isWild = true;
+        }
     }
 
     // returns if card is a wildcard (cards with rank of 8 are wild)

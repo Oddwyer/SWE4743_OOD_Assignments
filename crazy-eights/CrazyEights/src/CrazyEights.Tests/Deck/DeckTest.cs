@@ -27,6 +27,7 @@ public class DeckTest
         Assert.AreEqual(Suit.Diamonds, deck.Cards[13].Suit);
         Assert.AreEqual(Suit.Hearts, deck.Cards[26].Suit);
         Assert.AreEqual(Suit.Spades, deck.Cards[39].Suit);
+        Assert.IsTrue(deck.Cards[6].IsWildCard());
 
     }
 }
