@@ -5,9 +5,11 @@
 
 namespace CrazyEights.Domain;
 
-public class Suit
+// Using "enum" serves as a fixed set of named values. 
+public enum Suit
 {
-    private readonly string[] suits = {"diamonds", "hearts", "clubs", "spades" };
-
-    public Suit();
+   Clubs,
+   Diamonds,
+   Hearts,
+   Spades
 }

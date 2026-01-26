@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 #
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyEights", "src\CrazyEights\CrazyEights.csproj", "{630D011F-E20F-4B2E-824D-D3CDBFC3971A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyEights.Tests", "src\CrazyEights.Tests\CrazyEights.Tests.csproj", "{396541C2-5980-4F1D-B401-509653BA0C51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{630D011F-E20F-4B2E-824D-D3CDBFC3971A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{630D011F-E20F-4B2E-824D-D3CDBFC3971A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{630D011F-E20F-4B2E-824D-D3CDBFC3971A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{396541C2-5980-4F1D-B401-509653BA0C51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{396541C2-5980-4F1D-B401-509653BA0C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{396541C2-5980-4F1D-B401-509653BA0C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{396541C2-5980-4F1D-B401-509653BA0C51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

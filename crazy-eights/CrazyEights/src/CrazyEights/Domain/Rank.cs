@@ -7,9 +7,21 @@ namespace CrazyEights.Domain;
 
 using System;
 
-public class Rank
+// Using "enum" serves as a fixed set of named values. If using numbers, be sure to specify what number to begin with,
+// else Two begins with 0...
+public enum Rank
 {
-    private readonly string[] ranks = {"2","3","4","5","6","7","8","9", "10", "J", "Q", "K", "A" };
-
-    public Rank();
+    Two = 2,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Jack,
+    Queen,
+    King,
+    Ace,
 }

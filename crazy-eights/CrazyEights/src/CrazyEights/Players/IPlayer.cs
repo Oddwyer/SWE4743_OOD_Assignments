@@ -20,14 +20,13 @@ namespace CrazyEights.Players;
 
 public interface IPlayer
 {
-    // Think: What can others ask from every implementation of iPlayer? What must iPlayer have?
+    // Think: What must IPlayer have that others may view/request from every implementation of IPlayer?
     
-    // Ask for player's name; must have a name.
     string Name { get; }
     
-    // Ask player to take turn; must be able to take a turn.
+    // Must take turn.
     public TurnAction TakeTurn(TurnContext context);
 
-    // Ask player for hand count; must have a hand count.
+    // Must have hand count.
     public int HandCount();
 }

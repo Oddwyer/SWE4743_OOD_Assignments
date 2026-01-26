@@ -13,19 +13,23 @@
 */
 
 using CrazyEights.Cards;
+using CrazyEights.Domain;
 
 namespace CrazyEights.Deck;
 
 public class Deck
 {
-    private const int MAX_CARDS = 52;
-    private readonly List<ICard> deck = new List<ICard>();
+    public readonly List<ICard> Cards = new List<ICard>();
 
     public Deck()
     {
-        for (int i = 52; i < MAX_CARDS; i++)
+        for (Suit suit = 0; suit <= Suit.Spades; suit++)
         {
-            ICard card = new StandardCard();
+            for (Rank rank = Rank.Two; rank <= Rank.Ace; rank++)
+            {
+                ICard card = new StandardCard(suit, rank);
+                Cards.Add(card);
+            }
         }
     }
 }

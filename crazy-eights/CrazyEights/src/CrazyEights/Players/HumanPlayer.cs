@@ -6,6 +6,8 @@
    - Create Player Constructor (name)
 */
 
+using CrazyEights.Domain;
+
 namespace CrazyEights.Players;
 
 using CrazyEights.Game;
@@ -45,6 +47,7 @@ public class HumanPlayer : PlayerBase
     
     public override ICard RemoveCard(int index)
     {
+        return new StandardCard(Suit.Clubs, Rank.Ace);
     }
 
     public void ViewHand()

@@ -5,6 +5,7 @@
 */
 
 using CrazyEights.Cards;
+using CrazyEights.Domain;
 using CrazyEights.Game;
 
 namespace CrazyEights.Players;
@@ -14,7 +15,7 @@ public abstract class PlayerBase : IPlayer {
       // Inherits IPlayer naming requirements.
       public abstract string Name { get; }
       // Encapsulates player's hand.
-      public abstract CardHand Hand = new CardHand();
+      public CardHand Hand = new CardHand(new StandardCard(Suit.Clubs, Rank.Ace));
 
       // Inherits IPlayer methods + introduces helper logic.
       public abstract TurnAction TakeTurn(TurnContext context);

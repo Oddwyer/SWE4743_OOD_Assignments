@@ -9,6 +9,8 @@
 */
 
 
+using CrazyEights.Domain;
+
 namespace CrazyEights.Players;
 
 using CrazyEights.Cards;
@@ -23,6 +25,8 @@ public class CpuPlayer : PlayerBase
    {   
       playerName = name;
    }
+
+   public override string Name { get; }
 
    public override TurnAction TakeTurn(TurnContext context)
    {
@@ -45,7 +49,9 @@ public class CpuPlayer : PlayerBase
     
    public override ICard RemoveCard(int index)
    {
+      return new StandardCard(Suit.Clubs, Rank.Ace);
    }
+   
 
 }
 
