@@ -24,7 +24,9 @@ public class CrazyEightsGame
 
     public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu)
     {
-        this.cardDeck =  cardDeck;
+        this.cardDeck = cardDeck;
+        players.Enqueue(human);
+        players.Enqueue(cpu);
     }
 
     private void PlayerAction(TurnAction action)
