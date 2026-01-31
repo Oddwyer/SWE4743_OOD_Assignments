@@ -37,8 +37,8 @@ public class DiscardPileTest
         discardPile.DiscardCard(card1);
         
         // assert
-        Assert.AreEqual(card1, discardPile.DiscardPeek());
-        Assert.AreNotEqual(card2, discardPile.DiscardPeek());
+        Assert.AreEqual(card1, discardPile.TopDiscard());
+        Assert.AreNotEqual(card2, discardPile.TopDiscard());
     }
     
     [TestMethod]

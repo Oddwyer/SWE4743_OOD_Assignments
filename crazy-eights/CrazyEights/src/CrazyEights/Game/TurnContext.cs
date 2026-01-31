@@ -5,17 +5,24 @@ namespace CrazyEights.Game;
 
 using CrazyEights.Cards;
 using CrazyEights.Domain;
+using CrazyEights.Deck;
+using CrazyEights.Game;
 using CrazyEights.Players;
 
 public class TurnContext
 {
-    private ICard TopDiscard { get; }
+    private DiscardPile DiscardPile { get; }
     private Suit SuitToMatch { get; }
-    private int RoundNumber { get; }
+    public int RoundNumber { get; }
+    private ICard CurrentCard { get; }
 
 
-    /*public TurnContext CurrentTurnContext()
+    public TurnContext(CardDeck deck, DiscardPile discardPile, int round)
     {
-    }*/
+        DiscardPile = discardPile;
+        SuitToMatch = discardPile.TopDiscard().Suit;
+        RoundNumber = round;
+        CurrentCard = discardPile.TopDiscard();
+    }
 }
 

@@ -19,16 +19,14 @@ public class CrazyEightsGame
     private CardDeck cardDeck;
     private String winner = "";
     private bool gameOver = false;
-    private DiscardPile discardPile;
-    private IPlayer currentPlayer;
-    private int roundNumber = 1;    
+    private DiscardPile discardPile = new DiscardPile();
+    private int roundNumber = 1;
 
     public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu)
     {
         this.cardDeck = cardDeck;
         players.Enqueue(human);
         players.Enqueue(cpu);
-        IPlayer currentPlayer = players.Dequeue();
     }
 
     private void PlayerAction(TurnAction action)
@@ -46,8 +44,10 @@ public class CrazyEightsGame
         if (!gameOver)
         {
             roundNumber++;
-            TurnContext context =  new TurnContext();
+            IPlayer currentPlayer = players.Dequeue();
+            TurnContext context =  new TurnContext(cardDeck, discardPile,  roundNumber);
             currentPlayer.TakeTurn(context);
+            players.Enqueue(currentPlayer);
         }
     }
 

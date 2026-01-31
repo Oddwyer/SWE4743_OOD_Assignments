@@ -17,9 +17,13 @@ public class DiscardPile
         cards.Push(card);
     }
 
-    public ICard DiscardPeek()
+    public ICard TopDiscard()
     {
-       return cards.Peek();
+        if (cards.Count != 0)
+        {
+            return cards.Peek();
+        }
+        return null;
     }
 
     public int DiscardCount()
