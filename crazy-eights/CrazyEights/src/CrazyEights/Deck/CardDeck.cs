@@ -1,19 +1,6 @@
-/* Deck Class Design:
-    Fields: 
-    - Stack of 52 Cards
-    - Deck Count
- 
-    Methods:
-    - Create Deck Method: Instantiates new Card object 52 times, ensuring no duplicity and all card types present.
-    - Shuffle Deck Method: Accepts Discard Pile and shuffles all cards.
-    - Deal Cards Method: Deals initial 7 cards to each player.
-    - Deck Count Method: Displays remaining number of cards; if 0 declare player with fewer cards the winner or draw if equal count.
-    - Deck Empty Method: Returns true if deck is empty. 
-    - Draw Method: Invoked via DrawCard Method in respective player class, draws card from deck.
-*/
-
 using CrazyEights.Cards;
 using CrazyEights.Domain;
+using CrazyEights.Players;
 
 namespace CrazyEights.Deck;
 
@@ -67,6 +54,19 @@ public class CardDeck
         ICard drawnCard = Cards[0];
         Cards.RemoveAt(0);
         return drawnCard;
+    }
+    
+    public List<ICard> DealCards(int dealCount)
+    {
+        List<ICard> dealtCards = new List<ICard>();
+        int count = 0;
+        while (count < dealCount)
+        {
+            dealtCards.Add(DrawCard());
+            count++;
+        }
+        
+        return dealtCards;
     }
     
 }

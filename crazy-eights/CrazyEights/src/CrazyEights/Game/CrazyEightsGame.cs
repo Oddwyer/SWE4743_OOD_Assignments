@@ -21,17 +21,20 @@ public class CrazyEightsGame
     private bool gameOver = false;
     public DiscardPile discardPile = new DiscardPile();
     private int roundNumber = 1;
+    private IPlayer currentPlayer;
+    private int dealCount = 0;
 
-    public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu)
+    public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu, int dealCount)
     {
         this.cardDeck = cardDeck;
         players.Enqueue(human);
         players.Enqueue(cpu);
+        currentPlayer = players.Dequeue();
+        this.dealCount = dealCount;
     }
 
     public void PlayerAction(TurnAction action)
     {
-        
     }
     
     private bool GameOver()

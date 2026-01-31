@@ -10,5 +10,8 @@
     &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Game.TurnContextTest.TestTurnContextCreate&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Game.TurnContextTest&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Game.TurnActionTest&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Cards.CardHandTest&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Deck.CardDeckTest.TestCreate&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Deck.CardDeckTest.TestDealCards&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -1,7 +1,9 @@
 using CrazyEights.Deck;
 using CrazyEights.Domain;
+using CrazyEights.Cards;
 using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace CrazyEights.Tests.Deck;
 
@@ -19,7 +21,6 @@ public class CardDeckTest
 
         // act
         
-
         // assert
         Assert.HasCount(52, deck.Cards);
         Assert.AreEqual(Suit.Clubs, deck.Cards[0].Suit);
@@ -61,5 +62,18 @@ public class CardDeckTest
         int remaining = deck.DeckRemaining();
         Assert.AreEqual(expectedCard,  actualCard);
         Assert.AreEqual(51, remaining);
+    }
+    
+    [TestMethod]
+    public void TestDealCards()
+    {
+        // arrange 
+        var deck = new CrazyEights.Deck.CardDeck();
+        
+        // act
+        List<ICard> testList = deck.DealCards(5);
+        
+        // assert
+        Assert.AreEqual(5, testList.Count);
     }
 }

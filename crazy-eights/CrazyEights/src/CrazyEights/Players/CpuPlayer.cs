@@ -18,16 +18,15 @@ using CrazyEights.Game;
 
 public class CpuPlayer : PlayerBase
 {
-   private string playerName;
-   private CardHand playerHand;
+   public override string Name { get; }
+   private CardHand hand;
 
    public CpuPlayer(string name)
    {   
-      playerName = name;
+      Name = name;
+      hand =  new CardHand();
    }
-
-   public override string Name { get; }
-
+   
    public override TurnAction TakeTurn(TurnContext context)
    {
       string action = "draw";
@@ -38,21 +37,22 @@ public class CpuPlayer : PlayerBase
 
    public override int HandCount()
    {
-      return playerHand.HandCount();
+      return hand.Count();
    }
 
-   public override List<ICard> PlayableCards()
+   public override IReadOnlyList<ICard> PlayableCards(TurnContext context)
    {
-     return playerHand.PlayableCards();
+     return hand.PlayableCards(context);
    }
 
    public override void ReceiveCard(ICard card)
    {
+      hand.AddCard(card);
    }
     
    public override ICard RemoveCard(int index)
    {
-      return new StandardCard(Suit.Clubs, Rank.Ace);
+      return hand.RemoveCard(index);
    }
    
 

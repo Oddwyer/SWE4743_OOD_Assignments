@@ -14,7 +14,7 @@ public static class Program
         IPlayer cpu = new CpuPlayer("CPU");
 
         CardDeck deck = new CardDeck();
-        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu, 5);
 
         game.PlayGame();
     }

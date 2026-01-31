@@ -15,15 +15,14 @@ using CrazyEights.Cards;
 
 public class HumanPlayer : PlayerBase
 {
-    private string name;
-    private CardHand hand;
+    public override string Name { get; }
+    private readonly CardHand hand;
 
     public HumanPlayer(string name)
     {   
-        this.name = name;
+        Name = name;
+        hand = new CardHand();
     }
-
-    public override string Name => name;
 
     public override TurnAction TakeTurn(TurnContext context)
     {
@@ -35,12 +34,12 @@ public class HumanPlayer : PlayerBase
 
     public override int HandCount()
     {
-        return hand.HandCount();
+        return hand.Count();
     }
     
-    public override List<ICard> PlayableCards()
+    public override IReadOnlyList<ICard> PlayableCards(TurnContext context)
     {
-        return hand.PlayableCards();
+        return hand.PlayableCards(context);
     }
     
     public override void ReceiveCard(ICard card)

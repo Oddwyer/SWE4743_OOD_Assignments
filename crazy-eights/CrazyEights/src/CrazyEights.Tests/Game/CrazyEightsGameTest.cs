@@ -18,7 +18,7 @@ public class CrazyEightsGameTest
         IPlayer cpu = new CpuPlayer("CPU");
 
         CardDeck deck = new CardDeck();
-        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu, 5);
         
         Assert.AreEqual(52, deck.DeckRemaining());
 
