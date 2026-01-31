@@ -9,8 +9,13 @@ using CrazyEights.Players;
 
 public class TurnContext
 {
-    private ICard topDiscard;
-    private Suit suitToMatch;
-    private int roundNumber = 0;
-    private IPlayer currentPlayer;
+    private ICard TopDiscard { get; }
+    private Suit SuitToMatch { get; }
+    private int RoundNumber { get; }
+
+
+    /*public TurnContext CurrentTurnContext()
+    {
+    }*/
 }
+

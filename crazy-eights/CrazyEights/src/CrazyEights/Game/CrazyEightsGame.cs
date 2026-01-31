@@ -5,7 +5,6 @@
     - No public fields.
 */
 
-using CrazyEights.Players;
 
 namespace CrazyEights.Game;
 
@@ -16,17 +15,20 @@ using CrazyEights.Cards;
 
 public class CrazyEightsGame
 {
-    Queue<IPlayer> players = new Queue<IPlayer>();
+    private Queue<IPlayer> players = new Queue<IPlayer>();
     private CardDeck cardDeck;
     private String winner = "";
     private bool gameOver = false;
     private DiscardPile discardPile;
+    private IPlayer currentPlayer;
+    private int roundNumber = 1;    
 
     public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu)
     {
         this.cardDeck = cardDeck;
         players.Enqueue(human);
         players.Enqueue(cpu);
+        IPlayer currentPlayer = players.Dequeue();
     }
 
     private void PlayerAction(TurnAction action)
@@ -41,7 +43,12 @@ public class CrazyEightsGame
 
     private void AdvanceGame()
     {
-        
+        if (!gameOver)
+        {
+            roundNumber++;
+            TurnContext context =  new TurnContext();
+            currentPlayer.TakeTurn(context);
+        }
     }
 
     public void PlayGame()
