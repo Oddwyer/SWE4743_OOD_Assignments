@@ -30,7 +30,10 @@ public class CpuPlayer : PlayerBase
 
    public override TurnAction TakeTurn(TurnContext context)
    {
-      return new TurnAction();
+      string action = "draw";
+      int index = 1;
+      Suit suit = Suit.Clubs;
+      return new TurnAction(action, index, suit);
    }
 
    public override int HandCount()

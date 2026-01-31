@@ -16,10 +16,10 @@ using CrazyEights.Cards;
 public class CrazyEightsGame
 {
     private Queue<IPlayer> players = new Queue<IPlayer>();
-    private CardDeck cardDeck;
+    public CardDeck cardDeck;
     private String winner = "";
     private bool gameOver = false;
-    private DiscardPile discardPile = new DiscardPile();
+    public DiscardPile discardPile = new DiscardPile();
     private int roundNumber = 1;
 
     public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu)
@@ -29,11 +29,11 @@ public class CrazyEightsGame
         players.Enqueue(cpu);
     }
 
-    private void PlayerAction(TurnAction action)
+    public void PlayerAction(TurnAction action)
     {
         
     }
-
+    
     private bool GameOver()
     {
         return gameOver;

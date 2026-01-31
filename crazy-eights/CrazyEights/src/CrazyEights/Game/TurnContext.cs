@@ -11,10 +11,12 @@ using CrazyEights.Players;
 
 public class TurnContext
 {
-    private DiscardPile DiscardPile { get; }
-    private Suit SuitToMatch { get; }
+    public DiscardPile DiscardPile { get; }
+    public Suit SuitToMatch { get; }
     public int RoundNumber { get; }
-    private ICard CurrentCard { get; }
+    public ICard CurrentCard { get; }
+    public CardDeck Deck { get; }
+    
 
 
     public TurnContext(CardDeck deck, DiscardPile discardPile, int round)
@@ -23,6 +25,7 @@ public class TurnContext
         SuitToMatch = discardPile.TopDiscard().Suit;
         RoundNumber = round;
         CurrentCard = discardPile.TopDiscard();
+        Deck = deck;
     }
 }
 

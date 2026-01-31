@@ -9,7 +9,14 @@ using CrazyEights.Domain;
 
 public class TurnAction
 {
-    private int actionType = -1;
-    private int selectedCardIndex = -1;
-    private Suit selectedSuit;
+    public string ActionType {get; }
+    public int SelectedCardIndex { get; }
+    public Suit SelectedSuit { get; }
+
+    public TurnAction(string action, int index, Suit suit)
+    {
+        ActionType = action;
+        SelectedCardIndex = index;
+        SelectedSuit = suit;
+    }
 }
