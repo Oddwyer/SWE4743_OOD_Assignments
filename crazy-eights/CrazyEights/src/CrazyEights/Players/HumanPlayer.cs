@@ -18,6 +18,7 @@ public class HumanPlayer : PlayerBase
 
     public override TurnAction TakeTurn(TurnContext context)
     {
+        
         string action = "draw";
         int index = 1;
         Suit suit = Suit.Clubs;
@@ -46,6 +47,7 @@ public class HumanPlayer : PlayerBase
 
     public void ViewHand()
     {
+        Console.WriteLine();
         hand.ViewHand();
     }
 }

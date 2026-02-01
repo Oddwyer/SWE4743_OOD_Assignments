@@ -15,19 +15,21 @@ using CrazyEights.Cards;
 
 public class CrazyEightsGame
 {
-    public Queue<IPlayer> players = new Queue<IPlayer>();
+    private readonly List<IPlayer> playerList = new List<IPlayer>();
+    private readonly Queue<IPlayer> turnOrder;
     private readonly CardDeck cardDeck;
-    private string winner = "";
     private readonly DiscardPile discardPile = new DiscardPile();
-    private int roundNumber = 1;
-    private IPlayer currentPlayer;
-    private int dealCount = 0;
+    public string Winner { get; private set; }
+    public int RoundNumber { get; private set; } = 1;
+    public IPlayer currentPlayer {get; private set;}
+    public int dealCount { get; private set; }= 0;
 
     public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu, int dealCount)
     {
         this.cardDeck = cardDeck;
-        players.Enqueue(human);
-        players.Enqueue(cpu);
+        playerList.Add(human);
+        playerList.Add(cpu);
+        turnOrder = new Queue<IPlayer>(playerList);
         currentPlayer = human;
         this.dealCount = dealCount;
     }
@@ -36,6 +38,28 @@ public class CrazyEightsGame
     {
     }
 
+    public Queue<IPlayer> GetTurnOrder()
+    {
+        return turnOrder;
+    }
+
+    public void PlayGame()
+    {
+        while (Winner == "")
+        {
+            RoundNumber++;
+            currentPlayer = turnOrder.Dequeue();
+            TurnContext context = new TurnContext(cardDeck, discardPile, RoundNumber, currentPlayer, playerList);
+            context.ViewContext();
+            currentPlayer.TakeTurn(context);
+            turnOrder.Enqueue(currentPlayer);
+        }
+
+        Winner = GetWinner();
+        Console.WriteLine($"{Winner} won!");
+    }
+    
+    
     public string GetWinner()
     {
         if (currentPlayer.HandCount() == 0)
@@ -44,8 +68,8 @@ public class CrazyEightsGame
         }
         else if (cardDeck.IsDeckEmpty())
         {
-            IPlayer player1 = players.Dequeue();
-            IPlayer player2 = players.Dequeue();
+            IPlayer player1 = turnOrder.Dequeue();
+            IPlayer player2 = turnOrder.Dequeue();
             if (player1.HandCount() > player2.HandCount())
             {
                 return player2.Name;
@@ -64,28 +88,5 @@ public class CrazyEightsGame
         }
 
         return "";
-    }
-
-    private void AdvanceGame()
-    {
-        if (winner == "")
-        {
-            roundNumber++;
-            currentPlayer = players.Dequeue();
-            TurnContext context = new TurnContext(cardDeck, discardPile, roundNumber);
-            currentPlayer.TakeTurn(context);
-            players.Enqueue(currentPlayer);
-        }
-        else
-        {
-            winner = GetWinner();
-            Console.WriteLine($"{winner} won!");
-        }
-    }
-
-    public void PlayGame()
-    {
-        currentPlayer = players.Dequeue();
-        players.Enqueue(currentPlayer);
     }
 }

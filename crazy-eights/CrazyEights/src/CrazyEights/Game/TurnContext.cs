@@ -11,21 +11,46 @@ using CrazyEights.Players;
 
 public class TurnContext
 {
-    public DiscardPile DiscardPile { get; }
-    public Suit SuitToMatch { get; }
-    public int RoundNumber { get; }
-    public ICard CurrentCard { get; }
-    public CardDeck Deck { get; }
+    private DiscardPile discardPile;
+    private Suit suitToMatch;
+    private readonly int roundNumber;
+    private readonly ICard currentCard;
+    private readonly CardDeck gameDeck;
+    private readonly IPlayer currentPlayer;
+    private readonly List<IPlayer> currentPlayerList;
     
 
-
-    public TurnContext(CardDeck deck, DiscardPile discardPile, int round)
+    public TurnContext(CardDeck deck, DiscardPile discardPile, int round, IPlayer player, List<IPlayer> playerList)
     {
-        DiscardPile = discardPile;
-        SuitToMatch = discardPile.TopDiscard().Suit;
-        RoundNumber = round;
-        CurrentCard = discardPile.TopDiscard();
-        Deck = deck;
+        this.discardPile = discardPile;
+        suitToMatch = discardPile.TopDiscard().Suit;
+        roundNumber = round;
+        currentCard = discardPile.TopDiscard();
+        gameDeck = deck;
+        currentPlayer = player;
+        currentPlayerList = playerList;
+    }
+
+    public ICard GetCurrentCard()
+    {
+        return currentCard;
+    }
+
+    public int GetRoundNumber()
+    {
+        return roundNumber;
+    }
+    
+    public void ViewContext()
+    {
+        Console.WriteLine($"""
+                           ------Turn {roundNumber}------ 
+                           Top Discard: {currentCard.Rank} of {currentCard.Suit}
+                           Deck Remaining: {gameDeck.DeckRemaining()}
+                           {currentPlayerList[0]}: {currentPlayerList[0].HandCount()} cards | {currentPlayerList[1]}: {currentPlayerList[1].HandCount()}
+                           
+                           **{currentPlayer}'s Turn
+                           """);
     }
 }
 

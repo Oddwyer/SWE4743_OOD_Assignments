@@ -7,7 +7,6 @@ public class CardHand
     private readonly List<ICard> hand;
     private readonly List<ICard> playableCards;
 
-
     public CardHand()
     {
         hand = new List<ICard>();
@@ -33,17 +32,17 @@ public class CardHand
             {
                 playableCards.Add(card);
             }
-            else if (card.Suit == context.CurrentCard.Suit)
+            else if (card.Suit == context.GetCurrentCard().Suit)
             {
                 playableCards.Add(card);
             }
-            else if (card.Rank == context.CurrentCard.Rank)
+            else if (card.Rank == context.GetCurrentCard().Rank)
             {
                 playableCards.Add(card);
             }
         }
 
-        return playableCards;
+        return playableCards.AsReadOnly();
     }
 
     public int Count()

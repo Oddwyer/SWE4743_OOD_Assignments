@@ -7,7 +7,7 @@ namespace CrazyEights.Deck;
 public class CardDeck
 {
     private readonly List<ICard> cards = new List<ICard>();
-    private bool IsShuffled { get; set; } 
+    public bool IsShuffled { get; private set; }
 
     public CardDeck()
     {
@@ -29,14 +29,14 @@ public class CardDeck
             // create random index generator + store index
             Random random = new Random();
             int index = random.Next(0, cards.Count);
-            
+
             // swap location based on randomized index generator
-            ICard temp = cards[i]; 
+            ICard temp = cards[i];
             cards[i] = cards[index];
             cards[index] = temp;
         }
 
-        IsShuffled =  true;
+        IsShuffled = true;
     }
 
     public int DeckRemaining()
@@ -55,7 +55,7 @@ public class CardDeck
         cards.RemoveAt(0);
         return drawnCard;
     }
-    
+
     public List<ICard> DealCards(int dealCount)
     {
         List<ICard> dealtCards = new List<ICard>();
@@ -65,7 +65,7 @@ public class CardDeck
             dealtCards.Add(DrawCard());
             count++;
         }
-        
+
         return dealtCards;
     }
 
@@ -73,5 +73,4 @@ public class CardDeck
     {
         return cards.AsReadOnly();
     }
-    
 }

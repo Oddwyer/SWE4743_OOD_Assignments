@@ -3,6 +3,7 @@ using CrazyEights.Cards;
 using CrazyEights.Deck;
 using CrazyEights.Game;
 using CrazyEights.Domain;
+using CrazyEights.Players;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -49,7 +50,12 @@ public class CardHandTest
         playList.Add(card3);
         playList.Add(card4);
         int round = 3;
-        TurnContext context = new TurnContext(deck, discardPile, round);
+        IPlayer player1 = new HumanPlayer("Human");
+        IPlayer player2 = new CpuPlayer("CPU");
+        List<IPlayer> playerList = new List<IPlayer>();
+        playerList.Add(player1);
+        playerList.Add(player2);
+        TurnContext context = new TurnContext(deck, discardPile, round, player1, playerList);
         
         // act 
         var result = hand.PlayableCards(context);
