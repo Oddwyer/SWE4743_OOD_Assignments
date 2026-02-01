@@ -1,11 +1,3 @@
-/* HumanPlayer extends PlayerBase class w/ full implementation:
-   - PlayerHand Method: Encapsulates player's hand and displays hand to console.
-   - PlayableCards Method: Displays cards player can play in given turn.
-   
-   HumanPlayer Class Introduces: 
-   - Create Player Constructor (name)
-*/
-
 using CrazyEights.Domain;
 
 namespace CrazyEights.Players;
@@ -44,7 +36,7 @@ public class HumanPlayer : PlayerBase
     
     public override void ReceiveCard(ICard card)
     {
-        
+        hand.AddCard(card);
     }
     
     public override ICard RemoveCard(int index)
@@ -54,6 +46,6 @@ public class HumanPlayer : PlayerBase
 
     public void ViewHand()
     {
-        // print hand to screen
+        hand.ViewHand();
     }
 }

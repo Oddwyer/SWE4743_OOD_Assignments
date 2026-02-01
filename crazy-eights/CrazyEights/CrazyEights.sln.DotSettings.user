@@ -1,7 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=630D011F_002DE20F_002D4B2E_002D824D_002DD3CDBFC3971A/@EntryIndexedValue">396541C2-5980-4F1D-B401-509653BA0C51</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=MSTest/@EntryIndexedValue">d6790ab7-33c2-4425-b2c9-51480cd1a852</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=03e124a1_002Da82f_002D448e_002Db8f4_002Dad2adeff5f6f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestCreate" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=03e124a1_002Da82f_002D448e_002Db8f4_002Dad2adeff5f6f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestCreate" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Game.CrazyEightsGameTest&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Deck.DiscardPileTest.TestDiscardPileCreate&lt;/TestId&gt;
@@ -13,5 +13,11 @@
     &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Cards.CardHandTest&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Deck.CardDeckTest.TestCreate&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Deck.CardDeckTest.TestDealCards&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Deck.CardDeckTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6c91ce1c_002D6722_002D4a02_002Da374_002Da4876be24ef6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestGameOver" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::396541C2-5980-4F1D-B401-509653BA0C51::net10.0::CrazyEights.Tests.Game.CrazyEightsGameTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

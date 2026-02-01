@@ -22,7 +22,7 @@ public interface IPlayer
 {
     // Think: What must IPlayer have that others may view/request from every implementation of IPlayer?
     
-    string Name { get; }
+    public string Name { get; }
     
     // Must take turn.
     public TurnAction TakeTurn(TurnContext context);

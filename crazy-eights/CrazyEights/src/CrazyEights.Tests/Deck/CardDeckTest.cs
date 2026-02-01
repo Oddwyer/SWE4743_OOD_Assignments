@@ -18,16 +18,17 @@ public class CardDeckTest
     {
         // arrange
         var deck = new CrazyEights.Deck.CardDeck();
+        var cards = deck.GetCards();
 
         // act
         
         // assert
-        Assert.HasCount(52, deck.Cards);
-        Assert.AreEqual(Suit.Clubs, deck.Cards[0].Suit);
-        Assert.AreEqual(Rank.Two, deck.Cards[0].Rank);
-        Assert.AreEqual(Suit.Diamonds, deck.Cards[13].Suit);
-        Assert.AreEqual(Suit.Hearts, deck.Cards[26].Suit);
-        Assert.AreEqual(Suit.Spades, deck.Cards[39].Suit);
+        Assert.AreEqual(52, cards.Count);
+        Assert.AreEqual(Suit.Clubs, cards[0].Suit);
+        Assert.AreEqual(Rank.Two, cards[0].Rank);
+        Assert.AreEqual(Suit.Diamonds, cards[13].Suit);
+        Assert.AreEqual(Suit.Hearts, cards[26].Suit);
+        Assert.AreEqual(Suit.Spades, cards[39].Suit);
         // Assert.IsTrue(deck.Cards[6].IsWildCard()); --> once shuffled, invalid test
 
     }
@@ -56,8 +57,9 @@ public class CardDeckTest
     public void TestDrawCard()
     {
         var deck = new CrazyEights.Deck.CardDeck();
+        var cards =  deck.GetCards();
 
-        var expectedCard = deck.Cards[0];
+        var expectedCard = cards[0];
         var actualCard = deck.DrawCard();
         int remaining = deck.DeckRemaining();
         Assert.AreEqual(expectedCard,  actualCard);

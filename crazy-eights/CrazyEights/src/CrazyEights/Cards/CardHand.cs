@@ -4,32 +4,30 @@ namespace CrazyEights.Cards;
 
 public class CardHand
 {
-    public readonly List<ICard> Hand;
+    private readonly List<ICard> hand;
     private readonly List<ICard> playableCards;
-    private int handCount;
+
 
     public CardHand()
     {
-        Hand = new List<ICard>();
+        hand = new List<ICard>();
         playableCards = new List<ICard>();
-        handCount = 0;
     }
 
     public CardHand(List<ICard> cards)
     {
-        Hand = cards;
+        hand = cards;
         playableCards = new List<ICard>();
-        handCount = cards.Count;
     }
 
     public IReadOnlyList<ICard> ViewHand()
     {
-        return Hand;
+        return hand.AsReadOnly();
     }
 
     public IReadOnlyList<ICard> PlayableCards(TurnContext context)
     {
-        foreach (var card in Hand)
+        foreach (var card in hand)
         {
             if (card.IsWildCard())
             {
@@ -50,18 +48,18 @@ public class CardHand
 
     public int Count()
     {
-        return Hand.Count;
+        return hand.Count;
     }
 
     public void AddCard(ICard card)
     {
-        Hand.Add(card);
+        hand.Add(card);
     }
 
     public ICard RemoveCard(int index)
     {
-        ICard card = Hand[index];
-        Hand.RemoveAt(index);
+        ICard card = hand[index];
+        hand.RemoveAt(index);
         return card;
     }
 }

@@ -1,14 +1,3 @@
-/* CpuPlayer extends PlayerBase class w/ full implementation:
-   - PlayerHand Method: Encapsulates player's hand - does NOT display hand to console.
-   - PlayableCards Method: Documents cards player can play in given turn - does NOT display to console.
-   - SelectCard Method: Auto selects card and passes to PlayCard method.
-   - DrawCard Method: Draws card when none in hand to play; displays to screen.
-
-   HumanPlayer Class Introduces: 
-   - Create CpuPlayer Constructor: Default Name "CPU"
-*/
-
-
 using CrazyEights.Domain;
 
 namespace CrazyEights.Players;
