@@ -1,6 +1,6 @@
-namespace CrazyEights.Cards;
-
 using CrazyEights.Domain;
+
+namespace CrazyEights.Cards;
 
 public class StandardCard : ICard
 {

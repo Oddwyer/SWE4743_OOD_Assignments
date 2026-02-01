@@ -1,6 +1,5 @@
 using CrazyEights.Cards;
 using CrazyEights.Domain;
-using CrazyEights.Players;
 
 namespace CrazyEights.Deck;
 
@@ -65,7 +64,6 @@ public class CardDeck
             dealtCards.Add(DrawCard());
             count++;
         }
-
         return dealtCards;
     }
 

@@ -1,46 +1,55 @@
-/*Game Engine Encapsulation Requirements:
-    - No public access to a player’s hand list.
-    - No public mutation of the deck or discard pile.
-    - State transitions (drawing, playing, discarding) must occur through methods - not list or property mutations.
-    - No public fields.
-*/
-
-
-namespace CrazyEights.Game;
-
 using System;
 using CrazyEights.Deck;
 using CrazyEights.Players;
 using CrazyEights.Cards;
+using CrazyEights.Domain;
+
+namespace CrazyEights.Game;
 
 public class CrazyEightsGame
 {
-    private readonly List<IPlayer> playerList = new List<IPlayer>();
-    private readonly Queue<IPlayer> turnOrder;
+    public readonly List<IPlayer> players = new List<IPlayer>();
     private readonly CardDeck cardDeck;
     private readonly DiscardPile discardPile = new DiscardPile();
+    public ICard TopDiscard { get; private set; }
     public string Winner { get; private set; }
     public int RoundNumber { get; private set; } = 1;
-    public IPlayer currentPlayer {get; private set;}
-    public int dealCount { get; private set; }= 0;
+    public IPlayer CurrentPlayer { get; private set; }
+    public int DealCount { get; private set; } = 0;
+    private int currentIndex = 0;
+    public Suit CurrentSuit { get; private set; }
 
     public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu, int dealCount)
     {
         this.cardDeck = cardDeck;
-        playerList.Add(human);
-        playerList.Add(cpu);
-        turnOrder = new Queue<IPlayer>(playerList);
-        currentPlayer = human;
-        this.dealCount = dealCount;
+        players.Add(human);
+        players.Add(cpu);
+        CurrentPlayer = human;
+        DealCount = dealCount;
+        TopDiscard = discardPile.TopDiscard();
+        CurrentSuit = TopDiscard.Suit;
     }
 
     public void PlayerAction(TurnAction action)
     {
+        if (action.DrawCard)
+        {
+            CurrentPlayer.ReceiveCard(cardDeck.DrawCard());
+        }
+        else
+        {
+            discardPile.DiscardCard(action.DiscardedCard);
+
+            if (action.IsWildCard)
+            {
+                CurrentSuit = action.WildCardSuit;
+            }
+        }
     }
 
-    public Queue<IPlayer> GetTurnOrder()
+    public IReadOnlyList<IPlayer> GetPlayers()
     {
-        return turnOrder;
+        return players.AsReadOnly();
     }
 
     public void PlayGame()
@@ -48,45 +57,67 @@ public class CrazyEightsGame
         while (Winner == "")
         {
             RoundNumber++;
-            currentPlayer = turnOrder.Dequeue();
-            TurnContext context = new TurnContext(cardDeck, discardPile, RoundNumber, currentPlayer, playerList);
-            context.ViewContext();
-            currentPlayer.TakeTurn(context);
-            turnOrder.Enqueue(currentPlayer);
+            CurrentPlayer = players[currentIndex];
+            TurnContext context = new TurnContext(TopDiscard, RoundNumber, TopDiscard.Suit);
+            RoundDetails();
+            CurrentPlayer.TakeTurn(context);
+            currentIndex = (currentIndex + 1) % players.Count;
         }
 
         Winner = GetWinner();
         Console.WriteLine($"{Winner} won!");
     }
-    
-    
+
+
     public string GetWinner()
     {
-        if (currentPlayer.HandCount() == 0)
+        if (CurrentPlayer.HandCount() == 0)
         {
-            return currentPlayer.Name;
+            return CurrentPlayer.Name;
         }
         else if (cardDeck.IsDeckEmpty())
         {
-            IPlayer player1 = turnOrder.Dequeue();
-            IPlayer player2 = turnOrder.Dequeue();
-            if (player1.HandCount() > player2.HandCount())
+            if (players[0].HandCount() > players[1].HandCount())
             {
-                return player2.Name;
+                return players[1].Name;
             }
-            else if (player1.HandCount() == player2.HandCount())
+            else if (players[0].HandCount() == players[1].HandCount())
             {
                 return "It's a tie game!";
             }
             else
             {
-                return player1.Name;
+                return players[0].Name;
             }
-        }
-        else
-        {
         }
 
         return "";
+    }
+
+    public void RoundDetails()
+    {
+        ICard currentCard = discardPile.TopDiscard();
+        if (CurrentSuit == TopDiscard.Suit)
+        {
+            Console.WriteLine($"""
+                               ------Turn {RoundNumber}------ 
+                               Top Discard: {currentCard.Rank} of {currentCard.Suit}
+                               Deck Remaining: {cardDeck.DeckRemaining()}
+                               {players[0]}: {players[0].HandCount()} cards | {players[1]}: {players[1].HandCount()}
+
+                               **{CurrentPlayer}'s Turn
+                               """);
+        }
+        else
+        {
+            Console.WriteLine($"""
+                               ------Turn {RoundNumber}------ 
+                               Top Discard: {currentCard.Rank} of {currentCard.Suit} (Suit to match: {CurrentSuit})
+                               Deck Remaining: {cardDeck.DeckRemaining()}
+                               {players[0]}: {players[0].HandCount()} cards | {players[1]}: {players[1].HandCount()}
+
+                               **{CurrentPlayer}'s Turn
+                               """);
+        }
     }
 }

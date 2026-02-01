@@ -1,22 +1,21 @@
-/* TurnAction (Design):
-   - Contains context for player's requested actions upon turn.
-*/
+using CrazyEights.Cards;
+using CrazyEights.Domain;
 
 namespace CrazyEights.Game;
 
-using CrazyEights.Domain;
-
-
 public class TurnAction
 {
-    public string ActionType {get; }
-    public int SelectedCardIndex { get; }
-    public Suit SelectedSuit { get; }
+    public bool DrawCard { get; private set; } = false;
+    public ICard DiscardedCard { get; private set; }
+    
+    public bool IsWildCard { get; private set; } = false;
+    public Suit WildCardSuit { get; private set; }
 
-    public TurnAction(string action, int index, Suit suit)
+    public TurnAction(bool draw, ICard card, Suit suit, bool isWild)
     {
-        ActionType = action;
-        SelectedCardIndex = index;
-        SelectedSuit = suit;
+        DrawCard = draw;
+        DiscardedCard = card;
+        WildCardSuit = suit;
+        IsWildCard = isWild;
     }
 }

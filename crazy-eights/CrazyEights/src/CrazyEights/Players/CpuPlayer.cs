@@ -1,9 +1,8 @@
 using CrazyEights.Domain;
-
-namespace CrazyEights.Players;
-
 using CrazyEights.Cards;
 using CrazyEights.Game;
+
+namespace CrazyEights.Players;
 
 public class CpuPlayer : PlayerBase
 {
@@ -18,10 +17,13 @@ public class CpuPlayer : PlayerBase
    
    public override TurnAction TakeTurn(TurnContext context)
    {
-      string action = "draw";
-      int index = 1;
-      Suit suit = Suit.Clubs;
-      return new TurnAction(action, index, suit);
+      Console.WriteLine();
+      bool draw = false;
+      bool isWildCard = false;
+      ICard discardedCard = new StandardCard(Suit.Diamonds, Rank.Ace);
+      Suit wildCardSuit =  Suit.Clubs;   
+            
+      return new TurnAction(draw, discardedCard, wildCardSuit, isWildCard);
    }
 
    public override int HandCount()

@@ -32,11 +32,11 @@ public class CardHand
             {
                 playableCards.Add(card);
             }
-            else if (card.Suit == context.GetCurrentCard().Suit)
+            else if (card.Suit == context.TopDiscard.Suit)
             {
                 playableCards.Add(card);
             }
-            else if (card.Rank == context.GetCurrentCard().Rank)
+            else if (card.Rank == context.TopDiscard.Rank)
             {
                 playableCards.Add(card);
             }

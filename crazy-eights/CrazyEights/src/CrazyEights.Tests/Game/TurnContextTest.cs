@@ -1,6 +1,7 @@
 using CrazyEights.Game;
 using CrazyEights.Players;
 using CrazyEights.Deck;
+using CrazyEights.Cards;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,14 +21,13 @@ public class TurnContextTest
         CardDeck deck = new CardDeck();
         discardPile.DiscardCard(deck.DrawCard());
         int round = 1;
-        IPlayer player1 = new HumanPlayer("Human");
-        IPlayer player2 = new CpuPlayer("CPU");
-        List<IPlayer> playerList = new List<IPlayer>();
+        ICard topDiscard = discardPile.TopDiscard();
+
         // act
-        TurnContext context = new TurnContext(deck, discardPile, round, player1, playerList);
+        TurnContext context = new TurnContext(topDiscard, round, topDiscard.Suit );
         
         // assert
-        Assert.AreEqual(1, context.GetRoundNumber());
+        Assert.AreEqual(1, context.RoundNumber);
         Assert.IsInstanceOfType(context, typeof(TurnContext));
         Assert.IsNotNull(context);
     }

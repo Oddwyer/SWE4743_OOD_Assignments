@@ -46,16 +46,9 @@ public class CardHandTest
         CardHand hand =  new CardHand(testList);
         DiscardPile discardPile = new DiscardPile();
         discardPile.DiscardCard(card1);
-        List<ICard> playList = new List<ICard>();
-        playList.Add(card3);
-        playList.Add(card4);
+        ICard topDiscard = discardPile.TopDiscard();
         int round = 3;
-        IPlayer player1 = new HumanPlayer("Human");
-        IPlayer player2 = new CpuPlayer("CPU");
-        List<IPlayer> playerList = new List<IPlayer>();
-        playerList.Add(player1);
-        playerList.Add(player2);
-        TurnContext context = new TurnContext(deck, discardPile, round, player1, playerList);
+        TurnContext context = new TurnContext(topDiscard, round, topDiscard.Suit);
         
         // act 
         var result = hand.PlayableCards(context);

@@ -1,9 +1,8 @@
 using CrazyEights.Domain;
-
-namespace CrazyEights.Players;
-
 using CrazyEights.Game;
 using CrazyEights.Cards;
+
+namespace CrazyEights.Players;
 
 public class HumanPlayer : PlayerBase
 {
@@ -11,35 +10,37 @@ public class HumanPlayer : PlayerBase
     private readonly CardHand hand;
 
     public HumanPlayer(string name)
-    {   
+    {
         Name = name;
         hand = new CardHand();
     }
 
     public override TurnAction TakeTurn(TurnContext context)
     {
-        
-        string action = "draw";
-        int index = 1;
-        Suit suit = Suit.Clubs;
-        return new TurnAction(action, index, suit);
+        Console.WriteLine();
+        bool draw = false;
+        bool isWildCard = false;
+        ICard discardedCard = new StandardCard(Suit.Diamonds, Rank.Ace);
+        Suit wildCardSuit =  Suit.Clubs;   
+            
+        return new TurnAction(draw, discardedCard, wildCardSuit, isWildCard);
     }
 
     public override int HandCount()
     {
         return hand.Count();
     }
-    
+
     public override IReadOnlyList<ICard> PlayableCards(TurnContext context)
     {
         return hand.PlayableCards(context);
     }
-    
+
     public override void ReceiveCard(ICard card)
     {
         hand.AddCard(card);
     }
-    
+
     public override ICard RemoveCard(int index)
     {
         return new StandardCard(Suit.Clubs, Rank.Ace);

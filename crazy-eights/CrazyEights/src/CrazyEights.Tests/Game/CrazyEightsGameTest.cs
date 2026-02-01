@@ -24,7 +24,7 @@ public class CrazyEightsGameTest
         Assert.AreEqual(52, deck.DeckRemaining());
         Assert.IsNotNull(game);
         Assert.IsInstanceOfType(game, typeof(CrazyEightsGame));
-        Assert.AreEqual(2, game.GetTurnOrder().Count);
+        Assert.AreEqual(2, game.players.Count);
     }
 
     [TestMethod]

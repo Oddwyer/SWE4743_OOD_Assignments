@@ -1,9 +1,3 @@
-/* PlayerBase implements IPlayer interface:
-   - Encapsulates the player’s hand
-   - Provides shared helper logic (finding playable cards, removing cards, etc.)
-   - Leaves decision-making to subclasses
-*/
-
 using CrazyEights.Cards;
 using CrazyEights.Domain;
 using CrazyEights.Game;

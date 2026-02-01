@@ -1,8 +1,3 @@
-/* Rank Class Design:
-    - Rank possibilities: 2-10, Ace, Jack, King, Queen
-    - Generate Rank Method: Generates card rank from possibilities.
-*/
-
 namespace CrazyEights.Domain;
 
 using System;

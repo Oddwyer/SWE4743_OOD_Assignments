@@ -3,7 +3,6 @@ using CrazyEights.Deck;
 using CrazyEights.Game;
 using CrazyEights.Players;
 
-
 namespace CrazyEights;
 
 public static class Program
