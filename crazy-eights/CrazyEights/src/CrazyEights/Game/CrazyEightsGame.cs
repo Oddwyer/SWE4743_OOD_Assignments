@@ -13,7 +13,7 @@ public class CrazyEightsGame
     private readonly CardDeck cardDeck;
     private readonly DiscardPile discardPile = new DiscardPile();
     public ICard TopDiscard { get; private set; }
-    public string Winner { get; private set; }
+    public string Winner { get; private set; } = "";
     public int RoundNumber { get; private set; } = 1;
     public IPlayer CurrentPlayer { get; private set; }
     public int DealCount { get; private set; } = 0;
@@ -29,6 +29,7 @@ public class CrazyEightsGame
         players.Add(cpu);
         CurrentPlayer = human;
         DealCount = dealCount;
+        discardPile.DiscardCard(cardDeck.DrawCard());
         TopDiscard = discardPile.TopDiscard();
         CurrentSuit = TopDiscard.Suit;
     }
