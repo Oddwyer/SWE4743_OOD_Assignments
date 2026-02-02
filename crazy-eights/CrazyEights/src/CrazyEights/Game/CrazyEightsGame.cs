@@ -64,7 +64,7 @@ public class CrazyEightsGame
         {
             RoundNumber++;
             CurrentPlayer = players[currentIndex];
-            TurnContext context = new TurnContext(TopDiscard, RoundNumber, TopDiscard.Suit);
+            TurnContext context = new TurnContext(discardPile.TopDiscard(), RoundNumber, CurrentSuit);
             RoundDetails();
             TurnAction action = CurrentPlayer.TakeTurn(context);
             if (action.DrawCard)
@@ -82,9 +82,9 @@ public class CrazyEightsGame
                 }
             }
             currentIndex = (currentIndex + 1) % players.Count;
+            Winner = GetWinner();
         }
-
-        Winner = GetWinner();
+        
         Console.WriteLine($"{Winner} won!");
     }
 

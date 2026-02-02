@@ -23,31 +23,33 @@ public class HumanPlayer : PlayerBase
         int choice = 0;
         bool draw = false;
         bool isWildCard = false;
-        ICard discardedCard = new StandardCard(Suit.Diamonds, Rank.Ace); // Stubbed for instantiation.
+        ICard discardedCard = new StandardCard(Suit.Diamonds, Rank.Ace); // Dummy instantiation.
         Suit wildCardSuit = Suit.Clubs;
 
         var cards = PlayableCards(context);
-        while (choice < cards.Count && choice >= 0 && cards.Count > 0)
-        {
-            hand.PrintHand(Name);
-            Console.WriteLine();
-            hand.PrintPlayableCards(Name, context.SuitToMatch);
-            Console.Write("Choose a card number to play: ");
-
-            // TryParse ? = If not null ant int; choice = int; else choice = 0.
-            choice = int.TryParse(Console.ReadLine(), out choice) ? choice : 0;
-            if (choice == 0)
-            {
-                Console.WriteLine("Invalid selection. Please try again. ");
-            }
-        }
-
         if (cards.Count == 0)
         {
             draw = true;
         }
         else
         {
+            while (!(choice > 0 && choice <= cards.Count))
+            {
+                hand.PrintHand(Name);
+                Console.WriteLine();
+                hand.PrintPlayableCards(Name, context.SuitToMatch);
+                Console.Write("Choose a card number to play: ");
+
+                // TryParse ? = If not null ant int; choice = int; else choice = 0.
+                choice = int.TryParse(Console.ReadLine(), out choice) ? choice : 0;
+                if (choice == 0)
+                {
+                    Console.WriteLine("Invalid selection. Please try again.\n");
+                }
+
+                Console.WriteLine();
+            }
+
             ICard card = cards[choice - 1];
             Console.WriteLine($"{Name} selected {card.Rank} of {card.Suit} {CardIcons.GetSuitIcon(card.Suit)}\n");
             hand.RemoveCard(card);
@@ -57,7 +59,6 @@ public class HumanPlayer : PlayerBase
                 isWildCard = true;
                 wildCardSuit = ChooseSuit();
             }
-            
         }
 
         return new TurnAction(draw, discardedCard, wildCardSuit, isWildCard);
@@ -80,7 +81,7 @@ public class HumanPlayer : PlayerBase
     {
         hand.AddCard(card);
     }
-    
+
     private Suit ChooseSuit()
     {
         string suitOptions = $"""

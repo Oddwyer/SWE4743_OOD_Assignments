@@ -64,6 +64,7 @@ public class CardHand
     // Create List of Playable Cards in Hand
     public IReadOnlyList<ICard> PlayableCards(TurnContext context)
     {
+        playableCards.Clear();
         foreach (var card in hand)
         {
             if (card.IsWildCard())
