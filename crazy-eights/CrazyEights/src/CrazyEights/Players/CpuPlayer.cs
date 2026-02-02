@@ -47,13 +47,6 @@ public class CpuPlayer : PlayerBase
       hand.AddCard(card);
    }
    
-   // CPU Remove Card from Hand
-   public override ICard RemoveCard(int index)
-   {
-      return hand.RemoveCard(index);
-   }
-   
-
 }
 
       

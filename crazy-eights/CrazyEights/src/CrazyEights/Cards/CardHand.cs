@@ -51,11 +51,11 @@ public class CardHand
             string icon = CardIcons.GetSuitIcon(card.Suit);
             if (card.Rank == Rank.Eight)
             {
-                Console.WriteLine($"  [{i+1}] {card.Suit} - {card.Rank} {icon} (Wildcard!)" );
+                Console.WriteLine($"  [{i+1}] {card.Rank} of {card.Suit} {icon} (Wildcard!)" );
             }
             else
             {
-                Console.WriteLine($"  [{i + 1}] {card.Suit} - {card.Rank} {icon} (Matches Suit)");
+                Console.WriteLine($"  [{i + 1}] {card.Rank} of {card.Suit} {icon} (Matches Suit)");
             }
         }
         
@@ -96,10 +96,14 @@ public class CardHand
     }
 
     // Remove Card from Hand
-    public ICard RemoveCard(int index)
+    public void RemoveCard(ICard cardToRemove)
     {
-        ICard card = hand[index];
-        hand.RemoveAt(index);
-        return card;
+        for (int i = 0; i < hand.Count; i++)
+        {
+            if (cardToRemove == hand[i])
+            {  
+                hand.RemoveAt(i);
+            }
+        }
     }
 }

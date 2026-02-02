@@ -19,7 +19,5 @@ public abstract class PlayerBase : IPlayer {
 
       public abstract IReadOnlyList<ICard> PlayableCards(TurnContext context);
       
-      public abstract ICard RemoveCard(int index);
-      
       public abstract void ReceiveCard(ICard card);
 }
