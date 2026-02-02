@@ -49,6 +49,7 @@ public class HumanPlayer : PlayerBase
         else
         {
             ICard card = cards[choice - 1];
+            Console.WriteLine($"{Name} selected {card.Rank} of {card.Suit} {CardIcons.GetSuitIcon(card.Suit)}\n");
             hand.RemoveCard(card);
             discardedCard = card;
             if (card.IsWildCard())
@@ -56,6 +57,7 @@ public class HumanPlayer : PlayerBase
                 isWildCard = true;
                 wildCardSuit = ChooseSuit();
             }
+            
         }
 
         return new TurnAction(draw, discardedCard, wildCardSuit, isWildCard);
@@ -79,14 +81,6 @@ public class HumanPlayer : PlayerBase
         hand.AddCard(card);
     }
     
-
-    // View Hand
-    public void ViewHand()
-    {
-        Console.WriteLine();
-        hand.GetHand();
-    }
-
     private Suit ChooseSuit()
     {
         string suitOptions = $"""

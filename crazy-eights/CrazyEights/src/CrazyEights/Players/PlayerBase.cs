@@ -3,6 +3,9 @@ using CrazyEights.Domain;
 using CrazyEights.Game;
 
 namespace CrazyEights.Players;
+/// <summary>
+/// Methods such as "remove card" are located under CardHand.
+/// </summary>
 
 public abstract class PlayerBase : IPlayer {
 

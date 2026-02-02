@@ -14,11 +14,11 @@ public class CrazyEightsGame
     private readonly DiscardPile discardPile = new DiscardPile();
     public ICard TopDiscard { get; private set; }
     public string Winner { get; private set; } = "";
-    public int RoundNumber { get; private set; } = 1;
+    public int RoundNumber { get; private set; } = 0;
     public IPlayer CurrentPlayer { get; private set; }
     private int currentIndex = 0;
     public Suit CurrentSuit { get; private set; }
-    
+
 
     // Constructor
     public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu)
@@ -66,7 +66,21 @@ public class CrazyEightsGame
             CurrentPlayer = players[currentIndex];
             TurnContext context = new TurnContext(TopDiscard, RoundNumber, TopDiscard.Suit);
             RoundDetails();
-            CurrentPlayer.TakeTurn(context);
+            TurnAction action = CurrentPlayer.TakeTurn(context);
+            if (action.DrawCard)
+            {
+                Console.WriteLine($"{CurrentPlayer.Name} has no playable cards. Drawing one card...\n");
+                CurrentPlayer.ReceiveCard(cardDeck.DrawCard());
+            }
+            else 
+            {
+                discardPile.DiscardCard(action.DiscardedCard);
+                if (action.IsWildCard)
+                {
+                    CurrentSuit = action.WildCardSuit;
+                    Console.WriteLine($"{CurrentPlayer.Name} changed suit to {CurrentSuit} {CardIcons.GetSuitIcon(CurrentSuit)}\n");
+                }
+            }
             currentIndex = (currentIndex + 1) % players.Count;
         }
 
@@ -105,16 +119,29 @@ public class CrazyEightsGame
     public void RoundDetails()
     {
         ICard currentCard = discardPile.TopDiscard();
+        if (RoundNumber == 1)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"""
+                               ==================================================
+                               Crazy Eights (Simplified)
+                               ==================================================
+                               Starting discard: {currentCard.Rank} of {currentCard.Suit} {CardIcons.GetSuitIcon(currentCard.Suit)}
+                               """);
+            Console.WriteLine();
+        }
+
         if (CurrentSuit == TopDiscard.Suit)
         {
             Console.WriteLine($"""
                                ------Turn {RoundNumber}------ 
                                Top Discard: {currentCard.Rank} of {currentCard.Suit}
                                Deck Remaining: {cardDeck.DeckRemaining()}
-                               {players[0]}: {players[0].HandCount()} cards | {players[1]}: {players[1].HandCount()}
+                               {players[0].Name}: {players[0].HandCount()} cards | {players[1].Name}: {players[1].HandCount()} cards
 
-                               **{CurrentPlayer}'s Turn
+                               ** {CurrentPlayer.Name}'s Turn
                                """);
+            Console.WriteLine();
         }
         else
         {
@@ -122,10 +149,11 @@ public class CrazyEightsGame
                                ------Turn {RoundNumber}------ 
                                Top Discard: {currentCard.Rank} of {currentCard.Suit} (Suit to match: {CurrentSuit})
                                Deck Remaining: {cardDeck.DeckRemaining()}
-                               {players[0]}: {players[0].HandCount()} cards | {players[1]}: {players[1].HandCount()}
+                               {players[0].Name}: {players[0].HandCount()} cards | {players[1].Name}: {players[1].HandCount()} cards
 
-                               **{CurrentPlayer}'s Turn
+                               ** {CurrentPlayer.Name}'s Turn
                                """);
+            Console.WriteLine();
         }
     }
 }
