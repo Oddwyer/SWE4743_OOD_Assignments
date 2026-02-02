@@ -8,14 +8,7 @@ public class CardHand
     // Needed Variables
     private readonly List<ICard> hand;
     private readonly List<ICard> playableCards;
-
-    // Default Constructor - Use Prior to Dealt Cards
-    public CardHand()
-    {
-        hand = new List<ICard>();
-        playableCards = new List<ICard>();
-    }
-
+    
     // Constructer - Post Dealt Cards
     public CardHand(List<ICard> cards)
     {

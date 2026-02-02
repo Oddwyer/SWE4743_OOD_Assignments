@@ -26,7 +26,7 @@ public class HumanPlayer : PlayerBase
         ICard discardedCard = new StandardCard(Suit.Diamonds, Rank.Ace); // Dummy instantiation.
         Suit wildCardSuit = Suit.Clubs;
 
-        var cards = PlayableCards(context);
+        var cards = hand.PlayableCards(context);
         if (cards.Count == 0)
         {
             draw = true;
@@ -69,25 +69,20 @@ public class HumanPlayer : PlayerBase
     {
         return hand.Count();
     }
-
-    // Human Player's Playable Cards
-    public override IReadOnlyList<ICard> PlayableCards(TurnContext context)
-    {
-        return hand.PlayableCards(context);
-    }
-
+    
     // Human Player Add Card to Hand
     public override void ReceiveCard(ICard card)
     {
         hand.AddCard(card);
     }
 
+    // Declare Suit Upon Wildcard
     private Suit ChooseSuit()
     {
         string suitOptions = $"""
                               {Name}, you played a wildcard! Choose a suit:
                                 [H] Hearts
-                                [D] Diamonds (current suit)
+                                [D] Diamonds 
                                 [C] Clubs
                                 [S] Spades
                               """;

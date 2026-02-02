@@ -1,10 +1,9 @@
 using CrazyEights.Cards;
-using CrazyEights.Domain;
 using CrazyEights.Game;
 
 namespace CrazyEights.Players;
 /// <summary>
-/// Methods such as "remove card" are located under CardHand.
+/// Methods such as RemoveCard, PlayableCards are located under CardHand.
 /// </summary>
 
 public abstract class PlayerBase : IPlayer {
@@ -19,8 +18,6 @@ public abstract class PlayerBase : IPlayer {
       public abstract TurnAction TakeTurn(TurnContext context);
       
       public abstract int HandCount();
-
-      public abstract IReadOnlyList<ICard> PlayableCards(TurnContext context);
-      
+   
       public abstract void ReceiveCard(ICard card);
 }

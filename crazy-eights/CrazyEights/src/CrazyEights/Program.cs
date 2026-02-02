@@ -17,12 +17,10 @@ public static class Program
         {
             name = "Player";
         }
-        IPlayer human1 = new HumanPlayer(name, new CardHand(deck.DealCards(5)));
-        IPlayer human2 = new HumanPlayer("P2", new CardHand(deck.DealCards(5)));
-        //IPlayer cpu = new CpuPlayer("CPU", new CardHand(deck.DealCards(5)));
-
-     
-        CrazyEightsGame game = new CrazyEightsGame(deck, human1, human2);
+        IPlayer human = new HumanPlayer(name, new CardHand(deck.DealCards(5)));
+        IPlayer cpu = new CpuPlayer("CPU", new CardHand(deck.DealCards(5)));
+        
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
 
         game.PlayGame();
     }

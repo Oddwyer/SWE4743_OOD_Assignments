@@ -1,5 +1,3 @@
-
-
 namespace CrazyEights.Domain;
 
 public class CardIcons

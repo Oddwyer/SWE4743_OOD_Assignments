@@ -1,4 +1,3 @@
-using System;
 using CrazyEights.Deck;
 using CrazyEights.Players;
 using CrazyEights.Cards;
@@ -9,7 +8,7 @@ namespace CrazyEights.Game;
 public class CrazyEightsGame
 {
     // Needed Variables
-    public readonly List<IPlayer> players = new List<IPlayer>();
+    public readonly List<IPlayer> Players = new List<IPlayer>();
     private readonly CardDeck cardDeck;
     private readonly DiscardPile discardPile = new DiscardPile();
     public ICard TopDiscard { get; private set; }
@@ -26,8 +25,8 @@ public class CrazyEightsGame
     {
         this.cardDeck = cardDeck;
         cardDeck.ShuffleDeck();
-        players.Add(human);
-        players.Add(cpu);
+        Players.Add(human);
+        Players.Add(cpu);
         CurrentPlayer = human;
         discardPile.DiscardCard(cardDeck.DrawCard());
         TopDiscard = discardPile.TopDiscard();
@@ -37,7 +36,7 @@ public class CrazyEightsGame
     // Get Players List
     public IReadOnlyList<IPlayer> GetPlayers()
     {
-        return players.AsReadOnly();
+        return Players.AsReadOnly();
     }
 
     // Play Game
@@ -46,11 +45,17 @@ public class CrazyEightsGame
         while (Winner == "")
         {
             RoundNumber++;
-            CurrentPlayer = players[currentIndex];
+            CurrentPlayer = Players[currentIndex];
+            // Create & Pass turn context details to players 
             TurnContext context = new TurnContext(discardPile.TopDiscard(), RoundNumber, DeclardSuit, MustMatchSuit);
+            
+            // Print Round/Turn Details to Console
             RoundDetails();
+            
+            // Invoke Player's Turn & Receive Directives
             TurnAction action = CurrentPlayer.TakeTurn(context);
 
+            // Perform Action Per Directives
             if (action.DrawCard)
             {
                 Console.WriteLine($"{CurrentPlayer.Name} has no playable cards. Drawing one card...\n");
@@ -67,10 +72,11 @@ public class CrazyEightsGame
                     Console.WriteLine($"{CurrentPlayer.Name} changed suit to {DeclardSuit} {CardIcons.GetSuitIcon(DeclardSuit)}\n");
                 }
             }
-            currentIndex = (currentIndex + 1) % players.Count;
+            // Update Player
+            currentIndex = (currentIndex + 1) % Players.Count;
+            // Check if Game Over
             Winner = GetWinner();
         }
-        
         Console.WriteLine($"{Winner} won!");
     }
 
@@ -84,17 +90,17 @@ public class CrazyEightsGame
         }
         else if (cardDeck.IsDeckEmpty())
         {
-            if (players[0].HandCount() > players[1].HandCount())
+            if (Players[0].HandCount() > Players[1].HandCount())
             {
-                return players[1].Name;
+                return Players[1].Name;
             }
-            else if (players[0].HandCount() == players[1].HandCount())
+            else if (Players[0].HandCount() == Players[1].HandCount())
             {
                 return "It's a tie game!";
             }
             else
             {
-                return players[0].Name;
+                return Players[0].Name;
             }
         }
 
@@ -121,9 +127,9 @@ public class CrazyEightsGame
         {
             Console.WriteLine($"""
                                ------Turn {RoundNumber}------ 
-                               Top Discard: {currentCard.Rank} of {currentCard.Suit}
+                               Top Discard: {currentCard.Rank} of {currentCard.Suit} {CardIcons.GetSuitIcon(currentCard.Suit)}
                                Deck Remaining: {cardDeck.DeckRemaining()}
-                               {players[0].Name}: {players[0].HandCount()} cards | {players[1].Name}: {players[1].HandCount()} cards
+                               {Players[0].Name}: {Players[0].HandCount()} cards | {Players[1].Name}: {Players[1].HandCount()} cards
 
                                ** {CurrentPlayer.Name}'s Turn
                                """);
@@ -133,9 +139,9 @@ public class CrazyEightsGame
         {
             Console.WriteLine($"""
                                ------Turn {RoundNumber}------ 
-                               Top Discard: {currentCard.Rank} of {currentCard.Suit} (Suit to match: {DeclardSuit})
+                               Top Discard: {currentCard.Rank} of {currentCard.Suit} {CardIcons.GetSuitIcon(currentCard.Suit)}(Suit to match: {DeclardSuit})
                                Deck Remaining: {cardDeck.DeckRemaining()}
-                               {players[0].Name}: {players[0].HandCount()} cards | {players[1].Name}: {players[1].HandCount()} cards
+                               {Players[0].Name}: {Players[0].HandCount()} cards | {Players[1].Name}: {Players[1].HandCount()} cards
 
                                ** {CurrentPlayer.Name}'s Turn
                                """);

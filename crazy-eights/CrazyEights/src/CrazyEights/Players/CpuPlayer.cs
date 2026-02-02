@@ -6,48 +6,59 @@ namespace CrazyEights.Players;
 
 public class CpuPlayer : PlayerBase
 {
-   // Needed Variables
-   public override string Name { get; }
-   private CardHand hand;
+    // Needed Variables
+    public override string Name { get; }
+    private CardHand hand;
+    private Suit[] suits = { Suit.Clubs, Suit.Diamonds, Suit.Hearts, Suit.Spades };
 
-   // Constructor
-   public CpuPlayer(string name, CardHand hand)
-   {   
-      Name = name;
-      this.hand = hand;
-   }
-   
-   // CPU Turn Actions
-   public override TurnAction TakeTurn(TurnContext context)
-   {
-      Console.WriteLine();
-      bool draw = false;
-      bool isWildCard = false;
-      ICard discardedCard = new StandardCard(Suit.Diamonds, Rank.Ace);
-      Suit wildCardSuit =  Suit.Clubs;   
+    // Constructor
+    public CpuPlayer(string name, CardHand hand)
+    {
+        Name = name;
+        this.hand = hand;
+    }
+
+    // CPU Turn Actions
+    public override TurnAction TakeTurn(TurnContext context)
+    {
+        bool draw = false;
+        bool isWildCard = false;
+        ICard discardedCard = new StandardCard(Suit.Diamonds, Rank.Ace); // Dummy instantiation.
+        Suit wildCardSuit = Suit.Clubs;
+
+        var cards = hand.PlayableCards(context);
+        if (cards.Count == 0)
+        {
+            draw = true;
+        }
+        else
+        {
+            hand.PlayableCards(context);
+            Random rand =  new Random();
+            var card =  cards[rand.Next(cards.Count)];
             
-      return new TurnAction(draw, discardedCard, wildCardSuit, isWildCard);
-   }
+            Console.WriteLine($"{Name} selected {card.Rank} of {card.Suit} {CardIcons.GetSuitIcon(card.Suit)}\n");
+            hand.RemoveCard(card);
+            discardedCard = card;
+            if (card.IsWildCard())
+            {
+                isWildCard = true;
+                wildCardSuit = suits[rand.Next(suits.Length)];
+            }
+        }
 
-   // CPU Hand Count
-   public override int HandCount()
-   {
-      return hand.Count();
-   }
+        return new TurnAction(draw, discardedCard, wildCardSuit, isWildCard);
+    }
 
-   // CPU Playable Cards
-   public override IReadOnlyList<ICard> PlayableCards(TurnContext context)
-   {
-     return hand.PlayableCards(context);
-   }
+    // CPU Hand Count
+    public override int HandCount()
+    {
+        return hand.Count();
+    }
 
-   // CPU Add Card to Hand
-   public override void ReceiveCard(ICard card)
-   {
-      hand.AddCard(card);
-   }
-   
+    // CPU Add Card to Hand
+    public override void ReceiveCard(ICard card)
+    {
+        hand.AddCard(card);
+    }
 }
-
-      
-

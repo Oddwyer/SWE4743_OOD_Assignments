@@ -1,16 +1,13 @@
 using CrazyEights.Cards;
 using CrazyEights.Domain;
-using CrazyEights.Deck;
-using CrazyEights.Game;
-using CrazyEights.Players;
 
 namespace CrazyEights.Game;
 /// <summary>
-/// Purpose: Relay Turn Details to CPU
+/// Purpose: Relay Turn Details to Players (Namely CPU Who Cannot Read Screen)
 /// </summary>
 public class TurnContext
 {
-    // Needed Variables
+    // Needed Variables to Inform Player
     public ICard TopDiscard { get; private set; }
     public Suit DeclaredSuit { get; private set; }
     public  int RoundNumber { get; private set; }

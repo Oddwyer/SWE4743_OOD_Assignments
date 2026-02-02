@@ -5,7 +5,7 @@ namespace CrazyEights.Game;
 
 public class TurnAction
 {
-    // Needed Variables
+    // Needed Variables to Perform Action
     public bool DrawCard { get; private set; } = false;
     public ICard DiscardedCard { get; private set; }
     public bool IsWildCard { get; private set; } = false;
