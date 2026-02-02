@@ -16,19 +16,18 @@ public class CrazyEightsGame
     public string Winner { get; private set; } = "";
     public int RoundNumber { get; private set; } = 1;
     public IPlayer CurrentPlayer { get; private set; }
-    public int DealCount { get; private set; } = 0;
     private int currentIndex = 0;
     public Suit CurrentSuit { get; private set; }
     
 
     // Constructor
-    public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu, int dealCount)
+    public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu)
     {
         this.cardDeck = cardDeck;
+        cardDeck.ShuffleDeck();
         players.Add(human);
         players.Add(cpu);
         CurrentPlayer = human;
-        DealCount = dealCount;
         discardPile.DiscardCard(cardDeck.DrawCard());
         TopDiscard = discardPile.TopDiscard();
         CurrentSuit = TopDiscard.Suit;

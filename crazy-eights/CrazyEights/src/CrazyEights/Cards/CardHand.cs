@@ -36,7 +36,7 @@ public class CardHand
         foreach (var card in hand)
         {
             string icon = CardIcons.GetSuitIcon(card.Suit);
-            Console.WriteLine($"\t - {card.Rank} of {card.Suit} {icon}");
+            Console.WriteLine($"  - {card.Rank} of {card.Suit} {icon}");
         }
         
     }
@@ -51,11 +51,11 @@ public class CardHand
             string icon = CardIcons.GetSuitIcon(card.Suit);
             if (card.Rank == Rank.Eight)
             {
-                Console.WriteLine($"\t [{i+1}] {card.Suit} - {card.Rank} {icon} (Wildcard!)" );
+                Console.WriteLine($"  [{i+1}] {card.Suit} - {card.Rank} {icon} (Wildcard!)" );
             }
             else
             {
-                Console.WriteLine($"\t [{i + 1}] {card.Suit} - {card.Rank} {icon} (Matches Suit)");
+                Console.WriteLine($"  [{i + 1}] {card.Suit} - {card.Rank} {icon} (Matches Suit)");
             }
         }
         

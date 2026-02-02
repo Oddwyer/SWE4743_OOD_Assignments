@@ -11,10 +11,10 @@ public class CpuPlayer : PlayerBase
    private CardHand hand;
 
    // Constructor
-   public CpuPlayer(string name)
+   public CpuPlayer(string name, CardHand hand)
    {   
       Name = name;
-      hand =  new CardHand();
+      this.hand = hand;
    }
    
    // CPU Turn Actions

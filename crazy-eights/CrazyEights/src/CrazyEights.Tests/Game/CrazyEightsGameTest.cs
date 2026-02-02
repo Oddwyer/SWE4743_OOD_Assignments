@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CrazyEights.Cards;
 using CrazyEights.Deck;
 using CrazyEights.Domain;
@@ -15,13 +16,13 @@ public class CrazyEightsGameTest
     [TestMethod]
     public void TestCreateGameEngine()
     {
-        IPlayer human = new HumanPlayer("You");
-        IPlayer cpu = new CpuPlayer("CPU");
+        IPlayer human = new HumanPlayer("You", new CardHand(new List<ICard>()));
+        IPlayer cpu = new CpuPlayer("CPU", new CardHand(new List<ICard>()));
 
         CardDeck deck = new CardDeck();
-        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu, 5);
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
 
-        Assert.AreEqual(52, deck.DeckRemaining());
+        Assert.AreEqual(51, deck.DeckRemaining());
         Assert.IsNotNull(game);
         Assert.IsInstanceOfType(game, typeof(CrazyEightsGame));
         Assert.AreEqual(2, game.players.Count);
@@ -31,20 +32,20 @@ public class CrazyEightsGameTest
     public void TestGameOverCPU()
     {
         // arrange
-        HumanPlayer human = new HumanPlayer("You");
-        CpuPlayer cpu = new CpuPlayer("CPU");
+        HumanPlayer human = new HumanPlayer("You", new CardHand(new List<ICard>()));
+        CpuPlayer cpu = new CpuPlayer("CPU", new CardHand(new List<ICard>()));
         CardDeck deck = new CardDeck();
 
         // act
         human.ReceiveCard(new StandardCard(Suit.Clubs, Rank.Ace));
         human.ReceiveCard(new StandardCard(Suit.Clubs, Rank.King));
         cpu.ReceiveCard(new StandardCard(Suit.Clubs, Rank.Ace));
+        
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
         while (!deck.IsDeckEmpty() && deck.DeckRemaining() > 0)
         {
             deck.DrawCard();
         }
-
-        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu, 0);
 
         // assert
         Assert.AreEqual("CPU", game.GetWinner());
@@ -54,20 +55,20 @@ public class CrazyEightsGameTest
     public void TestGameOverHuman()
     {
         // arrange
-        HumanPlayer human = new HumanPlayer("You");
-        CpuPlayer cpu = new CpuPlayer("CPU");
+        HumanPlayer human = new HumanPlayer("You", new CardHand(new List<ICard>()));
+        CpuPlayer cpu = new CpuPlayer("CPU",new CardHand(new List<ICard>()));
         CardDeck deck = new CardDeck();
 
         // act
         human.ReceiveCard(new StandardCard(Suit.Clubs, Rank.Ace));
         cpu.ReceiveCard(new StandardCard(Suit.Clubs, Rank.King));
         cpu.ReceiveCard(new StandardCard(Suit.Clubs, Rank.Ace));
+        
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
         while (!deck.IsDeckEmpty() && deck.DeckRemaining() > 0)
         {
             deck.DrawCard();
         }
-
-        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu, 0);
 
         // assert
         Assert.AreEqual("You", game.GetWinner());
@@ -77,19 +78,19 @@ public class CrazyEightsGameTest
     public void TestGameOverTie()
     {
         // arrange
-        HumanPlayer human = new HumanPlayer("You");
-        CpuPlayer cpu = new CpuPlayer("CPU");
+        HumanPlayer human = new HumanPlayer("You", new CardHand(new List<ICard>()));
+        CpuPlayer cpu = new CpuPlayer("CPU", new CardHand(new List<ICard>()));
         CardDeck deck = new CardDeck();
 
         // act
         human.ReceiveCard(new StandardCard(Suit.Clubs, Rank.Ace));
         cpu.ReceiveCard(new StandardCard(Suit.Clubs, Rank.King));
+        
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
         while (!deck.IsDeckEmpty() && deck.DeckRemaining() > 0)
         {
             deck.DrawCard();
         }
-
-        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu, 0);
 
         // assert
         Assert.AreEqual("It's a tie game!", game.GetWinner());
@@ -99,18 +100,18 @@ public class CrazyEightsGameTest
     public void TestGameOverZeroHuman()
     {
         // arrange
-        HumanPlayer human = new HumanPlayer("You");
-        CpuPlayer cpu = new CpuPlayer("CPU");
+        HumanPlayer human = new HumanPlayer("You", new CardHand(new List<ICard>()));
+        CpuPlayer cpu = new CpuPlayer("CPU", new CardHand(new List<ICard>()));
         CardDeck deck = new CardDeck();
 
         // act
         cpu.ReceiveCard(new StandardCard(Suit.Clubs, Rank.King));
+        
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
         while (!deck.IsDeckEmpty() && deck.DeckRemaining() > 0)
         {
             deck.DrawCard();
         }
-
-        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu, 0);
 
         // assert
         Assert.AreEqual("You", game.GetWinner());
@@ -120,14 +121,14 @@ public class CrazyEightsGameTest
     public void TestGameOverNotEmptyDeck()
     {
         // arrange
-        HumanPlayer human = new HumanPlayer("You");
-        CpuPlayer cpu = new CpuPlayer("CPU");
+        HumanPlayer human = new HumanPlayer("You", new CardHand(new List<ICard>()));
+        CpuPlayer cpu = new CpuPlayer("CPU", new CardHand(new List<ICard>()));
         CardDeck deck = new CardDeck();
 
         // act
         human.ReceiveCard(new StandardCard(Suit.Clubs, Rank.King));
 
-        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu, 0);
+        CrazyEightsGame game = new CrazyEightsGame(deck, human, cpu);
 
         // assert
         Assert.AreEqual("", game.GetWinner());

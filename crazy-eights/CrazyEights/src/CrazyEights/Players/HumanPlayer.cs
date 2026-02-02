@@ -11,16 +11,16 @@ public class HumanPlayer : PlayerBase
     private readonly CardHand hand;
 
     // Constructor
-    public HumanPlayer(string name)
+    public HumanPlayer(string name,  CardHand hand)
     {
         Name = name;
-        hand = new CardHand();
+        this.hand = hand;
     }
 
     // Human Player Turn Actions
     public override TurnAction TakeTurn(TurnContext context)
     {
-        Console.WriteLine();
+        hand.PrintHand(Name);
         bool draw = false;
         bool isWildCard = false;
         ICard discardedCard = new StandardCard(Suit.Diamonds, Rank.Ace);
