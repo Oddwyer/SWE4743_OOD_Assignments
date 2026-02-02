@@ -4,14 +4,12 @@ namespace CrazyEights.Cards;
 
 public class StandardCard : ICard
 {
-    // needed variables
+    // Needed Variables
     public bool IsWild { get; private set; } = false;
+    public Suit Suit { get; private set; }
+    public Rank Rank { get; private set; }
     
-    // needed variables established as property methods
-    public Suit Suit { get; }
-    public Rank Rank { get; }
-    
-    // constructor
+    // Constructor
     public StandardCard(Suit suit, Rank rank)
     {
         this.Suit = suit;
@@ -21,13 +19,13 @@ public class StandardCard : ICard
         }
     }
 
-    // returns if card is a wildcard (cards with rank of 8 are wild)
+    // Returns if Card is Wild (Has Rank of 8)
     public bool IsWildCard()
     {
         return IsWild;
     }
 
-    // view card - only need to print to console to view
+    // View Card (Print Only)
     public void ViewCard()
     {
         Console.WriteLine($"{Rank} of {Suit}");

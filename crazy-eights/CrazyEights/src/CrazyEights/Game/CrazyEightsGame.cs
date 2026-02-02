@@ -8,6 +8,7 @@ namespace CrazyEights.Game;
 
 public class CrazyEightsGame
 {
+    // Needed Variables
     public readonly List<IPlayer> players = new List<IPlayer>();
     private readonly CardDeck cardDeck;
     private readonly DiscardPile discardPile = new DiscardPile();
@@ -18,7 +19,9 @@ public class CrazyEightsGame
     public int DealCount { get; private set; } = 0;
     private int currentIndex = 0;
     public Suit CurrentSuit { get; private set; }
+    
 
+    // Constructor
     public CrazyEightsGame(CardDeck cardDeck, IPlayer human, IPlayer cpu, int dealCount)
     {
         this.cardDeck = cardDeck;
@@ -30,6 +33,7 @@ public class CrazyEightsGame
         CurrentSuit = TopDiscard.Suit;
     }
 
+    // Complete Player Action
     public void PlayerAction(TurnAction action)
     {
         if (action.DrawCard)
@@ -47,11 +51,13 @@ public class CrazyEightsGame
         }
     }
 
+    // Get Players List
     public IReadOnlyList<IPlayer> GetPlayers()
     {
         return players.AsReadOnly();
     }
 
+    // Play Game
     public void PlayGame()
     {
         while (Winner == "")
@@ -69,6 +75,7 @@ public class CrazyEightsGame
     }
 
 
+    // Get Winner (Is Game Over?)
     public string GetWinner()
     {
         if (CurrentPlayer.HandCount() == 0)
@@ -94,6 +101,7 @@ public class CrazyEightsGame
         return "";
     }
 
+    // Round Details for Console
     public void RoundDetails()
     {
         ICard currentCard = discardPile.TopDiscard();

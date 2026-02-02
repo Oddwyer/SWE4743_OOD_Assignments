@@ -6,15 +6,18 @@ namespace CrazyEights.Players;
 
 public class CpuPlayer : PlayerBase
 {
+   // Needed Variables
    public override string Name { get; }
    private CardHand hand;
 
+   // Constructor
    public CpuPlayer(string name)
    {   
       Name = name;
       hand =  new CardHand();
    }
    
+   // CPU Turn Actions
    public override TurnAction TakeTurn(TurnContext context)
    {
       Console.WriteLine();
@@ -26,21 +29,25 @@ public class CpuPlayer : PlayerBase
       return new TurnAction(draw, discardedCard, wildCardSuit, isWildCard);
    }
 
+   // CPU Hand Count
    public override int HandCount()
    {
       return hand.Count();
    }
 
+   // CPU Playable Cards
    public override IReadOnlyList<ICard> PlayableCards(TurnContext context)
    {
      return hand.PlayableCards(context);
    }
 
+   // CPU Add Card to Hand
    public override void ReceiveCard(ICard card)
    {
       hand.AddCard(card);
    }
-    
+   
+   // CPU Remove Card from Hand
    public override ICard RemoveCard(int index)
    {
       return hand.RemoveCard(index);

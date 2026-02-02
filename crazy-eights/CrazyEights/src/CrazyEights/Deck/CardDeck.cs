@@ -5,9 +5,11 @@ namespace CrazyEights.Deck;
 
 public class CardDeck
 {
+    // Needed Variables
     private readonly List<ICard> cards = new List<ICard>();
     public bool IsShuffled { get; private set; }
 
+    // Deck Constructor
     public CardDeck()
     {
         for (Suit suit = 0; suit <= Suit.Spades; suit++)
@@ -20,7 +22,7 @@ public class CardDeck
         }
     }
 
-    // ShuffleDeck Method:
+    // Shuffl Deck
     public void ShuffleDeck()
     {
         for (int i = 0; i < cards.Count; i++)
@@ -38,16 +40,19 @@ public class CardDeck
         IsShuffled = true;
     }
 
+    // Deck Count 
     public int DeckRemaining()
     {
         return cards.Count;
     }
 
+    // Is Deck Empty
     public bool IsDeckEmpty()
     {
         return cards.Count == 0;
     }
 
+    // Draw Card from Deck
     public ICard DrawCard()
     {
         ICard drawnCard = cards[0];
@@ -55,6 +60,7 @@ public class CardDeck
         return drawnCard;
     }
 
+    // Deal Cards from Deck
     public List<ICard> DealCards(int dealCount)
     {
         List<ICard> dealtCards = new List<ICard>();
@@ -67,6 +73,7 @@ public class CardDeck
         return dealtCards;
     }
 
+    // Get Deck Cards
     public IReadOnlyList<ICard> GetCards()
     {
         return cards.AsReadOnly();
