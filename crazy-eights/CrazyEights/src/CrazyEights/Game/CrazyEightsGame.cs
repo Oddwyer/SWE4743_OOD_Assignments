@@ -17,7 +17,8 @@ public class CrazyEightsGame
     public int RoundNumber { get; private set; } = 0;
     public IPlayer CurrentPlayer { get; private set; }
     private int currentIndex = 0;
-    public Suit CurrentSuit { get; private set; }
+    public Suit DeclardSuit { get; private set; }
+    public bool MustMatchSuit {get; private set;} = false;
 
 
     // Constructor
@@ -30,27 +31,9 @@ public class CrazyEightsGame
         CurrentPlayer = human;
         discardPile.DiscardCard(cardDeck.DrawCard());
         TopDiscard = discardPile.TopDiscard();
-        CurrentSuit = TopDiscard.Suit;
+        DeclardSuit = TopDiscard.Suit;
     }
-
-    // Complete Player Action
-    public void PlayerAction(TurnAction action)
-    {
-        if (action.DrawCard)
-        {
-            CurrentPlayer.ReceiveCard(cardDeck.DrawCard());
-        }
-        else
-        {
-            discardPile.DiscardCard(action.DiscardedCard);
-
-            if (action.IsWildCard)
-            {
-                CurrentSuit = action.WildCardSuit;
-            }
-        }
-    }
-
+    
     // Get Players List
     public IReadOnlyList<IPlayer> GetPlayers()
     {
@@ -64,9 +47,10 @@ public class CrazyEightsGame
         {
             RoundNumber++;
             CurrentPlayer = players[currentIndex];
-            TurnContext context = new TurnContext(discardPile.TopDiscard(), RoundNumber, CurrentSuit);
+            TurnContext context = new TurnContext(discardPile.TopDiscard(), RoundNumber, DeclardSuit, MustMatchSuit);
             RoundDetails();
             TurnAction action = CurrentPlayer.TakeTurn(context);
+
             if (action.DrawCard)
             {
                 Console.WriteLine($"{CurrentPlayer.Name} has no playable cards. Drawing one card...\n");
@@ -75,10 +59,12 @@ public class CrazyEightsGame
             else 
             {
                 discardPile.DiscardCard(action.DiscardedCard);
+                MustMatchSuit = false;
                 if (action.IsWildCard)
                 {
-                    CurrentSuit = action.WildCardSuit;
-                    Console.WriteLine($"{CurrentPlayer.Name} changed suit to {CurrentSuit} {CardIcons.GetSuitIcon(CurrentSuit)}\n");
+                    MustMatchSuit = true;
+                    DeclardSuit = action.WildCardSuit;
+                    Console.WriteLine($"{CurrentPlayer.Name} changed suit to {DeclardSuit} {CardIcons.GetSuitIcon(DeclardSuit)}\n");
                 }
             }
             currentIndex = (currentIndex + 1) % players.Count;
@@ -131,7 +117,7 @@ public class CrazyEightsGame
             Console.WriteLine();
         }
 
-        if (CurrentSuit == TopDiscard.Suit)
+        if (!MustMatchSuit)
         {
             Console.WriteLine($"""
                                ------Turn {RoundNumber}------ 
@@ -147,7 +133,7 @@ public class CrazyEightsGame
         {
             Console.WriteLine($"""
                                ------Turn {RoundNumber}------ 
-                               Top Discard: {currentCard.Rank} of {currentCard.Suit} (Suit to match: {CurrentSuit})
+                               Top Discard: {currentCard.Rank} of {currentCard.Suit} (Suit to match: {DeclardSuit})
                                Deck Remaining: {cardDeck.DeckRemaining()}
                                {players[0].Name}: {players[0].HandCount()} cards | {players[1].Name}: {players[1].HandCount()} cards
 

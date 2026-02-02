@@ -12,16 +12,25 @@ public class TurnContext
 {
     // Needed Variables
     public ICard TopDiscard { get; private set; }
-    public Suit SuitToMatch { get; private set; }
+    public Suit DeclaredSuit { get; private set; }
     public  int RoundNumber { get; private set; }
+    public bool MustMatchSuit { get; private set; }
     
 
     // Constructor
-    public TurnContext(ICard topDiscard, int round, Suit suitToMatch)
+    public TurnContext(ICard topDiscard, int round, Suit declaredSuit, bool mustMatchSuit = false)
     {
+        if (!mustMatchSuit)
+        {
+            DeclaredSuit = topDiscard.Suit;
+        }
+        else
+        {
+            DeclaredSuit = declaredSuit;
+        }
         TopDiscard = topDiscard;
         RoundNumber = round;
-        SuitToMatch = suitToMatch;
+        MustMatchSuit = mustMatchSuit;
     }
     
 }

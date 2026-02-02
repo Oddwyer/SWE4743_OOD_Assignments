@@ -37,7 +37,7 @@ public class HumanPlayer : PlayerBase
             {
                 hand.PrintHand(Name);
                 Console.WriteLine();
-                hand.PrintPlayableCards(Name, context.SuitToMatch);
+                hand.PrintPlayableCards(Name, context.DeclaredSuit, context.TopDiscard.Rank);
                 Console.Write("Choose a card number to play: ");
 
                 // TryParse ? = If not null ant int; choice = int; else choice = 0.

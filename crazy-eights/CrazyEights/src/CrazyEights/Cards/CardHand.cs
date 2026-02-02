@@ -28,7 +28,7 @@ public class CardHand
     {
         return hand.AsReadOnly();
     }
-    
+
     // Print Hand
     public void PrintHand(string name)
     {
@@ -38,11 +38,10 @@ public class CardHand
             string icon = CardIcons.GetSuitIcon(card.Suit);
             Console.WriteLine($"  - {card.Rank} of {card.Suit} {icon}");
         }
-        
     }
-    
+
     // Print Playable Cards
-    public void PrintPlayableCards(string name, Suit suitToMatch)
+    public void PrintPlayableCards(string name, Suit suitToMatch, Rank rankToMatch)
     {
         Console.WriteLine($"{name}'s playable cards");
         for (int i = 0; i < playableCards.Count; i++)
@@ -51,33 +50,49 @@ public class CardHand
             string icon = CardIcons.GetSuitIcon(card.Suit);
             if (card.Rank == Rank.Eight)
             {
-                Console.WriteLine($"  [{i+1}] {card.Rank} of {card.Suit} {icon} (Wildcard!)" );
+                Console.WriteLine($"  [{i + 1}] {card.Rank} of {card.Suit} {icon} (Wildcard!)");
             }
-            else
+            else if(card.Suit == suitToMatch)
             {
                 Console.WriteLine($"  [{i + 1}] {card.Rank} of {card.Suit} {icon} (Matches Suit)");
             }
+            else if (card.Rank == rankToMatch)
+            {
+                Console.WriteLine($"  [{i + 1}] {card.Rank} of {card.Suit} {icon} (Matches Rank)");
+            }
         }
-        
     }
 
     // Create List of Playable Cards in Hand
     public IReadOnlyList<ICard> PlayableCards(TurnContext context)
     {
         playableCards.Clear();
-        foreach (var card in hand)
+        if (context.MustMatchSuit)
         {
-            if (card.IsWildCard())
+            foreach (var card in hand)
             {
-                playableCards.Add(card);
+                if (card.Suit == context.DeclaredSuit)
+                {
+                    playableCards.Add(card);
+                }
             }
-            else if (card.Suit == context.TopDiscard.Suit)
+        }
+        else
+        {
+            foreach (var card in hand)
             {
-                playableCards.Add(card);
-            }
-            else if (card.Rank == context.TopDiscard.Rank)
-            {
-                playableCards.Add(card);
+                if (card.IsWildCard())
+                {
+                    playableCards.Add(card);
+                }
+                else if (card.Suit == context.TopDiscard.Suit)
+                {
+                    playableCards.Add(card);
+                }
+                else if (card.Rank == context.TopDiscard.Rank)
+                {
+                    playableCards.Add(card);
+                }
             }
         }
 
@@ -102,7 +117,7 @@ public class CardHand
         for (int i = 0; i < hand.Count; i++)
         {
             if (cardToRemove == hand[i])
-            {  
+            {
                 hand.RemoveAt(i);
             }
         }
