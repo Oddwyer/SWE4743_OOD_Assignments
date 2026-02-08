@@ -22,16 +22,16 @@ public class CardDeck
         }
     }
 
-    // Shuffl Deck
+    // Shuffle Deck
     public void ShuffleDeck()
     {
         for (int i = 0; i < cards.Count; i++)
         {
-            // create random index generator + store index
+            // Create random index generator + store index
             Random random = new Random();
             int index = random.Next(0, cards.Count);
 
-            // swap location based on randomized index generator
+            // Swap location based on randomized index generator
             ICard temp = cards[i];
             cards[i] = cards[index];
             cards[index] = temp;

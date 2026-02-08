@@ -9,7 +9,7 @@ public class CardHand
     private readonly List<ICard> hand;
     private readonly List<ICard> playableCards;
     
-    // Constructer - Post Dealt Cards
+    // Constructor
     public CardHand(List<ICard> cards)
     {
         hand = cards;

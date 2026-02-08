@@ -1,15 +1,18 @@
-# Crazy Eights
+# Project Description: Crazy Eights
 
 Console-based implementation of the Crazy Eights card game in C# (.NET 10).
 
-# Game Rules
-You will implement a simplified two-player version of Crazy 8’s:
+## Game Rules
+
+### Setup:
 
 - Human Player vs Computer Player
 - Standard 52-card deck
-- Deal 7 cards to each player
+- Deal 5 cards to each player
 - One card is placed face-up to start the discard pile
-## On a turn
+
+### On a turn:
+
 A player may:
 
 - Play one card that matches either:
@@ -31,10 +34,25 @@ A player may:
   - If the drawn card is playable, it may be played immediately 
   - Otherwise, the turn ends
 
-## Winning
+### Winning:
+
 - The first player to empty their hand wins
 
-Please do not implement additional rules (stacking, draw-twos, skips, reverses, etc.).
+## OO Concepts Demonstrated:
 
+- Strategy Design Pattern
+- Encapsulation
+- Abstraction
+- Polymorphism
 
-```
+## How to Run the Application (Console):
+
+- The game is run via Docker to execute consistently across different environments.
+  - Simply open your CLI and use the commands below:
+  - ```bash```
+    - ```docker build -t crazy-eights .```
+    - ```docker run --rm -it crazy-eights```  
+    - To exit game at any time: ```Ctrl + C```
+
+## Screenshot of Game Play:
+![img_1.png](img_1.png)

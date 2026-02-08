@@ -1,6 +1,8 @@
 namespace CrazyEights.Domain;
+/// <summary>
+/// Using "enum" serves as a fixed set of named values. 
+/// </summary>
 
-// Using "enum" serves as a fixed set of named values. 
 public enum Suit
 {
    Clubs,

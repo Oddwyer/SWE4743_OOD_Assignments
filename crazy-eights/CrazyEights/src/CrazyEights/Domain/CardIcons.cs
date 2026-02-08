@@ -1,5 +1,7 @@
 namespace CrazyEights.Domain;
-
+/// <summary>
+/// Provides shapes corresponding to card suit.
+/// </summary>
 public class CardIcons
 {
     public static string GetSuitIcon(Suit suit)

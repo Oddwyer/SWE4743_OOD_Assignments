@@ -3,7 +3,7 @@ using CrazyEights.Domain;
 
 namespace CrazyEights.Game;
 /// <summary>
-/// Purpose: Relay Turn Details to Players (Namely CPU Who Cannot Read Screen)
+/// Purpose: Relay turn details to players (namely CPU who cannot read screen).
 /// </summary>
 public class TurnContext
 {

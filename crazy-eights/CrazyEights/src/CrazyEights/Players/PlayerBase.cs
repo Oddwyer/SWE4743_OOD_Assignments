@@ -3,18 +3,18 @@ using CrazyEights.Game;
 
 namespace CrazyEights.Players;
 /// <summary>
-/// Methods such as RemoveCard, PlayableCards are located under CardHand.
+/// Methods such as RemoveCard and PlayableCards are located under CardHand.
 /// </summary>
 
 public abstract class PlayerBase : IPlayer {
 
-      // Inherits IPlayer naming requirements.
+      // Inherits IPlayer Naming Requirements.
       public abstract string Name { get; }
       
-      // Encapsulates player's hand.
+      // Encapsulates Player's Hand.
       public CardHand Hand { get; }
 
-      // Inherits IPlayer methods + introduces helper logic.
+      // Inherits IPlayer Methods + Introduces Helper Logic.
       public abstract TurnAction TakeTurn(TurnContext context);
       
       public abstract int HandCount();
