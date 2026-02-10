@@ -1,0 +1,7 @@
+﻿services:
+  teashop:
+    image: teashop
+    build:
+      context: .
+      dockerfile: TeaShop/Dockerfile
+
