@@ -5,43 +5,44 @@ using Xunit;
 
 namespace tea_shoppe.Tests.Decorators;
 
-[TestSubject(typeof(TeaByPrice))]
-public class TeaByPriceTest
+[TestSubject(typeof(TeaByRating))]
+public class TeaByRatingTest
 {
 
     [Fact]
-    public void TestTeaByPrice1()
+    public void TestByRating1()
     {
         // arrange
         var catalog = new TeaCatalog();
         IRepository testRepo = new TeaRepository(catalog.Items);
-        decimal min = 5.00m;
-        decimal max = 20.00m;
+        int min = 2;
+        int max = 5;
         
         // act 
-        testRepo = new TeaByPrice(testRepo, min, max);
+        testRepo = new TeaByRating(testRepo, min, max);
         var result = testRepo.GetInventory();
         
         // assert -> range
-        Assert.All(result, item => Assert.True(item.RetailPrice >= min && item.RetailPrice <= max));
+        Assert.All(result, item => Assert.True(item.RatingValue >= min && item.RatingValue <= max));
+        
     }
     
     [Fact]
-    public void TestTeaByPrice2()
+    public void TestByRating2()
     {
         // arrange
         var catalog = new TeaCatalog();
         IRepository testRepo = new TeaRepository(catalog.Items);
-        decimal min = 13.99m;
-        decimal max = 22.50m;
+        int min = 1;
+        int max = 5;
         
         // act 
-        testRepo = new TeaByPrice(testRepo, min, max);
+        testRepo = new TeaByRating(testRepo, min, max);
         var result = testRepo.GetInventory();
         
         // assert -> exacts
-        Assert.Contains(result, x => x.RetailPrice == min);
-        Assert.Contains(result, x => x.RetailPrice == max);
+        Assert.Contains(result, x => x.RatingValue == min);
+        Assert.Contains(result, x => x.RatingValue == max);
     }
 
 }

@@ -42,4 +42,6 @@ public class RepositoryItem
     {
         Rating = newRating;
     }
+
+    public int RatingValue => Rating.Rating;
 }
