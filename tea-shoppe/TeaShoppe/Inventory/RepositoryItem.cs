@@ -5,7 +5,7 @@ public class RepositoryItem
 {
     public Tea ShopItem { get; }
     public string Name => ShopItem.Name;
-    private static int _next;
+    private static int _next = 1;
     public int ItemId { get; }
     public int Quantity { get; private set; }
     public decimal RetailPrice { get; private set; }
@@ -15,7 +15,6 @@ public class RepositoryItem
 
     public RepositoryItem(Tea tea, int qty)
     {
-        _next = 0;
         ItemId = _next++;
         ShopItem = tea;
         RetailPrice = tea.Price;

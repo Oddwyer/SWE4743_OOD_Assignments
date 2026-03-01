@@ -17,13 +17,13 @@ public class RepositoryItemTest
         Tea testTea = new Tea("Test Tea", 14.89m, rating);
         
         // act
-        RepositoryItem repositoryItem = new RepositoryItem(testTea, quantity);
+        RepositoryItem orderItem = new RepositoryItem(testTea, quantity);
         
         // assert
-        Assert.Equal(testTea.Name, repositoryItem.Name);
-        Assert.Equal(testTea.Price, repositoryItem.RetailPrice);
-        Assert.Equal(quantity, repositoryItem.Quantity);
-        Assert.Equal(rating, repositoryItem.Rating);
+        Assert.Equal(testTea.Name, orderItem.Name);
+        Assert.Equal(testTea.Price, orderItem.RetailPrice);
+        Assert.Equal(quantity, orderItem.Quantity);
+        Assert.Equal(rating, orderItem.Rating);
     }
     
     

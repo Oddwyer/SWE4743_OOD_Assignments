@@ -1,3 +1,5 @@
+using TeaShoppe.Orders;
+
 namespace TeaShoppe.Payment;
 
 /// <summary>
@@ -6,5 +8,5 @@ namespace TeaShoppe.Payment;
 
 public interface IPaymentStrategy
 {
-    void Pay(decimal amount);
+    public bool Pay(decimal amount);
 }

@@ -1,48 +1,90 @@
-using TeaShoppe.UI;
-using TeaShoppe.Inventory;
-
 namespace TeaShoppe.Orders;
 
+/// <summary>
+/// Class for customer order, holds multiple order items.
+/// </summary>
+/// 
 public class Order
 {
-    private readonly List<RepositoryItem> _orderItems = new List<RepositoryItem>();
-
-    public Order(RepositoryItem orderItem)
-    {
-        _orderItems.Add(orderItem);
-    }
-
-    public void AddItem(RepositoryItem orderItem)
-    {
-        _orderItems.Add(orderItem);
-    }
+    private readonly List<OrderItem> _orderItems = new List<OrderItem>();
+    private static int _next = 1;
     
-    public void RemoveItem(RepositoryItem orderItem)
+    public Order(OrderItem item)
     {
-        _orderItems.Remove(orderItem);
+        item.ItemNumber = _next++;
+        _orderItems.Add(item);
+    }
+
+    public void AddItem(OrderItem item)
+    {
+        int index = _orderItems.IndexOf(item);
+        if (_orderItems.Contains(item))
+        {
+            _orderItems[index].IncrementQuantity();
+        }
+        _orderItems.Add(item);
+    }
+
+    public void RemoveItem(OrderItem item)
+    {
+        int index = _orderItems.IndexOf(item);
+        if (!_orderItems.Contains(item))
+        {
+            return;
+        }
+        if (_orderItems[index].Quantity > 1) 
+        { 
+            _orderItems[index].DecrementQuantity(); 
+        }
+        else 
+        { 
+            _orderItems.RemoveAt(index); 
+        }
     }
 
     public decimal OrderTotal()
     {
         decimal total = 0.00m;
-        foreach (RepositoryItem x in _orderItems)
+        foreach (OrderItem x in _orderItems)
         {
-            total += x.RetailPrice * x.Quantity;
+            total += x.Price * x.Quantity;
         }  
         
         return total;
     }
 
-    public int OrderCount()
+    public int TotalItemCount()
+    {
+        return _orderItems.Sum(x => x.Quantity);
+    }
+    
+    
+    public int NumberOfLineItems()
     {
         return _orderItems.Count;
     }
-
+    
     public void OrderDetails()
     {
-        foreach (RepositoryItem x in _orderItems)
+        Console.WriteLine("Current Order: ");
+        foreach (OrderItem x in _orderItems)
         {
-            Console.WriteLine($"{x.Name} - Quantity: {x.Quantity}");
+            Console.WriteLine($"{x.ItemId}: {x.Name} - Quantity: {x.Quantity}");
         }
+        
+        Console.WriteLine($"Order Total: {OrderTotal()}");
     }
+
+    public bool SearchOrder(int itemId)
+    {
+        foreach (OrderItem x in _orderItems)
+        {
+            if (x.ItemId == itemId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }
