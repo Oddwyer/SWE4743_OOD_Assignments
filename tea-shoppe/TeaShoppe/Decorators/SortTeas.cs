@@ -3,8 +3,11 @@ using TeaShoppe.Inventory;
 
 namespace TeaShoppe.Decorators;
 
+/// <summary>
+/// Decorator class to sort search by price (ascending/descending)
+/// and/or rating (ascending/descending).
+/// </summary>
 
-// Decorator class to sort search by price (ascending/descending) and/or rating (ascending/descending).
 public class SortTeas : InventoryQuery
 {
     private readonly SortDirection _priceDirection = SortDirection.Ascending;

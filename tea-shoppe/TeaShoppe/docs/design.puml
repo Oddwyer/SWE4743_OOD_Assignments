@@ -34,10 +34,10 @@ skinparam packageTitleFontStyle bold
 
 
 '=======================================
-'Classes & Interfaces - Domain
+'Draft Classes & Interfaces - Domain
 '=======================================
 
-'I. Tea + Repository Interface + Classes
+'I. Draft Tea + Repository Interface + Classes
 '=======================================
 package Inventory{
 class TeaItem <<record>> {
@@ -80,7 +80,7 @@ class TeaRepository {
 }
 }
 
-'II. Tea Decorator Interface + Classes
+'II. Draft Tea Decorator Interface + Classes
 '======================================
 package Decorators{
 abstract class InventoryQuery {
@@ -131,8 +131,13 @@ enum SortDirection{
 - Ascending
 }
 }
+
+enum PrimarySort{
+- Rating
+- Price
+}
  
-'III. Payment Strategy Interface + Classes
+'III. Draft Payment Strategy Interface + Classes
 '======================================
 package Payment{
 class OrderReceipt{
@@ -173,7 +178,7 @@ class PaymentProcessor{
 + Checkout(): void
 }
 }
-'IV. Classes - UI
+'IV. Draft Classes - UI
 '=======================================
 package UI{
 class TeaShoppeFacade{
@@ -199,7 +204,7 @@ class RequestedItem{
 }
 
 '=======================================
-'Relationships
+'Draft Relationships
 '=======================================
 IRepository <|.. TeaRepository
 RepositoryItem <-- TeaRepository

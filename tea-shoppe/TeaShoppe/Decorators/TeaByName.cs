@@ -3,7 +3,9 @@ using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 
-// Decorator class to search repository by tea name.
+/// <summary>
+/// Decorator class to search repository by tea name.
+/// </summary>
 public class TeaByName: InventoryQuery {
     private readonly string ? _name;
     

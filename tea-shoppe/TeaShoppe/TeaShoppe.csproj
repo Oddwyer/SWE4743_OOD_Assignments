@@ -9,8 +9,4 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Payment\" />
-    </ItemGroup>
-
 </Project>

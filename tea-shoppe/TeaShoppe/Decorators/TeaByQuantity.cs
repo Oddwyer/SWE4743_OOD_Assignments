@@ -3,7 +3,9 @@ using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 
-// Decorator class to search repository by quantity. 
+/// <summary>
+/// Decorator class to search repository by quantity. 
+/// </summary>
 
 public class TeaByQuantity: InventoryQuery
 {

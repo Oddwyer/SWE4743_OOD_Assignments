@@ -3,7 +3,10 @@ using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 
-// Decorator class to search repository by availability. 
+/// <summary>
+/// Decorator class to search repository by availability. 
+/// </summary>
+ 
 public class TeaByAvailability: InventoryQuery
 {
     private readonly bool ? _inStock; 

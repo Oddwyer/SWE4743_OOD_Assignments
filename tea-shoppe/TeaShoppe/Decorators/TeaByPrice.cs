@@ -3,7 +3,10 @@ using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 
-// Decorator class to search by price within a min and max range. 
+/// <summary>
+/// Decorator class to search by min/max pricing parameters. 
+/// </summary>
+
 public class TeaByPrice: InventoryQuery
 {
     private readonly decimal ? _min;
