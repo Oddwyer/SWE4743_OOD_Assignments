@@ -181,7 +181,7 @@ class TeaShoppeFacade{
 - requestedItem: RequestedItem
 - checkout: PaymentProcessor
 - teaShopRepository: IRepository
-+ PerformQuery(item: RequestedItem): IReadOnlyList<RepositoryItem>
++ PerformQuery(item: RequestedItem): IRepository
 + DisplayQuery(): void
 + ShopOpen(): void 
 }

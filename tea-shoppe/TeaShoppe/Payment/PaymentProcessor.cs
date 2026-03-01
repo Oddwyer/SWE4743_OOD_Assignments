@@ -2,6 +2,10 @@ using TeaShoppe.Orders;
 
 namespace TeaShoppe.Payment;
 
+/// <summary>
+/// Payment processing class for dynamic dispatching between payment
+/// methods.
+/// </summary>
 public class PaymentProcessor
 {
     private IPaymentStrategy Strategy { get; set; } 

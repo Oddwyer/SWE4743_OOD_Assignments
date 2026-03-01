@@ -1,5 +1,8 @@
 namespace TeaShoppe.Payment;
 
+/// <summary>
+/// CryptoCurrency concrete strategy class.
+/// </summary>
 public class CryptoCurrency : IPaymentStrategy
 {
     public bool Pay(decimal amount)
