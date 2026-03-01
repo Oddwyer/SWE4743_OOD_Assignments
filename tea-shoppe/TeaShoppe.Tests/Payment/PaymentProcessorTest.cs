@@ -17,7 +17,7 @@ public class PaymentProcessorTest
         // arrange
         var input = new StringReader("1234567890123456\n");
         var output = new StringWriter();
-        IPaymentStrategy testStrategy = new CreditCard(input, output);
+        IPaymentStrategy creditCard = new CreditCard(input, output);
         int quantity = 2;
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating);
@@ -26,10 +26,34 @@ public class PaymentProcessorTest
         Order testOrder = new Order(teaOrdered);
         
         // act
-        PaymentProcessor testProcessor = new PaymentProcessor(testStrategy);
+        PaymentProcessor testProcessor = new PaymentProcessor(creditCard);
         
         // assert
-        Assert.Equal(testStrategy, testProcessor.GetStrategy);
+        Assert.Equal(creditCard, testProcessor.GetStrategy);
+
+    }
+    
+    [Fact]
+    public void TestPaymentProcessor2()
+    {
+        // arrange
+        var input = new StringReader("1234567890123456\n");
+        var output = new StringWriter();
+        IPaymentStrategy creditCard = new CreditCard(input, output);
+        int quantity = 2;
+        StarRating rating = new StarRating(3);
+        Tea testTea = new Tea("Test Tea", 14.89m, rating);
+        RepositoryItem orderItem = new RepositoryItem(testTea, quantity);
+        OrderItem teaOrdered = new OrderItem(orderItem, quantity);
+        Order testOrder = new Order(teaOrdered);
+        
+        // act
+        PaymentProcessor testProcessor = new PaymentProcessor(creditCard);
+        IPaymentStrategy apple = new ApplePay();
+        testProcessor.SetStrategy(apple);
+        
+        // assert
+        Assert.Equal(apple, testProcessor.GetStrategy);
 
     }
 }
