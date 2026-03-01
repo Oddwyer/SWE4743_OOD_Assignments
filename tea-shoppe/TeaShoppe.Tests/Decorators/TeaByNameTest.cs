@@ -1,9 +1,9 @@
 using JetBrains.Annotations;
-using tea_shoppe.Decorators;
+using TeaShoppe.Decorators;
 using TeaShoppe.Inventory;
 using Xunit;
 
-namespace tea_shoppe.Tests.Decorators;
+namespace TeaShoppe.Tests.Decorators;
 
 [TestSubject(typeof(TeaByName))]
 public class TeaByNameTest

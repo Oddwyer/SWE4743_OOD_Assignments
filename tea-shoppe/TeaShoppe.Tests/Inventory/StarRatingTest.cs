@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using TeaShoppe.Inventory;
 using Xunit;
 
-namespace tea_shoppe.Tests.Inventory;
+namespace TeaShoppe.Tests.Inventory;
 
 [TestSubject(typeof(StarRating))]
 public class StarRatingTest

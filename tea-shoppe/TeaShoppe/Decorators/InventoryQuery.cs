@@ -1,6 +1,6 @@
 using TeaShoppe.Inventory;
 
-namespace tea_shoppe.Decorators;
+namespace TeaShoppe.Decorators;
 
 public abstract class InventoryQuery: IRepository
 {

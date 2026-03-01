@@ -58,9 +58,10 @@ class TeaCatalog{
 
 class RepositoryItem{
 - shopItem: TeaItem
+- itemID: int
 - quantity: int
 - retailPrice: decimal
-- itemID: int
+- inStock: bool
 + DecrementStock(): void
 + IncrementStock(): void
 + IsInStock(): bool

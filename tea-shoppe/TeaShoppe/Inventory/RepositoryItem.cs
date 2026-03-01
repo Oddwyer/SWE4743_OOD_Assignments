@@ -3,21 +3,24 @@ namespace TeaShoppe.Inventory;
 // In stock item of type tea for repository.
 public class RepositoryItem
 {
+    public Tea ShopItem { get; }
+    public string Name => ShopItem.Name;
     private static int _next;
     public int ItemId { get; }
-    public string Name { get; }
-    public decimal Price { get; private set; }
     public int Quantity { get; private set; }
+    public decimal RetailPrice { get; private set; }
+    public bool InStock => Quantity > 0;
     public StarRating Rating { get; private set; }
+    
 
-    public RepositoryItem(string name, decimal price, int qty, StarRating rating)
+    public RepositoryItem(Tea tea, int qty)
     {
         _next = 0;
         ItemId = _next++;
-        Name = name;
-        Price = price;
+        ShopItem = tea;
+        RetailPrice = tea.Price;
         Quantity = qty;
-        Rating = rating;
+        Rating = tea.Rating;
     }
 
     public void IncrementQuantity(int qty)
@@ -32,7 +35,7 @@ public class RepositoryItem
 
     public void UpdatePrice(decimal newPrice)
     {
-        Price = newPrice;
+       RetailPrice = newPrice;
     }
     
     public void UpdateRating(StarRating newRating)

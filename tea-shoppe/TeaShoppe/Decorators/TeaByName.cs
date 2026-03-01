@@ -1,6 +1,6 @@
 using TeaShoppe.Inventory;
 
-namespace tea_shoppe.Decorators;
+namespace TeaShoppe.Decorators;
 
 public class TeaByName: InventoryQuery {
     private readonly string _name;

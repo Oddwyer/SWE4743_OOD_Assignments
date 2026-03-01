@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using TeaShoppe.Inventory;
 using Xunit;
 
-namespace tea_shoppe.Tests.Inventory;
+namespace TeaShoppe.Tests.Inventory;
 
 [TestSubject(typeof(RepositoryItem))]
 public class RepositoryItemTest
@@ -12,17 +12,16 @@ public class RepositoryItemTest
     public void TestRepositoryItem()
     {
         // arrange
-        string name = "Test Tea";
-        decimal price = 14.89m;
         int quantity = 10;
         StarRating rating = new StarRating(3);
+        Tea testTea = new Tea("Test Tea", 14.89m, rating);
         
         // act
-        RepositoryItem repositoryItem = new RepositoryItem(name, price, quantity, rating);
+        RepositoryItem repositoryItem = new RepositoryItem(testTea, quantity);
         
         // assert
-        Assert.Equal(name, repositoryItem.Name);
-        Assert.Equal(price, repositoryItem.Price);
+        Assert.Equal(testTea.Name, repositoryItem.Name);
+        Assert.Equal(testTea.Price, repositoryItem.RetailPrice);
         Assert.Equal(quantity, repositoryItem.Quantity);
         Assert.Equal(rating, repositoryItem.Rating);
     }
