@@ -3,7 +3,7 @@ using TeaShoppe.Decorators;
 using TeaShoppe.Inventory;
 using Xunit;
 
-namespace tea_shoppe.Tests.Decorators;
+namespace TeaShoppe.Tests.Decorators;
 
 [TestSubject(typeof(TeaByAvailability))]
 public class TeaByAvailabilityTest
@@ -18,6 +18,7 @@ public class TeaByAvailabilityTest
         bool inStock = true;
         
         // act 
+        // TODO: Update param to RequestedItem
         testRepo = new TeaByAvailability(testRepo, inStock);
         var result = testRepo.GetInventory();
         

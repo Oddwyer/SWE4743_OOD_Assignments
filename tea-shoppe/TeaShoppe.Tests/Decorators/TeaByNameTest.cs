@@ -18,6 +18,7 @@ public class TeaByNameTest
         IRepository testRepo = new TeaRepository(catalog.Items);
         
         // act 
+        // TODO: Update param to Requested Item
         testRepo = new TeaByName(testRepo, name);
         var result = testRepo.GetInventory();
         

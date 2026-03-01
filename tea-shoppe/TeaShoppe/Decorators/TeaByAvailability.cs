@@ -1,4 +1,5 @@
 using TeaShoppe.Inventory;
+using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 
@@ -7,9 +8,9 @@ public class TeaByAvailability: InventoryQuery
 {
     private readonly bool _inStock; 
     
-    public TeaByAvailability(IRepository inner, bool inStock): base (inner)
+    public TeaByAvailability(IRepository inner, RequestedItem item): base (inner)
     {
-        _inStock = inStock;
+        _inStock = item.InStock;
     }
 
     public override IReadOnlyList<RepositoryItem> GetInventory()

@@ -8,6 +8,7 @@ public class TeaByQuantity: InventoryQuery
 {
     private readonly int _quantity;
     
+    // TODO: Update param to Requested Item
     public TeaByQuantity(IRepository inner, int qty): base (inner)
     {
         _quantity = qty;    

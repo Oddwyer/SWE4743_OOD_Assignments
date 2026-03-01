@@ -3,7 +3,7 @@ using TeaShoppe.Decorators;
 using TeaShoppe.Inventory;
 using Xunit;
 
-namespace tea_shoppe.Tests.Decorators;
+namespace TeaShoppe.Tests.Decorators;
 
 [TestSubject(typeof(TeaByPrice))]
 public class TeaByPriceTest
@@ -19,6 +19,7 @@ public class TeaByPriceTest
         decimal max = 20.00m;
         
         // act 
+        // TODO: Update param to Requested Item
         testRepo = new TeaByPrice(testRepo, min, max);
         var result = testRepo.GetInventory();
         

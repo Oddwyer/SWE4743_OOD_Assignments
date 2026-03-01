@@ -3,7 +3,7 @@ using TeaShoppe.Decorators;
 using TeaShoppe.Inventory;
 using Xunit;
 
-namespace tea_shoppe.Tests.Decorators;
+namespace TeaShoppe.Tests.Decorators;
 
 [TestSubject(typeof(TeaByQuantity))]
 public class TeaByQuantityTest
@@ -18,6 +18,7 @@ public class TeaByQuantityTest
         int qty = 10;
         
         // act 
+        // TODO: Update param to Requested Item
         testRepo = new TeaByQuantity(testRepo, qty);
         var result = testRepo.GetInventory();
         

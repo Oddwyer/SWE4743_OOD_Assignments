@@ -9,6 +9,7 @@ public class TeaByRating: InventoryQuery
     private readonly int  _minRating;
     private readonly int  _maxRating;
     
+    // TODO: Update param to Requested Item
     public TeaByRating(IRepository inner, int min, int max): base (inner)
     {
         _minRating = min;

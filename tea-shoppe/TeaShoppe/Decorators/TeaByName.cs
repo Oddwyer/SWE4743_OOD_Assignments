@@ -6,6 +6,7 @@ namespace TeaShoppe.Decorators;
 public class TeaByName: InventoryQuery {
     private readonly string _name;
     
+    // TODO: Update param to Requested Item
     public TeaByName(IRepository inner, string name): base (inner)
     {
         _name = name;    

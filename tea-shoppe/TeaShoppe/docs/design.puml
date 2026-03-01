@@ -119,15 +119,10 @@ class TeaByRating {
 + GetInventory(): IReadOnly List<RepositoryItem>
 }
  
-class SortByPrice{
-- direction: SortDirection
-+ SortByPrice(inner: IRepository, SortDirection: direction)
-+ GetInventory(): IReadOnly List<RepositoryItem>
-}
-
-class SortByRating{
-- direction: SortDirection
-+ SortByRating(inner: IRepository, SortDirection: direction)
+class SortTeas{
+- priceDirection: SortDirection
+- ratingDirection: SortDirection
++ SortByPrice(inner: IRepository, SortDirection: price, SortDirection: rating)
 + GetInventory(): IReadOnly List<RepositoryItem>
 }
 
@@ -181,7 +176,7 @@ class PaymentProcessor{
 'IV. Classes - UI
 '=======================================
 package UI{
-class TeaShopFacade{
+class TeaShoppeFacade{
 - requestedItem: RequestedItem
 - checkout: PaymentProcessor
 - teaShopRepository: IRepository
@@ -195,8 +190,11 @@ class RequestedItem{
 - rating: int
 - price: decimal
 - iD: int
+- isPricePrimary: bool
+- isRatingPrimary: bool
+- priceDirection: SortDirection
+- ratingDirection: SortDirection
 + Getters()
-+ Setters()
 }
 }
 
@@ -213,16 +211,15 @@ InventoryQuery <|.. TeaByQuantity
 InventoryQuery <|.. TeaByPrice
 InventoryQuery <|.. TeaByRating
 InventoryQuery <|.. TeaByName
-InventoryQuery <|.. SortByPrice
-InventoryQuery <|.. SortByRating
+InventoryQuery <|.. SortTeas
 IPaymentStrategy <|.. CreditCard
 IPaymentStrategy <|.. ApplePay
 IPaymentStrategy <|.. CryptoCurrency
 IPaymentStrategy <-- PaymentProcessor
 Order <-- PaymentProcessor
-RequestedItem <-- TeaShopFacade
-PaymentProcessor <-- TeaShopFacade
-IRepository <-- TeaShopFacade
+RequestedItem <-- TeaShoppeFacade
+PaymentProcessor <-- TeaShopppeFacade
+IRepository <-- TeaShoppeFacade
 
 ' Hidden Links to Force Clean UML Rendering
 TeaRepository -[hidden]-> InventoryQuery
