@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tea-shoppe", "tea-shoppe.csproj", "{1A4B5A5A-938E-406F-B4EB-60A615CF67D2}"
-EndProject
+# 
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DD63123-D9F3-4E95-A6E6-B3F9525CFE0E}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tea-shoppe.Tests", "..\tea-shoppe.Tests\tea-shoppe.Tests.csproj", "{65769858-DB1F-47F7-8A20-F7A180ED7359}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeaShoppe", "TeaShoppe.csproj", "{97AA03F2-C756-491B-93D0-86C40B517B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeaShoppe.Tests", "..\TeaShoppe.Tests\TeaShoppe.Tests.csproj", "{F867AED7-E144-4B2A-8D6D-F6A402C1D32A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,13 +16,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A4B5A5A-938E-406F-B4EB-60A615CF67D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A4B5A5A-938E-406F-B4EB-60A615CF67D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A4B5A5A-938E-406F-B4EB-60A615CF67D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A4B5A5A-938E-406F-B4EB-60A615CF67D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65769858-DB1F-47F7-8A20-F7A180ED7359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65769858-DB1F-47F7-8A20-F7A180ED7359}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65769858-DB1F-47F7-8A20-F7A180ED7359}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65769858-DB1F-47F7-8A20-F7A180ED7359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97AA03F2-C756-491B-93D0-86C40B517B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97AA03F2-C756-491B-93D0-86C40B517B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97AA03F2-C756-491B-93D0-86C40B517B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97AA03F2-C756-491B-93D0-86C40B517B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F867AED7-E144-4B2A-8D6D-F6A402C1D32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F867AED7-E144-4B2A-8D6D-F6A402C1D32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F867AED7-E144-4B2A-8D6D-F6A402C1D32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F867AED7-E144-4B2A-8D6D-F6A402C1D32A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
