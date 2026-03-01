@@ -4,38 +4,40 @@ namespace TeaShoppe.Payment;
 
 public class PaymentProcessor
 {
-    private IPaymentStrategy _strategy;
+    private IPaymentStrategy Strategy { get; set; } 
     private static int _next = 100;
     private int _receiptNumber;
 
     public PaymentProcessor(IPaymentStrategy strategy)
     {
-        _strategy = strategy;
+        Strategy = strategy;
     }
     
-    public void Checkout(Order order)
+    public string Checkout(Order order)
     {
-        if (_strategy.Pay(order.OrderTotal()))
+        if (Strategy.Pay(order.OrderTotal()))
         {
-            order.OrderTotal();
             _receiptNumber = _next++;
+            return MakeReceipt(order,  _receiptNumber);
         }
-
-        order.OrderDetails();
-        MakeReceipt();
+        return "\nPayment failed. Please try again.";
     }
 
-    private string MakeReceipt()
+    private string MakeReceipt(Order order, int receiptNumber)
     {
         return $"""
                 *** Purchase Complete ***
                 Your package is on the way.
                 Receipt Number: {_receiptNumber}
+                
+                {order.OrderTotal()}
                 """;
     }
     
+    public IPaymentStrategy GetStrategy =>  Strategy;
+    
     public void SetStrategy(IPaymentStrategy strategy)
     {
-        _strategy = strategy;
+        Strategy = strategy;
     }
 }

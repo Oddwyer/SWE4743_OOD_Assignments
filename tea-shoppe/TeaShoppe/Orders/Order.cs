@@ -64,15 +64,15 @@ public class Order
         return _orderItems.Count;
     }
     
-    public void OrderDetails()
+    public string OrderDetails()
     {
-        Console.WriteLine("Current Order: ");
+       string details = "Current Order:\n";
         foreach (OrderItem x in _orderItems)
         {
-            Console.WriteLine($"{x.ItemId}: {x.Name} - Quantity: {x.Quantity}");
+            details += $"{x.ItemId}: {x.Name} - Quantity: {x.Quantity}\n";
         }
-        
-        Console.WriteLine($"Order Total: {OrderTotal()}");
+        details += $"Order Total: ${OrderTotal(): 0.00}";
+        return details;
     }
 
     public bool SearchOrder(int itemId)
