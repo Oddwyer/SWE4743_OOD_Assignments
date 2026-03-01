@@ -145,7 +145,7 @@ class OrderReceipt{
 }
 
 class Order{
-- order: List<RequestedItem> 
+- order: List<RepositoryItem> 
 + OrderAmount(list: List<RequestedItem>): decimal
 + AddItem(item: RequestedItem): void
 + RemoveItem(int: RequestedItemID): void

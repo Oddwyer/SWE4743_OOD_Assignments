@@ -12,12 +12,25 @@ public class TeaRepository: IRepository
 
     public void Add(RepositoryItem item)
     {
-        _repositoryItems.Add(item);
+        if (_repositoryItems.Contains(item))
+        {
+            int index = _repositoryItems.IndexOf(item);
+            _repositoryItems[index].IncrementStock(1);
+        }
+        else
+        {
+            _repositoryItems.Add(item);
+        }
     }
 
-    public void Remove(int itemId)
+    public void Remove(RepositoryItem item)
     {
-        _repositoryItems.RemoveAt(itemId);
+        if (_repositoryItems.Contains(item))
+        {
+            int index = _repositoryItems.IndexOf(item);
+            _repositoryItems[index].DecrementStock(1);
+        }
+        
     }
 
     public IReadOnlyList<RepositoryItem> GetInventory()

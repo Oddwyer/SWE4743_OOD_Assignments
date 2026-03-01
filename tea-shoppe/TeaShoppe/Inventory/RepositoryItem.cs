@@ -23,14 +23,21 @@ public class RepositoryItem
         Rating = tea.Rating;
     }
 
-    public void IncrementQuantity(int qty)
+    public void IncrementStock(int qty)
     {
         Quantity += qty;
     }
 
-    public void DecrementQuantity(int qty)
+    public void DecrementStock(int qty)
     {
-        Quantity -= qty;
+        if (Quantity - qty < 0)
+        {
+            throw new InvalidOperationException("Quantity cannot go below zero.");
+        }
+        else
+        {
+            Quantity -= qty;
+        }
     }
 
     public void UpdatePrice(decimal newPrice)
