@@ -167,10 +167,6 @@ class CryptoCurrency{
 Pay(amount: decimal): void
 }
 
-class ValidateOrder{
-+ ValidateOrder(order: Order)
-}
-
 class PaymentProcessor{
 - strategy: IPaymentStrategy
 - order: Order
