@@ -1,15 +1,15 @@
 using TeaShoppe.Inventory;
+using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 
 // Decorator class to search repository by tea name.
 public class TeaByName: InventoryQuery {
-    private readonly string _name;
+    private readonly string ? _name;
     
-    // TODO: Update param to Requested Item
-    public TeaByName(IRepository inner, string name): base (inner)
+    public TeaByName(IRepository inner, RequestedItem item): base (inner)
     {
-        _name = name;    
+        _name = item.SearchName;    
     }
 
     public override IReadOnlyList<RepositoryItem> GetInventory()

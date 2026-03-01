@@ -1,19 +1,18 @@
 using TeaShoppe.Inventory;
+using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 
 // Decorator class to search by rating within a min and max range.
 public class TeaByRating: InventoryQuery
 {
-    // Default values set. 
-    private readonly int  _minRating;
-    private readonly int  _maxRating;
+    private readonly int ? _minRating;
+    private readonly int ? _maxRating;
     
-    // TODO: Update param to Requested Item
-    public TeaByRating(IRepository inner, int min, int max): base (inner)
+    public TeaByRating(IRepository inner, RequestedItem item): base (inner)
     {
-        _minRating = min;
-        _maxRating = max;
+        _minRating =item.MinRating;
+        _maxRating = item.MaxRating;
     }
 
     public override IReadOnlyList<RepositoryItem> GetInventory()

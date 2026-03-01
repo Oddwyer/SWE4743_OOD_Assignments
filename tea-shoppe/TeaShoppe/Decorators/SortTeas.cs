@@ -7,16 +7,15 @@ namespace TeaShoppe.Decorators;
 // Decorator class to sort search by price (ascending/descending) and/or rating (ascending/descending).
 public class SortTeas : InventoryQuery
 {
-
     private readonly SortDirection _priceDirection = SortDirection.Ascending;
     private readonly SortDirection _ratingDirection = SortDirection.Descending;
-    private readonly bool isPricePrimary;
+    private readonly PrimarySort _sort;
 
     public SortTeas(IRepository inner, RequestedItem item) : base(inner)
     {
-        _priceDirection = item.priceDirection;
-        _ratingDirection = item.ratingDirection;
-        isPricePrimary = item.IsPricePrimary;
+        _priceDirection = item.PriceDirection;
+        _ratingDirection = item.RatingDirection;
+        _sort = item.Sort;
     }
 
     public override IReadOnlyList<RepositoryItem> GetInventory()
@@ -24,7 +23,7 @@ public class SortTeas : InventoryQuery
         // Temporary list to sort. 
         var currentOrder = inner.GetInventory();
             // If price requested first, sort list by price first, then rating. 
-            if (isPricePrimary)
+            if (_sort == PrimarySort.Price)
             {
                 IOrderedEnumerable<RepositoryItem> ordered = OrderByPrice(currentOrder, _priceDirection);
                 ordered = ThenByRating(ordered, _ratingDirection);

@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using TeaShoppe.Decorators;
 using TeaShoppe.Inventory;
+using TeaShoppe.UI;
 using Xunit;
 
 namespace TeaShoppe.Tests.Decorators;
@@ -17,10 +18,14 @@ public class TeaByRatingTest
         IRepository testRepo = new TeaRepository(catalog.Items);
         int min = 2;
         int max = 5;
+        var tea = new RequestedItem
+        {
+            MinRating =  min,
+            MaxRating = max
+        };
         
         // act 
-        // TODO: Update param to Requested Item
-        testRepo = new TeaByRating(testRepo, min, max);
+        testRepo = new TeaByRating(testRepo, tea);
         var result = testRepo.GetInventory();
         
         // assert -> range
@@ -36,9 +41,14 @@ public class TeaByRatingTest
         IRepository testRepo = new TeaRepository(catalog.Items);
         int min = 1;
         int max = 5;
+        var tea = new RequestedItem
+        {
+            MinRating =  min,
+            MaxRating = max
+        };
         
         // act 
-        testRepo = new TeaByRating(testRepo, min, max);
+        testRepo = new TeaByRating(testRepo, tea);
         var result = testRepo.GetInventory();
         
         // assert -> exacts

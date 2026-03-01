@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using TeaShoppe.Decorators;
 using TeaShoppe.Inventory;
+using TeaShoppe.UI;
 using Xunit;
 
 namespace TeaShoppe.Tests.Decorators;
@@ -15,15 +16,17 @@ public class TeaByAvailabilityTest
         // arrange
         var catalog = new TeaCatalog();
         IRepository testRepo = new TeaRepository(catalog.Items);
-        bool inStock = true;
+        var tea = new RequestedItem
+        {
+            IsInStock = true
+        };
         
         // act 
-        // TODO: Update param to RequestedItem
-        testRepo = new TeaByAvailability(testRepo, inStock);
+        testRepo = new TeaByAvailability(testRepo, tea);
         var result = testRepo.GetInventory();
         
         // assert
-        Assert.All(result, item => Assert.Equal(false, item.InStock));
+        Assert.All(result, item => Assert.False(item.InStock));
         
     }
     
@@ -33,14 +36,17 @@ public class TeaByAvailabilityTest
         // arrange
         var catalog = new TeaCatalog();
         IRepository testRepo = new TeaRepository(catalog.Items);
-        bool inStock = true;
+        var tea = new RequestedItem
+        {
+            IsInStock = true
+        };
         
         // act 
-        testRepo = new TeaByAvailability(testRepo, inStock);
+        testRepo = new TeaByAvailability(testRepo, tea);
         var result = testRepo.GetInventory();
         
         // assert
-        Assert.All(result, item => Assert.Equal(true, item.InStock));
+        Assert.All(result, item => Assert.True(item.InStock));
         
     }
 }

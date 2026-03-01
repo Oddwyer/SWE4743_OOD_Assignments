@@ -1,4 +1,5 @@
 using TeaShoppe.Inventory;
+using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 
@@ -6,12 +7,11 @@ namespace TeaShoppe.Decorators;
 
 public class TeaByQuantity: InventoryQuery
 {
-    private readonly int _quantity;
+    private readonly int ? _quantity;
     
-    // TODO: Update param to Requested Item
-    public TeaByQuantity(IRepository inner, int qty): base (inner)
+    public TeaByQuantity(IRepository inner, RequestedItem item): base (inner)
     {
-        _quantity = qty;    
+        _quantity = item.Quantity;    
     }
 
     public override IReadOnlyList<RepositoryItem> GetInventory()

@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using TeaShoppe.Decorators;
 using TeaShoppe.Inventory;
+using TeaShoppe.UI;
 using Xunit;
 
 namespace TeaShoppe.Tests.Decorators;
@@ -16,10 +17,13 @@ public class TeaByQuantityTest
         var catalog = new TeaCatalog();
         IRepository testRepo = new TeaRepository(catalog.Items);
         int qty = 10;
+        var tea = new RequestedItem
+        {
+            Quantity = qty
+        };
         
         // act 
-        // TODO: Update param to Requested Item
-        testRepo = new TeaByQuantity(testRepo, qty);
+        testRepo = new TeaByQuantity(testRepo, tea);
         var result = testRepo.GetInventory();
         
         // assert

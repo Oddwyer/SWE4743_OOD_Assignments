@@ -6,11 +6,11 @@ namespace TeaShoppe.Decorators;
 // Decorator class to search repository by availability. 
 public class TeaByAvailability: InventoryQuery
 {
-    private readonly bool _inStock; 
+    private readonly bool ? _inStock; 
     
     public TeaByAvailability(IRepository inner, RequestedItem item): base (inner)
     {
-        _inStock = item.InStock;
+        _inStock = item.IsInStock;
     }
 
     public override IReadOnlyList<RepositoryItem> GetInventory()
