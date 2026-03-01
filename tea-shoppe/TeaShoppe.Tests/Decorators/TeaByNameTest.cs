@@ -10,7 +10,7 @@ public class TeaByNameTest
 {
 
     [Fact]
-    public void TestTeaByName()
+    public void TestTeaByName1()
     {
         // arrange
         string name = "Green Tea";
@@ -24,5 +24,21 @@ public class TeaByNameTest
         // assert
         Assert.All(result, item => Assert.Equal("Green Tea", item.Name));
 
+    }
+    
+    [Fact]
+    public void TestTeaByName2()
+    {
+        // arrange
+        string name = "green tea";
+        var catalog = new TeaCatalog();
+        IRepository testRepo = new TeaRepository(catalog.Items);
+        
+        // act 
+        testRepo = new TeaByName(testRepo, name);
+        var result = testRepo.GetInventory();
+        
+        // assert
+        Assert.All(result, item => Assert.Equal(name, item.Name, ignoreCase: true));
     }
 }
