@@ -47,8 +47,13 @@ class TeaItem <<record>> {
 + Getters()
 }
 
+class StarRating{
+- rating
++ StarRating(rating: int): void
+}
+
 class TeaCatalog{
-- catalog: IReadOnly List<TeaItem>
+- items: IReadOnlyList<RepositoryItem>
 }
 
 class RepositoryItem{
@@ -60,15 +65,6 @@ class RepositoryItem{
 + IncrementStock(): void
 + IsInStock(): bool
 + SetPrice(decimal: price): void
-}
-
-class RequestedItem{
-- name: string
-- rating: int
-- price: decimal
-- iD: int
-+ Getters()
-+ Setters()
 }
 
 interface IRepository{
@@ -93,26 +89,31 @@ abstract class InventoryQuery {
 }
 
 class TeaByName{
+- name: string
 + TeaByName(inner: IRepository, name: string)
 + GetInventory(): IReadOnly List<RepositoryItem>
 }
 
 class TeaByAvailability{
+- inStock: bool
 + TeaByAvailability(inner: IRepository, bool: IsInStock)
 + GetInventory(): IReadOnly List<RepositoryItem>
 }
 
 class TeaByQuantity{
+- quantity: int
 + TeaByQuantity(inner: IRepository, int: quantity)
 + GetInventory(): IReadOnly List<RepositoryItem>
 }
 
 class TeaByPrice{
+- price: decimal
 + TeaByPrice(inner: IRepository, decimal: price)
 + GetInventory(): IReadOnly List<RepositoryItem>
 }
 
 class TeaByRating {
+- rating: StarRating
 + TeaByRating(inner: IRepository, int: rating)
 + GetInventory(): IReadOnly List<RepositoryItem>
 }
@@ -186,6 +187,15 @@ class TeaShopFacade{
 + PerformQuery(item: RequestedItem): IReadOnlyList<RepositoryItem>
 + DisplayQuery(): void
 + ShopOpen(): void 
+}
+
+class RequestedItem{
+- name: string
+- rating: int
+- price: decimal
+- iD: int
++ Getters()
++ Setters()
 }
 }
 

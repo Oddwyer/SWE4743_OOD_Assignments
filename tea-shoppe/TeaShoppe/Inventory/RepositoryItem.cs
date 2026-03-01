@@ -1,5 +1,6 @@
 namespace TeaShoppe.Inventory;
 
+// In stock item of type tea for repository.
 public class RepositoryItem
 {
     private static int _next;

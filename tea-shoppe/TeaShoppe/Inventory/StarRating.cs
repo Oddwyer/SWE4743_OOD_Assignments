@@ -1,5 +1,6 @@
 namespace TeaShoppe.Inventory;
 
+// Rating class to prevent rating invariants.
 public class StarRating
 {
     public int Rating {get;}

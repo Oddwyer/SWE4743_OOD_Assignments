@@ -1,0 +1,7 @@
+﻿services:
+  tea-shoppe:
+    image: tea-shoppe
+    build:
+      context: .
+      dockerfile: Dockerfile
+

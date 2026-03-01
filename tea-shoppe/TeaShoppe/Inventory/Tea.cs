@@ -1,5 +1,6 @@
 namespace TeaShoppe.Inventory;
 
+// Type "tea" defined as record: two objects are equal if data is equal.
 public record Tea
 {
     public string Name { get;}
