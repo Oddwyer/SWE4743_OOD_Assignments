@@ -11,12 +11,12 @@ public class TeaByAvailability: InventoryQuery
 {
     private readonly bool ? _inStock; 
     
-    public TeaByAvailability(IRepository inner, RequestedItem item): base (inner)
+    public TeaByAvailability(IInventory inner, RequestedItem item): base (inner)
     {
         _inStock = item.IsInStock;
     }
 
-    public override IReadOnlyList<RepositoryItem> GetInventory()
+    public override IReadOnlyList<InventoryItem> GetInventory()
     {
         return inner.GetInventory().Where(x => x.InStock == _inStock).ToList();
     }

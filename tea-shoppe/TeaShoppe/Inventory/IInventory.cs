@@ -1,7 +1,7 @@
 namespace TeaShoppe.Inventory;
 
 // Interface to be used for concrete component and decorators.
-public interface IRepository
+public interface IInventory
 {
-   public IReadOnlyList<RepositoryItem> GetInventory();
+   public IReadOnlyList<InventoryItem> GetInventory();
 }

@@ -19,7 +19,7 @@ public class OrderTest
         int quantity = 2;
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating);
-        RepositoryItem orderItem = new RepositoryItem(testTea, quantity);
+        InventoryItem orderItem = new InventoryItem(testTea, quantity);
         OrderItem teaOrdered = new OrderItem(orderItem, quantity);
         
         // act 
@@ -40,7 +40,7 @@ public class OrderTest
         int quantity = 2;
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating);
-        RepositoryItem orderItem = new RepositoryItem(testTea, quantity);
+        InventoryItem orderItem = new InventoryItem(testTea, quantity);
         OrderItem teaOrdered = new OrderItem(orderItem, quantity);
         
         // act 

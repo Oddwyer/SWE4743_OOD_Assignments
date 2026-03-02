@@ -11,12 +11,12 @@ public class TeaByQuantity: InventoryQuery
 {
     private readonly int ? _quantity;
     
-    public TeaByQuantity(IRepository inner, RequestedItem item): base (inner)
+    public TeaByQuantity(IInventory inner, RequestedItem item): base (inner)
     {
         _quantity = item.Quantity;    
     }
 
-    public override IReadOnlyList<RepositoryItem> GetInventory()
+    public override IReadOnlyList<InventoryItem> GetInventory()
     {
         return inner.GetInventory().Where(x => x.Quantity >= _quantity).ToList();
     }

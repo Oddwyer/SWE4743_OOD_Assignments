@@ -7,15 +7,15 @@ namespace TeaShoppe.Decorators;
 /// is the abstract class for shared logic for all decorators and to house
 /// the inner IRepository component.
 /// </summary>
-public abstract class InventoryQuery: IRepository
+public abstract class InventoryQuery: IInventory
 {
-    protected IRepository inner; 
+    protected IInventory inner; 
 
-    public InventoryQuery(IRepository repository)
+    public InventoryQuery(IInventory inventory)
     {
-        inner = repository;
+        inner = inventory;
     }
 
-    public abstract IReadOnlyList<RepositoryItem> GetInventory();
+    public abstract IReadOnlyList<InventoryItem> GetInventory();
 
 }

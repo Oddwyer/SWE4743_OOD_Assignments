@@ -1,7 +1,7 @@
 namespace TeaShoppe.Inventory;
 
 // In stock item of type tea for repository.
-public class RepositoryItem
+public class InventoryItem
 {
     public Tea ShopItem { get; }
     public string Name => ShopItem.Name;
@@ -13,7 +13,7 @@ public class RepositoryItem
     public StarRating Rating { get; private set; }
     
 
-    public RepositoryItem(Tea tea, int qty)
+    public InventoryItem(Tea tea, int qty)
     {
         ItemId = _next++;
         ShopItem = tea;

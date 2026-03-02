@@ -12,13 +12,13 @@ public class TeaByRating: InventoryQuery
     private readonly int ? _minRating;
     private readonly int ? _maxRating;
     
-    public TeaByRating(IRepository inner, RequestedItem item): base (inner)
+    public TeaByRating(IInventory inner, RequestedItem item): base (inner)
     {
         _minRating =item.MinRating;
         _maxRating = item.MaxRating;
     }
 
-    public override IReadOnlyList<RepositoryItem> GetInventory()
+    public override IReadOnlyList<InventoryItem> GetInventory()
     {
         return inner.GetInventory().Where(x => x.RatingValue <= _maxRating && x.RatingValue >= _minRating).ToList();
     }

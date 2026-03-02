@@ -15,7 +15,7 @@ public class OrderItem
     public int Quantity { get; private set; }
     public decimal Price { get; private set; }
     
-    public OrderItem(RepositoryItem item, int qty)
+    public OrderItem(InventoryItem item, int qty)
     {
         ItemId = item.ItemId;
         Item = item.ShopItem;

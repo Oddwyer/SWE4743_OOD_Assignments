@@ -15,7 +15,7 @@ public class TeaByQuantityTest
     {
         // arrange
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         int qty = 10;
         var tea = new RequestedItem
         {

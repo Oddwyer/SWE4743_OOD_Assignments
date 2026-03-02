@@ -21,7 +21,7 @@ public class PaymentProcessorTest
         int quantity = 2;
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating);
-        RepositoryItem orderItem = new RepositoryItem(testTea, quantity);
+        InventoryItem orderItem = new InventoryItem(testTea, quantity);
         OrderItem teaOrdered = new OrderItem(orderItem, quantity);
         Order testOrder = new Order(teaOrdered);
         
@@ -43,7 +43,7 @@ public class PaymentProcessorTest
         int quantity = 2;
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating);
-        RepositoryItem orderItem = new RepositoryItem(testTea, quantity);
+        InventoryItem orderItem = new InventoryItem(testTea, quantity);
         OrderItem teaOrdered = new OrderItem(orderItem, quantity);
         Order testOrder = new Order(teaOrdered);
         

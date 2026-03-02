@@ -15,7 +15,7 @@ public class TeaByPriceTest
     {
         // arrange
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         decimal min = 13.99m;
         decimal max = 22.50m;
         var tea = new RequestedItem
@@ -37,7 +37,7 @@ public class TeaByPriceTest
     {
         // arrange
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         decimal min = 13.99m;
         decimal max = 22.50m;
         var tea = new RequestedItem

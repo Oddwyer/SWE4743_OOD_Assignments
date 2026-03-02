@@ -1,16 +1,16 @@
 namespace TeaShoppe.Inventory;
 
-public class TeaRepository: IRepository
+public class TeaInventory: IInventory
 {
-    private readonly List<RepositoryItem> _repositoryItems;
+    private readonly List<InventoryItem> _repositoryItems;
 
-    public TeaRepository(IReadOnlyList<RepositoryItem> items)
+    public TeaInventory(IReadOnlyList<InventoryItem> items)
     {
         // .ToList() ensures a copy of the catalog is made to avoid changes to original.
        _repositoryItems = items.ToList();
     }
 
-    public void Add(RepositoryItem item)
+    public void Add(InventoryItem item)
     {
         if (_repositoryItems.Contains(item))
         {
@@ -23,7 +23,7 @@ public class TeaRepository: IRepository
         }
     }
 
-    public void Remove(RepositoryItem item)
+    public void Remove(InventoryItem item)
     {
         if (_repositoryItems.Contains(item))
         {
@@ -33,7 +33,7 @@ public class TeaRepository: IRepository
         
     }
 
-    public IReadOnlyList<RepositoryItem> GetInventory()
+    public IReadOnlyList<InventoryItem> GetInventory()
     {
        return _repositoryItems;
     }

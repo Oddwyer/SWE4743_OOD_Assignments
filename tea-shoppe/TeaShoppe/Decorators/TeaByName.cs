@@ -9,12 +9,12 @@ namespace TeaShoppe.Decorators;
 public class TeaByName: InventoryQuery {
     private readonly string ? _name;
     
-    public TeaByName(IRepository inner, RequestedItem item): base (inner)
+    public TeaByName(IInventory inner, RequestedItem item): base (inner)
     {
         _name = item.SearchName;    
     }
 
-    public override IReadOnlyList<RepositoryItem> GetInventory()
+    public override IReadOnlyList<InventoryItem> GetInventory()
     {
         return inner.GetInventory().Where(x => x.Name.Equals(_name, StringComparison.OrdinalIgnoreCase)).ToList();
     }

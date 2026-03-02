@@ -15,7 +15,7 @@ public class TeaByRatingTest
     {
         // arrange
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         int min = 2;
         int max = 5;
         var tea = new RequestedItem
@@ -38,7 +38,7 @@ public class TeaByRatingTest
     {
         // arrange
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         int min = 1;
         int max = 5;
         var tea = new RequestedItem

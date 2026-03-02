@@ -4,8 +4,8 @@ using Xunit;
 
 namespace TeaShoppe.Tests.Inventory;
 
-[TestSubject(typeof(RepositoryItem))]
-public class RepositoryItemTest
+[TestSubject(typeof(InventoryItem))]
+public class InventoryItemTest
 {
 
     [Fact]
@@ -17,7 +17,7 @@ public class RepositoryItemTest
         Tea testTea = new Tea("Test Tea", 14.89m, rating);
         
         // act
-        RepositoryItem orderItem = new RepositoryItem(testTea, quantity);
+        InventoryItem orderItem = new InventoryItem(testTea, quantity);
         
         // assert
         Assert.Equal(testTea.Name, orderItem.Name);

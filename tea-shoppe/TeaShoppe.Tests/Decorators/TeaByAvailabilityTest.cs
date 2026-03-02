@@ -15,7 +15,7 @@ public class TeaByAvailabilityTest
     {
         // arrange
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         var tea = new RequestedItem
         {
             IsInStock = true
@@ -35,7 +35,7 @@ public class TeaByAvailabilityTest
     {
         // arrange
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         var tea = new RequestedItem
         {
             IsInStock = true

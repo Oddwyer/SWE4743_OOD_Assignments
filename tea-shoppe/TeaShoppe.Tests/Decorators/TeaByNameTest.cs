@@ -16,7 +16,7 @@ public class TeaByNameTest
         // arrange
         string name = "Green Tea";
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         var tea = new RequestedItem
         {
             SearchName = name
@@ -36,7 +36,7 @@ public class TeaByNameTest
         // arrange
         string name = "green tea";
         var catalog = new TeaCatalog();
-        IRepository testRepo = new TeaRepository(catalog.Items);
+        IInventory testRepo = new TeaInventory(catalog.Items);
         var tea = new RequestedItem
         {
             SearchName = name

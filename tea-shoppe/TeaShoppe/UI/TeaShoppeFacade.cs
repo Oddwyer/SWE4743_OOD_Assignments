@@ -13,16 +13,16 @@ public class TeaShoppeFacade
     private Order _order;
     private PaymentProcessor _paymentProcessor;
     private TeaCatalog _catalog;
-    private IRepository _teaRepo;
+
 
     public TeaShoppeFacade()
-    { 
-        _catalog = new TeaCatalog(); 
-        _teaRepo = new TeaRepository(_catalog.Items);
+    {
+        _catalog = new TeaCatalog();
     }
 
-    public IRepository Query(RequestedItem requestedItem)
+    public IInventory Query(RequestedItem requestedItem)
     {
+        IInventory _teaRepo = new TeaInventory(_catalog.Items);
         _teaRepo = new TeaByName(_teaRepo, requestedItem);
         _teaRepo = new TeaByAvailability(_teaRepo, requestedItem);
         _teaRepo = new TeaByPrice(_teaRepo, requestedItem);

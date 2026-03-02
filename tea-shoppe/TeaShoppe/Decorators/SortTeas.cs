@@ -14,35 +14,35 @@ public class SortTeas : InventoryQuery
     private readonly SortDirection _ratingDirection = SortDirection.Descending;
     private readonly PrimarySort _sort;
 
-    public SortTeas(IRepository inner, RequestedItem item) : base(inner)
+    public SortTeas(IInventory inner, RequestedItem item) : base(inner)
     {
         _priceDirection = item.PriceDirection;
         _ratingDirection = item.RatingDirection;
         _sort = item.Sort;
     }
 
-    public override IReadOnlyList<RepositoryItem> GetInventory()
+    public override IReadOnlyList<InventoryItem> GetInventory()
     {
         // Temporary list to sort. 
         var currentOrder = inner.GetInventory();
             // If price requested first, sort list by price first, then rating. 
             if (_sort == PrimarySort.Price)
             {
-                IOrderedEnumerable<RepositoryItem> ordered = OrderByPrice(currentOrder, _priceDirection);
+                IOrderedEnumerable<InventoryItem> ordered = OrderByPrice(currentOrder, _priceDirection);
                 ordered = ThenByRating(ordered, _ratingDirection);
                 return ordered.ToList();
             }
             // If rating requested first, sort list by rating first, then price. 
             else
             {
-                IOrderedEnumerable<RepositoryItem> ordered = OrderByRating(currentOrder, _ratingDirection);
+                IOrderedEnumerable<InventoryItem> ordered = OrderByRating(currentOrder, _ratingDirection);
                 ordered = ThenByPrice(ordered, _priceDirection);
                 return ordered.ToList();
             }
     }
 
     // Helper methods for handling primary, secondary sorting preference as well as sorting direction. 
-    private static IOrderedEnumerable<RepositoryItem> OrderByPrice(IEnumerable<RepositoryItem> items,
+    private static IOrderedEnumerable<InventoryItem> OrderByPrice(IEnumerable<InventoryItem> items,
         SortDirection direction)
     {
         return direction == SortDirection.Ascending
@@ -50,7 +50,7 @@ public class SortTeas : InventoryQuery
             : items.OrderByDescending(x => x.RetailPrice);
     }
     
-    private static IOrderedEnumerable<RepositoryItem> OrderByRating(IEnumerable<RepositoryItem> items,
+    private static IOrderedEnumerable<InventoryItem> OrderByRating(IEnumerable<InventoryItem> items,
         SortDirection direction)
     {
         return direction == SortDirection.Ascending
@@ -58,7 +58,7 @@ public class SortTeas : InventoryQuery
             : items.OrderByDescending(x => x.RatingValue);
     }
     
-    private static IOrderedEnumerable<RepositoryItem> ThenByPrice(IOrderedEnumerable<RepositoryItem> items,
+    private static IOrderedEnumerable<InventoryItem> ThenByPrice(IOrderedEnumerable<InventoryItem> items,
         SortDirection direction)
     {
         return direction == SortDirection.Ascending
@@ -66,7 +66,7 @@ public class SortTeas : InventoryQuery
             : items.ThenByDescending(x => x.RetailPrice);
     }
     
-    private static IOrderedEnumerable<RepositoryItem> ThenByRating(IOrderedEnumerable<RepositoryItem> items,
+    private static IOrderedEnumerable<InventoryItem> ThenByRating(IOrderedEnumerable<InventoryItem> items,
         SortDirection direction)
     {
         return direction == SortDirection.Ascending
