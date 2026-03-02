@@ -1,5 +1,4 @@
-using TeaShoppe.Decorators;
-using TeaShoppe.Inventory;
+using TeaShoppe.Domain;
 
 namespace TeaShoppe.UI;
 
@@ -7,13 +6,13 @@ namespace TeaShoppe.UI;
 public class RequestedItem
 {
     public string ? SearchName { get; set; }
-    public int ? MinRating { get; set; }
-    public int ? MaxRating { get; set; }
-    public int ? Quantity { get; set; }
-    public decimal ? MinPrice { get; set; }
-    public decimal? MaxPrice { get; set; }
+    public int MinRating { get; set; } = 3;
+    public int MaxRating { get; set; } = 5;
+    public int Quantity { get; set; } = 1;
+    public decimal MinPrice { get; set; } = 0.00m;
+    public decimal MaxPrice { get; set; } = 1000.00m;
     public PrimarySort Sort { get; set; } = PrimarySort.Price;
     public SortDirection PriceDirection { get; set; } =  SortDirection.Ascending;
-    public SortDirection RatingDirection { get; set; } =  SortDirection.Ascending;
+    public SortDirection RatingDirection { get; set; } =  SortDirection.Descending;
     public bool ? IsInStock { get; set; } = true;
 }

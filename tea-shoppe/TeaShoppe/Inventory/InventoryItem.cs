@@ -1,4 +1,7 @@
+using TeaShoppe.Domain;
+
 namespace TeaShoppe.Inventory;
+
 
 // In stock item of type tea for repository.
 public class InventoryItem

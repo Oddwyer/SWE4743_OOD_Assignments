@@ -1,4 +1,4 @@
-namespace TeaShoppe.Inventory;
+namespace TeaShoppe.Domain;
 
 // Rating class to prevent rating invariants.
 public class StarRating

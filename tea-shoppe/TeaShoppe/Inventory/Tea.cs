@@ -1,3 +1,5 @@
+using TeaShoppe.Domain;
+
 namespace TeaShoppe.Inventory;
 
 // Type "tea" defined as record: two objects are equal if data is equal.

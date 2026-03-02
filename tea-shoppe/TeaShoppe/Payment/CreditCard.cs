@@ -9,13 +9,14 @@ namespace TeaShoppe.Payment;
 public class CreditCard : IPaymentStrategy
 {
     private readonly TextReader _input;
-    private readonly  TextWriter _output;
+    private readonly TextWriter _output;
 
     public CreditCard(TextReader input, TextWriter output)
     {
         _input = input;
         _output = output;
     }
+
     public bool Pay(decimal amount)
     {
         string input;
@@ -29,7 +30,7 @@ public class CreditCard : IPaymentStrategy
             return false;
         }
 
-       _output.WriteLine("Transaction Complete.");
+        _output.WriteLine("Transaction Complete.");
         return true;
     }
 
@@ -43,8 +44,8 @@ public class CreditCard : IPaymentStrategy
         {
             return false;
         }
-        
-        if(cleanInput.Length != 16)
+
+        if (cleanInput.Length != 16)
         {
             return false;
         }

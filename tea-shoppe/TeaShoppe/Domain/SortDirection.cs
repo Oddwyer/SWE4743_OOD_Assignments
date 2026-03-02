@@ -1,4 +1,4 @@
-namespace TeaShoppe.Decorators;
+namespace TeaShoppe.Domain;
 
 /// <summary>
 /// Enum class to enforce sort direction as either ascending or descending.

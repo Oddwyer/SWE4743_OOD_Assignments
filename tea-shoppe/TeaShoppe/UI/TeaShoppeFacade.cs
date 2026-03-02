@@ -14,16 +14,16 @@ public class TeaShoppeFacade
     private PaymentProcessor _paymentProcessor;
     private readonly TeaCatalog _catalog;
     private TeaInventory currentRepo;
-
-
+    IPaymentStrategy strategy;
+    
     public TeaShoppeFacade()
     {
         _catalog = new TeaCatalog();
         currentRepo = new TeaInventory(_catalog.Items);
     }
-
+    
     // Request an item from the shoppe.
-    public IInventory Query(RequestedItem requestedItem)
+    public IInventory PerformQuery(RequestedItem requestedItem)
     {
         IInventory teaRepo = currentRepo;
         teaRepo = new TeaByName(teaRepo, requestedItem);
@@ -34,12 +34,37 @@ public class TeaShoppeFacade
         return teaRepo;
     }
 
-    // Add item to order.
-    public void AddToOrder(InventoryItem item, int  quantity)
+    // Display search results
+    public string DisplayQuery(IInventory query)
     {
-       OrderItem orderItem = new OrderItem(item, quantity);
-       _order.AddItem(orderItem);
-       currentRepo.Remove(item);
+        string qty = "";
+        var queryResults = query.GetInventory();
+        string results = $"{queryResults.Count} items match your query:";
+        int itemNumber = 1;
+        foreach (var item in queryResults)
+        {
+            if (!item.InStock)
+            {
+                qty = "(OUT OF STOCK)";
+            }
+            else
+            {
+                qty = item.Quantity.ToString();
+            }
+
+            results += $"{itemNumber}. {item.Name}\t${item.RetailPrice}  Qty:{qty}\t{item.RatingValue} stars\n";
+            itemNumber++;
+        }
+
+        return results;
+    }
+
+    // Add item to order.
+    public void AddToOrder(InventoryItem item, int quantity)
+    {
+        OrderItem orderItem = new OrderItem(item, quantity);
+        _order.AddItem(orderItem);
+        currentRepo.Remove(item);
     }
 
     // Remove item from order.
@@ -49,23 +74,35 @@ public class TeaShoppeFacade
         _order.RemoveItem(orderItem);
         currentRepo.Add(item);
     }
-    
-    // Review order.
+
+    // Display order.
     public string DisplayOrder(Order order)
     {
         return _order.OrderDetails();
     }
-
-    // Make Payment.
-    public void AcceptPayment(IPaymentStrategy strategy)
+    
+    // Accept payment.
+    public void AcceptPayment(int paymentMethod)
     {
+        switch (paymentMethod)
+        {
+            case 1:
+                TextReader input = new StringReader("");
+                TextWriter output = new StringWriter();
+                strategy = new CreditCard(input, output);
+                break;
+            case 2:
+                strategy = new ApplePay();
+                break;
+            case 3:
+                strategy = new CryptoCurrency();
+                break;
+            default:
+                Console.Write("Please enter a valid choice: ");
+                break;
+        }
+
         _paymentProcessor = new PaymentProcessor(strategy);
         _paymentProcessor.Checkout(_order);
     }
-    
-    // Run shoppe.
-    
-    
-    
-    
 }

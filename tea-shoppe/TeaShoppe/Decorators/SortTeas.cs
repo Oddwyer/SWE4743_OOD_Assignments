@@ -1,5 +1,6 @@
 using TeaShoppe.UI;
 using TeaShoppe.Inventory;
+using TeaShoppe.Domain;
 
 namespace TeaShoppe.Decorators;
 

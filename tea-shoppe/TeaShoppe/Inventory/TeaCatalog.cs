@@ -1,3 +1,5 @@
+using TeaShoppe.Domain;
+
 namespace TeaShoppe.Inventory;
 
 public class TeaCatalog

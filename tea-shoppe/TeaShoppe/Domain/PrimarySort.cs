@@ -1,4 +1,4 @@
-namespace TeaShoppe.Decorators;
+namespace TeaShoppe.Domain;
 
 /// <summary>
 /// Primary sort class to ensure only one sort selection is primary.

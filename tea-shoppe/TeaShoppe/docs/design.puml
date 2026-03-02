@@ -183,7 +183,7 @@ class TeaShoppeFacade{
 - teaShopRepository: IRepository
 + PerformQuery(item: RequestedItem): IRepository
 + DisplayQuery(): void
-+ ShopOpen(): void 
++ ShoppeOpen(): void 
 }
 
 class RequestedItem{
