@@ -66,40 +66,51 @@ namespace TeaShoppe
             Console.WriteLine("=========Welcome to Sweet Teas============");
 
             Console.WriteLine("\nComplete the prompts to search our selection of fine teas.");
-            Console.WriteLine("* Tea name contains (leave blank for all names): ");
+            Console.Write("* Tea name contains (leave blank for all names): ");
             item.SearchName = Console.ReadLine();
-            Console.WriteLine("* Is available? (Y/N, default Y): ");
+            Console.Write("* Is available? (Y/N, default Y): ");
             char available = char.Parse(Console.ReadLine());
             if (char.ToUpper(available) == 'N')
             {
                 item.IsInStock = false;
             }
 
-            Console.WriteLine("* Price minimum (default $0): ");
-            item.MinPrice = decimal.Parse(Console.ReadLine());
-            Console.WriteLine("* Price maximum (default $1000): ");
+            Console.Write("* Price minimum (default $0): ");
+            string input =  Console.ReadLine();
+            if (!decimal.TryParse(input, out decimal minValue))
+            {
+                minValue = 0.00m;
+            }
+            item.MinPrice = minValue;
+            // TODO: null value logic
+            Console.Write("\n*Price maximum (default $1000): ");
+            input =  Console.ReadLine();
+            if (!decimal.TryParse(input, out decimal maxValue))
+            {
+                maxValue = 0.00m;
+            }
             item.MaxPrice = decimal.Parse(Console.ReadLine());
-            Console.WriteLine("* Star rating minimum (1-5, default 3): ");
+            Console.Write("\n* Star rating minimum (1-5, default 3): ");
             item.MinRating = int.Parse(Console.ReadLine());
-            Console.WriteLine("* Star rating maximum (1-5, default 5): ");
+            Console.Write("\n* Star rating maximum (1-5, default 5): ");
             item.MaxRating = int.Parse(Console.ReadLine());
-            Console.WriteLine("* Minimum quantity (default 1): ");
+            Console.Write("\n* Minimum quantity (default 1): ");
             item.Quantity = int.Parse(Console.ReadLine());
-            Console.WriteLine("* Sort by Price (A/D, default A): ");
+            Console.Write("\n* Sort by Price (A/D, default A): ");
             char priceSort = char.Parse(Console.ReadLine());
             if (char.ToUpper(priceSort) == 'D')
             {
                 item.PriceDirection = SortDirection.Descending;
             }
 
-            Console.WriteLine("* Sort by Star rating (A/D, default D): ");
+            Console.Write("* Sort by Star rating (A/D, default D): ");
             char ratingSort = char.Parse(Console.ReadLine());
             if (char.ToUpper(ratingSort) == 'A')
             {
                 item.RatingDirection = SortDirection.Ascending;
             }
 
-            Console.WriteLine("* Sort Priority (P for Price, R for Rating, default P): ");
+            Console.Write("\n* Sort Priority (P for Price, R for Rating, default P): ");
             char sortPriority = char.Parse(Console.ReadLine());
             if (char.ToUpper(sortPriority) == 'R')
             {
