@@ -1,5 +1,6 @@
 ﻿using TeaShoppe.UI;
 using TeaShoppe.Domain;
+using TeaShoppe.Inventory;
 
 namespace TeaShoppe
 {
@@ -7,7 +8,6 @@ namespace TeaShoppe
     {
         public static void Main(string[] args)
         {
-            
             string selectMethod = """
                                   *** Choose a payment method: 
                                   *** Choose a payment method:
@@ -20,18 +20,35 @@ namespace TeaShoppe
             
             do
             {
+                // Open shoppe
                 var shoppe = new TeaShoppeFacade();
                 RequestedItem item = ShoppeOpen();
-                string results = shoppe.DisplayQuery(shoppe.PerformQuery(item));
-                Console.WriteLine(results);
-                int count = results.Count();
+                
+                // Display search results
+                IInventory results = shoppe.PerformQuery(item);
+                var list =  results.GetInventory();
+                string displayResults = shoppe.DisplayQuery(results);
+                Console.WriteLine(displayResults);
+                
+                // Confirm purchase and quantity
+                int count = list.Count();
                 Console.WriteLine($"Purchase an item? Enter item number 1-{count} or 0 to continue (default):");
-                int selectedItem = int.Parse(Console.ReadLine());
-                // TODO: Logic for adding item selected from query search to order.
-                // TODO: Display and request quantity to add. -> Quantity for "Green Tea" (1-50): 2)
+                int itemNumber = int.Parse(Console.ReadLine());
+                InventoryItem selectedItem = list[itemNumber - 1];
+                Console.WriteLine($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.Quantity}: ");
+                int quantity = int.Parse(Console.ReadLine());
+                
+                // Add to order
+                shoppe.AddToOrder(selectedItem, quantity);
+                
+                // Request payment type
                 Console.Write(selectMethod);
                 int method = int.Parse(Console.ReadLine());
+                
+                // Accept payment
                 shoppe.AcceptPayment(method);
+                
+                // Confirm still shopping
                 Console.WriteLine("Search for more tea? (Y/N, default Y): ");
                 char selection = char.Parse(Console.ReadLine());
                 if (char.ToUpper(selection) == 'N')
