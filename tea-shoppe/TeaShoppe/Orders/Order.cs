@@ -71,7 +71,9 @@ public class Order
         {
             details += $"{x.ItemId}: {x.Name} - Quantity: {x.Quantity}\n";
         }
-        details += $"Order Total: ${OrderTotal(): 0.00}";
+
+        details += $"To Items: {TotalItemCount()}\n";
+        details += $"Order Total: ${OrderTotal(): 0.00}\n";
         return details;
     }
 

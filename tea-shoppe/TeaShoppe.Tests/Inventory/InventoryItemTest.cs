@@ -17,13 +17,13 @@ public class InventoryItemTest
         Tea testTea = new Tea("Test Tea", 14.89m, rating);
         
         // act
-        InventoryItem orderItem = new InventoryItem(testTea, quantity);
+        InventoryItem newItem = new InventoryItem(testTea, quantity);
         
         // assert
-        Assert.Equal(testTea.Name, orderItem.Name);
-        Assert.Equal(testTea.Price, orderItem.RetailPrice);
-        Assert.Equal(quantity, orderItem.Quantity);
-        Assert.Equal(rating, orderItem.Rating);
+        Assert.Equal(testTea.Name, newItem.Name);
+        Assert.Equal(testTea.Price, newItem.RetailPrice);
+        Assert.Equal(quantity, newItem.Quantity);
+        Assert.Equal(rating, newItem.Rating);
     }
     
     

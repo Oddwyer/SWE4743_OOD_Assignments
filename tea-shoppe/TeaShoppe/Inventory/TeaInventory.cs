@@ -12,10 +12,10 @@ public class TeaInventory: IInventory
 
     public void Add(InventoryItem item)
     {
-        if (_repositoryItems.Contains(item))
+        var existing = SearchInventory(item.Name);
+        if (existing != null)
         {
-            int index = _repositoryItems.IndexOf(item);
-            _repositoryItems[index].IncrementStock(1);
+            existing.IncrementStock(item.Quantity);
         }
         else
         {
@@ -25,18 +25,29 @@ public class TeaInventory: IInventory
 
     public void Remove(InventoryItem item)
     {
-        if (_repositoryItems.Contains(item))
+        var existing = SearchInventory(item.Name);
+        if (existing != null)
         {
-            int index = _repositoryItems.IndexOf(item);
-            _repositoryItems[index].DecrementStock(1);
+            existing.DecrementStock(item.Quantity);
         }
-        
     }
 
     public IReadOnlyList<InventoryItem> GetInventory()
     {
        return _repositoryItems;
     }
-
     
+    public int InventoryCount => _repositoryItems.Count;
+    
+    public InventoryItem? SearchInventory(string teaName)
+    {
+        foreach (var x in _repositoryItems)
+        {
+            if (teaName == x.Name)
+            {
+                return x;
+            }
+        }
+        return null;
+    }
 }
