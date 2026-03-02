@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using TeaShoppe.Inventory;
 using TeaShoppe.Payment;
 using TeaShoppe.Orders;
+using TeaShoppe.Domain;
 using Xunit;
 
 namespace tea_shoppe.Tests.Payment;

@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using JetBrains.Annotations;
-using TeaShoppe.Decorators;
+using TeaShoppe.Domain;
 using TeaShoppe.Inventory;
 using TeaShoppe.Orders;
-using TeaShoppe.UI;
 using Xunit;
 
 namespace tea_shoppe.Tests.Orders;

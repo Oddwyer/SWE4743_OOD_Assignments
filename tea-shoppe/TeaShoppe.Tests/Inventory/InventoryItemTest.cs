@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using TeaShoppe.Inventory;
+using TeaShoppe.Domain;
 using Xunit;
 
 namespace TeaShoppe.Tests.Inventory;

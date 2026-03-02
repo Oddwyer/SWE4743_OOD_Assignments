@@ -7,6 +7,7 @@ namespace TeaShoppe
     {
         public static void Main(string[] args)
         {
+            
             string selectMethod = """
                                   *** Choose a payment method: 
                                   *** Choose a payment method:
@@ -23,6 +24,11 @@ namespace TeaShoppe
                 RequestedItem item = ShoppeOpen();
                 string results = shoppe.DisplayQuery(shoppe.PerformQuery(item));
                 Console.WriteLine(results);
+                int count = results.Count();
+                Console.WriteLine($"Purchase an item? Enter item number 1-{count} or 0 to continue (default):");
+                int selectedItem = int.Parse(Console.ReadLine());
+                // TODO: Logic for adding item selected from query search to order.
+                // TODO: Display and request quantity to add. -> Quantity for "Green Tea" (1-50): 2)
                 Console.Write(selectMethod);
                 int method = int.Parse(Console.ReadLine());
                 shoppe.AcceptPayment(method);
