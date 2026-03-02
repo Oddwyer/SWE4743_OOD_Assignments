@@ -18,10 +18,10 @@ namespace TeaShoppe
                                   """;
             bool stillShopping = true;
             
+            // Open shoppe
+            var shoppe = new TeaShoppeFacade();
             do
             {
-                // Open shoppe
-                var shoppe = new TeaShoppeFacade();
                 RequestedItem item = ShoppeOpen();
                 
                 // Display search results
@@ -87,9 +87,9 @@ namespace TeaShoppe
             input =  Console.ReadLine();
             if (!decimal.TryParse(input, out decimal maxValue))
             {
-                maxValue = 0.00m;
+                maxValue = 1000.00m;
             }
-            item.MaxPrice = decimal.Parse(Console.ReadLine());
+            item.MaxPrice = maxValue;
             Console.Write("\n* Star rating minimum (1-5, default 3): ");
             item.MinRating = int.Parse(Console.ReadLine());
             Console.Write("\n* Star rating maximum (1-5, default 5): ");
