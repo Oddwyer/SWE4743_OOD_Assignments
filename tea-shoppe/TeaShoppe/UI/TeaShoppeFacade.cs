@@ -12,7 +12,7 @@ namespace TeaShoppe.UI;
 // TODO: Test Facade
 public class TeaShoppeFacade
 {
-    private Order _order;
+    private Order _order = new Order();
     private PaymentProcessor _paymentProcessor;
     private readonly TeaCatalog _catalog;
     private TeaInventory currentRepo;
@@ -51,7 +51,7 @@ public class TeaShoppeFacade
             }
             else
             {
-                qty = item.Quantity.ToString();
+                qty = item.StockCount.ToString();
             }
 
             results += $"{itemNumber}. {item.Name}\t${item.RetailPrice}  Qty:{qty}\t{item.RatingValue} stars\n";
@@ -61,24 +61,26 @@ public class TeaShoppeFacade
         return results;
     }
 
-    // Add item to order.
+    // Add item(s) to order.
     public void AddToOrder(InventoryItem item, int quantity)
     {
         OrderItem orderItem = new OrderItem(item, quantity);
+        
         _order.AddItem(orderItem);
-        currentRepo.Remove(item);
+        
+        currentRepo.Remove(item, quantity);
     }
 
-    // Remove item from order.
+    // Remove item(s) from order.
     public void RemoveFromOrder(InventoryItem item, int quantity)
     {
         OrderItem orderItem = new OrderItem(item, quantity);
         _order.RemoveItem(orderItem);
-        currentRepo.Add(item);
+        currentRepo.Add(item, quantity);
     }
 
     // Display order.
-    public string DisplayOrder(Order order)
+    public string DisplayOrder()
     {
         return _order.OrderDetails();
     }

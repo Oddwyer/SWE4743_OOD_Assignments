@@ -8,7 +8,13 @@ public class Order
 {
     private readonly List<OrderItem> _orderItems = new List<OrderItem>();
     private static int _next = 1;
-    
+
+    // Default constructor to initializes order. 
+    public Order()
+    {
+        
+    }
+    // Constructor to begin order.
     public Order(OrderItem item)
     {
         item.ItemNumber = _next++;
@@ -22,7 +28,10 @@ public class Order
         {
             _orderItems[index].IncrementQuantity();
         }
-        _orderItems.Add(item);
+        else
+        {
+            _orderItems.Add(item);
+        }
     }
 
     public void RemoveItem(OrderItem item)
@@ -56,6 +65,11 @@ public class Order
     public int TotalItemCount()
     {
         return _orderItems.Sum(x => x.Quantity);
+    }
+
+    public bool isEmpty()
+    {
+        return _orderItems.Count == 0;
     }
     
     

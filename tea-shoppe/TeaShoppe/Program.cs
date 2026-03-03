@@ -35,18 +35,11 @@ namespace TeaShoppe
                 Console.WriteLine($"Purchase an item? Enter item number 1-{count} or 0 to continue (default):");
                 int itemNumber = int.Parse(Console.ReadLine());
                 InventoryItem selectedItem = list[itemNumber - 1];
-                Console.WriteLine($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.Quantity}: ");
+                Console.WriteLine($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.StockCount}: ");
                 int quantity = int.Parse(Console.ReadLine());
                 
                 // Add to order
                 shoppe.AddToOrder(selectedItem, quantity);
-                
-                // Request payment type
-                Console.Write(selectMethod);
-                int method = int.Parse(Console.ReadLine());
-                
-                // Accept payment
-                shoppe.AcceptPayment(method);
                 
                 // Confirm still shopping
                 Console.WriteLine("Search for more tea? (Y/N, default Y): ");
@@ -57,6 +50,15 @@ namespace TeaShoppe
                 }
             } while (stillShopping);
             
+            // Display order
+            shoppe.DisplayOrder();
+            
+            // Request payment type
+            Console.Write(selectMethod);
+            int method = int.Parse(Console.ReadLine());
+                
+            // Accept payment
+            shoppe.AcceptPayment(method);
         }
         
         // Open Shoppe
