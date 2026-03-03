@@ -16,6 +16,13 @@ public class TeaByName: InventoryQuery {
 
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
-        return inner.GetInventory().Where(x => x.Name.Equals(_name, StringComparison.OrdinalIgnoreCase)).ToList();
+        if (string.IsNullOrWhiteSpace(_name))
+        {
+            return inner.GetInventory();
+        }
+        else
+        {
+            return inner.GetInventory().Where(x => x.Name.Equals(_name, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
     }
 }

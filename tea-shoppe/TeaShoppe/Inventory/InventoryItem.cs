@@ -15,8 +15,8 @@ public class InventoryItem
     public decimal RetailPrice { get; private set; }
     public bool InStock => StockCount > 0;
     public StarRating Rating { get; private set; }
-    
 
+    // Create inventory item.
     public InventoryItem(Tea tea)
     {
         ShopItem = tea;
@@ -26,6 +26,8 @@ public class InventoryItem
         SkuId = tea.SkuId;
         StockCount = 1;
     }
+    
+    // Create inventory item with stock quantity > 1. 
     
     public InventoryItem(Tea tea, int qty)
     {
@@ -37,12 +39,13 @@ public class InventoryItem
         StockCount = qty;
     }
 
-
+    // Increment quantity of inventory item.
     public void IncrementStock(int qty)
     {
         StockCount += qty;
     }
 
+    // Decrement quantity of inventory item.
     public void DecrementStock(int qty)
     {
         if (StockCount - qty < 0)
@@ -54,14 +57,17 @@ public class InventoryItem
             StockCount -= qty;
         }
     }
-
+    
+    // Return rating as an integer.
     public int RatingValue => Rating.Rating;
     
+    // Update retail price.
     public void UpdatePrice(decimal newPrice)
     {
        RetailPrice = newPrice;
     }
     
+    // Update star rating. 
     public void UpdateRating(StarRating newRating)
     {
         Rating = newRating;

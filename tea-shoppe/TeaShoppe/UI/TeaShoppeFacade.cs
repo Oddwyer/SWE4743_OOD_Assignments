@@ -32,6 +32,7 @@ public class TeaShoppeFacade
         teaRepo = new TeaByAvailability(teaRepo, requestedItem);
         teaRepo = new TeaByPrice(teaRepo, requestedItem);
         teaRepo = new TeaByRating(teaRepo, requestedItem);
+        teaRepo = new TeaByQuantity(teaRepo, requestedItem);
         teaRepo = new SortTeas(teaRepo, requestedItem);
         return teaRepo;
     }

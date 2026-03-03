@@ -18,6 +18,13 @@ public class TeaByAvailability: InventoryQuery
 
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
-        return inner.GetInventory().Where(x => x.InStock == _inStock).ToList();
+        if (_inStock.HasValue)
+        {
+            return inner.GetInventory().Where(x => x.InStock == _inStock).ToList();
+        }
+        else
+        {
+            return inner.GetInventory();
+        }
     }
 }
