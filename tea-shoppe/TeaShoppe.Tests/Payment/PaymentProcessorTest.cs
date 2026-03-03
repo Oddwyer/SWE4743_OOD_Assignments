@@ -20,8 +20,9 @@ public class PaymentProcessorTest
         var output = new StringWriter();
         IPaymentStrategy creditCard = new CreditCard(input, output);
         int quantity = 2;
+        int skuId = 103582;
         StarRating rating = new StarRating(3);
-        Tea testTea = new Tea("Test Tea", 14.89m, rating);
+        Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
         InventoryItem orderItem = new InventoryItem(testTea, quantity);
         OrderItem teaOrdered = new OrderItem(orderItem, quantity);
         Order testOrder = new Order(teaOrdered);
@@ -42,8 +43,9 @@ public class PaymentProcessorTest
         var output = new StringWriter();
         IPaymentStrategy creditCard = new CreditCard(input, output);
         int quantity = 2;
+        int skuId = 103582;
         StarRating rating = new StarRating(3);
-        Tea testTea = new Tea("Test Tea", 14.89m, rating);
+        Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
         InventoryItem orderItem = new InventoryItem(testTea, quantity);
         OrderItem teaOrdered = new OrderItem(orderItem, quantity);
         Order testOrder = new Order(teaOrdered);

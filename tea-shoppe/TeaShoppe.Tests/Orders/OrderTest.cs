@@ -15,8 +15,9 @@ public class OrderTest
     {
         // arrange
         int quantity = 2;
+        int skuId = 103582;
         StarRating rating = new StarRating(3);
-        Tea testTea = new Tea("Test Tea", 14.89m, rating);
+        Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
         InventoryItem orderItem = new InventoryItem(testTea, quantity);
         OrderItem teaOrdered = new OrderItem(orderItem, quantity);
         
@@ -36,8 +37,9 @@ public class OrderTest
     {
         // arrange
         int quantity = 2;
+        int skuId = 103582;
         StarRating rating = new StarRating(3);
-        Tea testTea = new Tea("Test Tea", 14.89m, rating);
+        Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
         InventoryItem orderItem = new InventoryItem(testTea, quantity);
         OrderItem teaOrdered = new OrderItem(orderItem, quantity);
         

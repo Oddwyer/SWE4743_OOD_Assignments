@@ -27,6 +27,6 @@ public class TeaByQuantityTest
         var result = testRepo.GetInventory();
         
         // assert
-        Assert.All(result, item => Assert.True(item.Quantity >= qty));
+        Assert.All(result, item => Assert.True(item.StockCount >= qty));
     }
 }
