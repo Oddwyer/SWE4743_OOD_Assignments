@@ -52,7 +52,7 @@ public class PaymentProcessorTest
         
         // act
         PaymentProcessor testProcessor = new PaymentProcessor(creditCard);
-        IPaymentStrategy apple = new ApplePay();
+        IPaymentStrategy apple = new ApplePay(input, output);
         testProcessor.SetStrategy(apple);
         
         // assert

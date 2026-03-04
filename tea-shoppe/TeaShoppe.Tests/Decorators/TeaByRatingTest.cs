@@ -1,7 +1,6 @@
 using JetBrains.Annotations;
 using TeaShoppe.Decorators;
 using TeaShoppe.Inventory;
-using TeaShoppe.UI;
 using Xunit;
 
 namespace TeaShoppe.Tests.Decorators;
