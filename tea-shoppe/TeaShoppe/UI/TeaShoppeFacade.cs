@@ -8,14 +8,13 @@ namespace TeaShoppe.UI;
 /// <summary>
 /// TeaShoppe workflow class using Facade pattern to keep composition root minimal.
 /// </summary>
-
 public class TeaShoppeFacade
 {
     private Order _order = new Order();
     private PaymentProcessor _paymentProcessor;
     private readonly TeaCatalog _catalog;
     private TeaInventory currentRepo;
-    
+
     public TeaShoppeFacade()
     {
         _catalog = new TeaCatalog();
@@ -40,8 +39,7 @@ public class TeaShoppeFacade
     {
         string qty = "";
         var queryResults = query.GetInventory();
-        Console.WriteLine();
-        string results = $"{queryResults.Count} items match your query:\n";
+        string results = $"\n{queryResults.Count} items match your query:\n";
         int itemNumber = 1;
         foreach (var item in queryResults)
         {
@@ -54,7 +52,7 @@ public class TeaShoppeFacade
                 qty = item.StockCount.ToString();
             }
 
-            results += $"{itemNumber}. {item.Name, -15}\t${item.RetailPrice}\tQty: {qty, 15}  {item.RatingValue} stars\n";
+            results += $"{itemNumber}. {item.Name,-15}\t${item.RetailPrice}\tQty: {qty,15}  {item.RatingValue} stars\n";
             itemNumber++;
         }
 
@@ -70,7 +68,9 @@ public class TeaShoppeFacade
         {
             currentRepo.Remove(item, quantity);
             return true;
-        };
+        }
+
+        ;
 
         return false;
     }
@@ -84,6 +84,7 @@ public class TeaShoppeFacade
             currentRepo.Add(item, quantity);
             return true;
         }
+
         return false;
     }
 
@@ -94,9 +95,10 @@ public class TeaShoppeFacade
     }
 
     // Accept payment.
-    public void AcceptPayment(IPaymentStrategy strategy)
+    public string AcceptPayment(IPaymentStrategy strategy)
     {
         _paymentProcessor = new PaymentProcessor(strategy);
-        _paymentProcessor.ProcessPayment(_order);
+        string receipt = _paymentProcessor.ProcessPayment(_order);
+        return receipt;
     }
 }

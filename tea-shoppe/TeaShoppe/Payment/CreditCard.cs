@@ -18,7 +18,7 @@ public class CreditCard : IPaymentStrategy
     {
         string input;
 
-        _output.WriteLine("\nEnter Credit Card Number: ");
+        _output.Write("\nEnter Credit Card Number: ");
         // Null handling
         input = _input.ReadLine() ?? "";
         if (!CardNumberValidator(input))

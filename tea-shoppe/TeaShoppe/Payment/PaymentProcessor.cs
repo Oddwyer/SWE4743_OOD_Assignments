@@ -34,7 +34,7 @@ public class PaymentProcessor
                 Your package is on the way.
                 Receipt Number: {_receiptNumber}
                 
-                {order.OrderTotal()}
+                Order Total ${order.OrderTotal()}
                 """;
     }
     

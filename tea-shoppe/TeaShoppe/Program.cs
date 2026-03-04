@@ -12,7 +12,7 @@ namespace TeaShoppe
             bool stillShopping = true;
 
             // Open shoppe
-            var cashier = new TeaShoppeCashier(newShoppe);
+            var cashier = new TeaShoppeCashier(newShoppe, Console.In, Console.Out);
             while(stillShopping)
             {
                 cashier.RunShoppe();

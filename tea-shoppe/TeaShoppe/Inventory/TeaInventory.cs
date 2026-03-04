@@ -26,19 +26,16 @@ public class TeaInventory : IInventory
             _inventoryItems.Add(item);
         }
     }
-    
+
     // Remove specified quantity of select inventory item from inventory.
     public void Remove(InventoryItem item, int quantity)
     {
         InventoryItem? existing = SearchInventory(item.SkuId);
         if (existing == null)
         {
-            Console.WriteLine("Inventory item not found");
+            return;
         }
-        else
-        {
-            existing.DecrementStock(quantity);
-        }
+        existing.DecrementStock(quantity);
     }
 
     // Return list of inventory items.

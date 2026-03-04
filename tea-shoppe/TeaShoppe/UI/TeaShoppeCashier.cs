@@ -8,24 +8,26 @@ namespace TeaShoppe.UI;
 /// <summary>
 /// Cashier class to extract user prompts from composition root.
 /// </summary>
-
 public class TeaShoppeCashier
 {
     private readonly TeaShoppeFacade _shoppe;
+    private readonly TextReader _input;
+    private readonly TextWriter _output;
     bool stillShopping = true;
 
     string selectMethod = """
                           *** Choose a payment method: 
-                          *** Choose a payment method:
                           1. Credit Card
                           2. Apple Pay
                           3. CryptoCurrency
-                          Selection:
+                          Selection: 
                           """;
 
-    public TeaShoppeCashier(TeaShoppeFacade shoppe)
+    public TeaShoppeCashier(TeaShoppeFacade shoppe, TextReader input, TextWriter output)
     {
         _shoppe = shoppe;
+        _input = input;
+        _output = output;
     }
 
     // Cashier run shoppe.
@@ -38,7 +40,7 @@ public class TeaShoppeCashier
         IInventory results = _shoppe.PerformQuery(requestedItem);
         var list = results.GetInventory();
         string displayResults = _shoppe.DisplayQuery(results);
-        Console.WriteLine(displayResults);
+        _output.WriteLine(displayResults);
 
         // Confirm purchase and quantity
         int count = list.Count();
@@ -46,8 +48,8 @@ public class TeaShoppeCashier
 
         while (itemNumber != 0)
         {
-            Console.Write($"Purchase an item? Enter item number 1-{count} or 0 to continue (default): ");
-            string? input = Console.ReadLine();
+            _output.Write($"Purchase an item? Enter item number 1-{count} or 0 to continue (default): ");
+            string? input = _input.ReadLine();
             if (string.IsNullOrWhiteSpace(input))
             {
                 itemNumber = 0;
@@ -62,61 +64,72 @@ public class TeaShoppeCashier
                 InventoryItem selectedItem = list[itemNumber - 1];
                 while (selectedItem.StockCount == 0)
                 {
-                    Console.Write(
+                    _output.Write(
                         "\nItem is currently out of stock. Is there another you'd like to purchase? Enter item number: ");
-                    itemNumber = int.Parse(Console.ReadLine());
+                    itemNumber = int.Parse(_input.ReadLine());
                     selectedItem = list[itemNumber - 1];
                 }
 
-                Console.Write($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.StockCount}): ");
-                string? qty = Console.ReadLine();
+                _output.Write($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.StockCount}): ");
+                string? qty = _input.ReadLine();
                 if (!string.IsNullOrWhiteSpace(qty) && int.TryParse(qty, out int quantity) && quantity > 0 &&
                     quantity <= selectedItem.StockCount)
                 {
                     // Add to order
-                    if(_shoppe.AddToOrder(selectedItem, quantity))
+                    if (_shoppe.AddToOrder(selectedItem, quantity))
                     {
-                        Console.WriteLine("Item added to order.");
+                        _output.WriteLine("Item added to order.");
                     }
                     else
                     {
-                        Console.WriteLine("We were unable to add the item to your order.");
+                        _output.WriteLine("We were unable to add the item to your order.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input. Please try again.");
+                    _output.WriteLine("Invalid input. Please try again.");
                 }
             }
         }
     }
-    
+
 // Customer checkout.
     public void CheckOut()
     {
-        _shoppe.DisplayOrder();
-
+        string order = _shoppe.DisplayOrder();
+        _output.WriteLine(order);
+        
         // Request payment type
-        Console.Write(selectMethod);
-        int method = int.Parse(Console.ReadLine());
+        List<IPaymentStrategy> strategies = new List<IPaymentStrategy>
+        {
+            new CreditCard(_input, _output),
+            new ApplePay(_input, _output),
+            new CryptoCurrency(_input, _output)
+        };
+        
+        _output.Write(selectMethod);
+        string entry = _input.ReadLine();
+        int method = int.Parse(entry)-1;
+        IPaymentStrategy strategy = strategies[method];
 
         // Accept payment
-        AcceptPayment(method);
+        string receipt = _shoppe.AcceptPayment(strategy);
+        _output.WriteLine(receipt);
     }
 
 // Open shoppe and take requests.
-    public static RequestedItem ShoppeOpen()
+    public RequestedItem ShoppeOpen()
     {
         RequestedItem item = new RequestedItem();
         string input;
-        Console.WriteLine("\n========================Welcome to Sweet Teas===============================");
-        Console.WriteLine("\nComplete the prompts to search our selection of fine teas.\n");
+        _output.WriteLine("\n========================Welcome to Sweet Teas===============================");
+        _output.WriteLine("\nComplete the prompts to search our selection of fine teas.\n");
 
-        Console.Write("* Tea name contains (leave blank for all names): ");
+        _output.Write("* Tea name contains (leave blank for all names): ");
         item.SearchName = Console.ReadLine();
 
-        Console.Write("* Is available? (Y/N, default all): ");
-        string? entry = Console.ReadLine();
+        _output.Write("* Is available? (Y/N, default all): ");
+        string? entry = _input.ReadLine();
         if (string.IsNullOrWhiteSpace(entry))
         {
             item.IsInStock = null;
@@ -130,8 +143,8 @@ public class TeaShoppeCashier
             item.IsInStock = true;
         }
 
-        Console.Write("* Price minimum (default $0): ");
-        input = Console.ReadLine();
+        _output.Write("* Price minimum (default $0): ");
+        input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
             if (decimal.TryParse(input, out decimal price))
@@ -140,8 +153,8 @@ public class TeaShoppeCashier
             }
         }
 
-        Console.Write("* Price maximum (default $1000): ");
-        input = Console.ReadLine();
+        _output.Write("* Price maximum (default $1000): ");
+        input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
             if (decimal.TryParse(input, out decimal price))
@@ -150,8 +163,8 @@ public class TeaShoppeCashier
             }
         }
 
-        Console.Write("* Star rating minimum (1-5, default 1): ");
-        input = Console.ReadLine();
+        _output.Write("* Star rating minimum (1-5, default 1): ");
+        input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
             if (int.TryParse(input, out int starRating))
@@ -160,16 +173,16 @@ public class TeaShoppeCashier
             }
         }
 
-        Console.Write("* Star rating maximum (1-5, default 5): ");
-        input = Console.ReadLine();
+        _output.Write("* Star rating maximum (1-5, default 5): ");
+        input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
             if (int.TryParse(input, out int starRating))
                 item.MaxRating = starRating;
         }
 
-        Console.Write("* Minimum quantity (default 1): ");
-        input = Console.ReadLine();
+        _output.Write("* Minimum quantity (default 1): ");
+        input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
             if (int.TryParse(input, out int quantity))
@@ -178,8 +191,8 @@ public class TeaShoppeCashier
             }
         }
 
-        Console.Write("* Sort Priority (P for Price, R for Rating, default P): ");
-        input = Console.ReadLine();
+        _output.Write("* Sort Priority (P for Price, R for Rating, default P): ");
+        input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
             if (char.ToUpper(input[0]) == 'R')
@@ -188,8 +201,8 @@ public class TeaShoppeCashier
             }
         }
 
-        Console.Write("* Sort by Price (A/D, default A): ");
-        input = Console.ReadLine();
+        _output.Write("* Sort by Price (A/D, default A): ");
+        input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
             if (char.ToUpper(input[0]) == 'D')
@@ -198,8 +211,8 @@ public class TeaShoppeCashier
             }
         }
 
-        Console.Write("* Sort by Star rating (A/D, default D): ");
-        input = Console.ReadLine();
+        _output.Write("* Sort by Star rating (A/D, default D): ");
+        input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
             if (char.ToUpper(input[0]) == 'A')
@@ -209,31 +222,5 @@ public class TeaShoppeCashier
         }
 
         return item;
-    }
-
-// Accept payment.
-    public void AcceptPayment(int paymentMethod)
-    {
-        IPaymentStrategy strategy;
-        switch (paymentMethod)
-        {
-            case 1:
-                TextReader input = new StringReader("");
-                TextWriter output = new StringWriter();
-                strategy = new CreditCard(input, output);
-                _shoppe.AcceptPayment(strategy);
-                break;
-            case 2:
-                strategy = new ApplePay();
-                _shoppe.AcceptPayment(strategy);
-                break;
-            case 3:
-                strategy = new CryptoCurrency();
-                _shoppe.AcceptPayment(strategy);
-                break;
-            default:
-                Console.Write("Please enter a valid payment method: ");
-                break;
-        }
     }
 }
