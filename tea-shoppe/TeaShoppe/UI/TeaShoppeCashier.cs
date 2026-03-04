@@ -54,8 +54,15 @@ public class TeaShoppeCashier
         int quantity = int.Parse(Console.ReadLine());
 
         // Add to order
-        _shoppe.AddToOrder(selectedItem, quantity);
-        Console.WriteLine("Item added to order.");
+        bool added = _shoppe.AddToOrder(selectedItem, quantity);
+        if (added)
+        {
+            Console.WriteLine("Item added to order.");
+        }
+        else
+        {
+            Console.WriteLine("We were unable to add the item to your order.");
+        }
     }
 
     // Customer checkout

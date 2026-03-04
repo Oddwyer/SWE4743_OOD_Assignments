@@ -62,21 +62,29 @@ public class TeaShoppeFacade
     }
 
     // Add item(s) to order.
-    public void AddToOrder(InventoryItem item, int quantity)
+    public bool AddToOrder(InventoryItem item, int quantity)
     {
         OrderItem orderItem = new OrderItem(item);
 
-        _order.AddItem(orderItem, quantity);
+        if (_order.AddItem(orderItem, quantity))
+        {
+            currentRepo.Remove(item, quantity);
+            return true;
+        };
 
-        currentRepo.Remove(item, quantity);
+        return false;
     }
 
     // Remove item(s) from order.
-    public void RemoveFromOrder(InventoryItem item, int quantity)
+    public bool RemoveFromOrder(InventoryItem item, int quantity)
     {
         OrderItem orderItem = new OrderItem(item);
-        _order.RemoveItem(orderItem, quantity);
-        currentRepo.Add(item, quantity);
+        if (_order.RemoveItem(orderItem, quantity))
+        {
+            currentRepo.Add(item, quantity);
+            return true;
+        }
+        return false;
     }
 
     // Display order.

@@ -40,24 +40,18 @@ public class Order
     public bool RemoveItem(OrderItem item, int qty)
     {
         OrderItem? existing = SearchOrder(item.SkuId);
-        int? count = existing.Quantity-qty;
-        if (existing == null)
+        int? count = existing.Quantity - qty;
+        if (existing != null)
         {
-            return false;
-        }
+            int before = existing.Quantity;
+            if (existing.Quantity > qty)
+            {
+                existing.DecrementQuantity(qty);
+                return existing.Quantity == before - qty;
+            }
 
-        if (existing.Quantity > qty)
-        {
-            existing.DecrementQuantity(qty);
-        }
-        else
-        {
             _orderItems.Remove(existing);
-        }
-
-        if (count == existing.Quantity)
-        {
-            return true;
+            return !_orderItems.Contains(existing);
         }
         return false;
     }
