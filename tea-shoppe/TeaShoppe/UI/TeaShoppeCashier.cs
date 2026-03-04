@@ -39,33 +39,57 @@ public class TeaShoppeCashier
 
         // Confirm purchase and quantity
         int count = list.Count();
-        Console.Write($"Purchase an item? Enter item number 1-{count} or 0 to continue (default):");
-        int itemNumber = int.Parse(Console.ReadLine());
-        InventoryItem selectedItem = list[itemNumber - 1];
-        while (selectedItem.StockCount == 0)
-        {
-            Console.Write(
-                "\nItem is currently out of stock. Is there another you'd like to purchase? Enter item number: ");
-            itemNumber = int.Parse(Console.ReadLine());
-            selectedItem = list[itemNumber - 1];
-        }
+        int itemNumber = -1;
 
-        Console.Write($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.StockCount}): ");
-        int quantity = int.Parse(Console.ReadLine());
+        while (itemNumber != 0)
+        {
+            Console.Write($"Purchase an item? Enter item number 1-{count} or 0 to continue (default): ");
+            string? input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                itemNumber = 0;
+            }
+            else if (int.TryParse(input, out int value))
+            {
+                itemNumber = value;
+            }
 
-        // Add to order
-        bool added = _shoppe.AddToOrder(selectedItem, quantity);
-        if (added)
-        {
-            Console.WriteLine("Item added to order.");
-        }
-        else
-        {
-            Console.WriteLine("We were unable to add the item to your order.");
+            if (itemNumber > 0 && itemNumber <= count)
+            {
+                InventoryItem selectedItem = list[itemNumber - 1];
+                while (selectedItem.StockCount == 0)
+                {
+                    Console.Write(
+                        "\nItem is currently out of stock. Is there another you'd like to purchase? Enter item number: ");
+                    itemNumber = int.Parse(Console.ReadLine());
+                    selectedItem = list[itemNumber - 1];
+                }
+
+                Console.Write($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.StockCount}): ");
+                string? qty = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(qty) && int.TryParse(qty, out int quantity) && quantity > 0 &&
+                    quantity <= selectedItem.StockCount)
+                {
+                    // Add to order
+                    if(_shoppe.AddToOrder(selectedItem, quantity))
+                    {
+                        Console.WriteLine("Item added to order.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("We were unable to add the item to your order.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please try again.");
+                }
+            }
         }
     }
 
-    // Customer checkout
+
+// Customer checkout
     public void CheckOut()
     {
         _shoppe.DisplayOrder();
@@ -78,7 +102,7 @@ public class TeaShoppeCashier
         AcceptPayment(method);
     }
 
-    // Open Shoppe and take requests.
+// Open Shoppe and take requests.
     public static RequestedItem ShoppeOpen()
     {
         RequestedItem item = new RequestedItem();
@@ -185,7 +209,7 @@ public class TeaShoppeCashier
         return item;
     }
 
-    // Accept payment.
+// Accept payment.
     public void AcceptPayment(int paymentMethod)
     {
         IPaymentStrategy strategy;
