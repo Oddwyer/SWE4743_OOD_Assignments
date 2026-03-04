@@ -31,7 +31,6 @@ public class TeaShoppeCashier
     }
 
     // Cashier run shoppe.
-
     public void RunShoppe()
     {
         var requestedItem = ShoppeOpen();
@@ -39,6 +38,8 @@ public class TeaShoppeCashier
         // Display search results
         IInventory results = _shoppe.PerformQuery(requestedItem);
         var list = results.GetInventory();
+        _output.WriteLine("\nApplied Filters and Sorts:");
+        _output.WriteLine(BuildAppliedFilters(requestedItem));
         string displayResults = _shoppe.DisplayQuery(results);
         _output.WriteLine(displayResults);
 
@@ -92,8 +93,8 @@ public class TeaShoppeCashier
             }
         }
     }
-
-// Customer checkout.
+    
+    // Customer checkout.
     public void CheckOut()
     {
         string order = _shoppe.DisplayOrder();
@@ -119,7 +120,7 @@ public class TeaShoppeCashier
                 strategy = strategies[method - 1];
                 break;
             }
-            
+
             _output.WriteLine("Invalid method selection.");
         }
 
@@ -127,9 +128,8 @@ public class TeaShoppeCashier
         string receipt = _shoppe.AcceptPayment(strategy);
         _output.WriteLine(receipt);
     }
-
-
-// Open shoppe and take requests.
+    
+    // Open shoppe and take requests.
     private RequestedItem ShoppeOpen()
     {
         RequestedItem item = new RequestedItem();
@@ -234,5 +234,33 @@ public class TeaShoppeCashier
         }
 
         return item;
+    }
+
+    // Display filters.
+    public string BuildAppliedFilters(RequestedItem item)
+    {
+        var lines = new List<string>();
+
+        if (!string.IsNullOrWhiteSpace(item.SearchName))
+            lines.Add($"Filter: Name contains \"{item.SearchName}\"");
+
+        if (item.IsInStock == true)
+            lines.Add("Filter: Availability = In Stock (Quantity > 0)");
+        else if (item.IsInStock == false)
+            lines.Add("Filter: Availability = Out of Stock");
+
+        if (item.MinPrice != 0 || item.MaxPrice != 1000)
+            lines.Add($"Filter: Price between ${item.MinPrice} and ${item.MaxPrice}");
+
+        if (item.MinRating != 3 || item.MaxRating != 5)
+            lines.Add($"Filter: Star rating between {item.MinRating} and {item.MaxRating}");
+
+        if (item.Quantity > 0)
+            lines.Add($"Filter: Minimum quantity {item.Quantity}");
+
+        lines.Add($"Sort: Price ({item.PriceDirection.ToString().ToLower()})");
+        lines.Add($"Sort: Star rating ({item.RatingDirection.ToString().ToLower()})");
+
+        return string.Join("\n", lines);
     }
 }

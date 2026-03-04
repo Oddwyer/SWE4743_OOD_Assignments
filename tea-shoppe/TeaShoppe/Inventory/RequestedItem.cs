@@ -6,7 +6,7 @@ namespace TeaShoppe.Inventory;
 public class RequestedItem
 {
     public string ? SearchName { get; set; }
-    public int MinRating { get; set; } = 1;
+    public int MinRating { get; set; } = 3;
     public int MaxRating { get; set; } = 5;
     public int? Quantity { get; set; } = 0;
     public decimal MinPrice { get; set; } = 0.00m;
@@ -15,4 +15,5 @@ public class RequestedItem
     public SortDirection PriceDirection { get; set; } =  SortDirection.Ascending;
     public SortDirection RatingDirection { get; set; } =  SortDirection.Descending;
     public bool? IsInStock { get; set; }
+    
 }
