@@ -34,7 +34,9 @@ public class PaymentProcessor
                 Your package is on the way.
                 Receipt Number: {_receiptNumber}
                 
-                Order Total ${order.OrderTotal()}
+                Receipt Total ${order.OrderTotal()}
+                
+                **Thank you for shopping at Sweet Teas**
                 """;
     }
     

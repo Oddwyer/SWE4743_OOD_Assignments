@@ -48,7 +48,7 @@ public class TeaShoppeCashier
 
         while (itemNumber != 0)
         {
-            _output.Write($"Purchase an item? Enter item number 1-{count} or 0 to continue (default): ");
+            _output.Write($"\nPurchase an item? Enter item number 1-{count} or 0 to continue (default): ");
             string? input = _input.ReadLine();
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -97,8 +97,10 @@ public class TeaShoppeCashier
     public void CheckOut()
     {
         string order = _shoppe.DisplayOrder();
+        int method;
+        IPaymentStrategy strategy;
         _output.WriteLine(order);
-        
+
         // Request payment type
         List<IPaymentStrategy> strategies = new List<IPaymentStrategy>
         {
@@ -106,19 +108,29 @@ public class TeaShoppeCashier
             new ApplePay(_input, _output),
             new CryptoCurrency(_input, _output)
         };
-        
-        _output.Write(selectMethod);
-        string entry = _input.ReadLine();
-        int method = int.Parse(entry)-1;
-        IPaymentStrategy strategy = strategies[method];
+
+        while (true)
+        {
+            _output.Write(selectMethod);
+            string entry = _input.ReadLine();
+            if (!string.IsNullOrWhiteSpace(entry) && int.TryParse(entry, out method) && method >= 1 &&
+                method <= strategies.Count)
+            {
+                strategy = strategies[method - 1];
+                break;
+            }
+            
+            _output.WriteLine("Invalid method selection.");
+        }
 
         // Accept payment
         string receipt = _shoppe.AcceptPayment(strategy);
         _output.WriteLine(receipt);
     }
 
+
 // Open shoppe and take requests.
-    public RequestedItem ShoppeOpen()
+    private RequestedItem ShoppeOpen()
     {
         RequestedItem item = new RequestedItem();
         string input;
@@ -126,7 +138,7 @@ public class TeaShoppeCashier
         _output.WriteLine("\nComplete the prompts to search our selection of fine teas.\n");
 
         _output.Write("* Tea name contains (leave blank for all names): ");
-        item.SearchName = Console.ReadLine();
+        item.SearchName = _input.ReadLine();
 
         _output.Write("* Is available? (Y/N, default all): ");
         string? entry = _input.ReadLine();

@@ -162,7 +162,7 @@ public class TeaShoppeFacadeTest
         
         // act
         IInventory testResults =  testShoppe.PerformQuery(testItem);
-        var results  = testResults.GetInventory();
+        var results  = testResults.GetInventory().ToList();
         var sorted = results.OrderBy(x => x.RetailPrice);
         
         // assert
@@ -182,7 +182,7 @@ public class TeaShoppeFacadeTest
         
         // act
         IInventory testResults =  testShoppe.PerformQuery(testItem);
-        var results  = testResults.GetInventory();
+        var results  = testResults.GetInventory().ToList();
         var sorted = results.OrderByDescending(x => x.RetailPrice);
         
         // assert
@@ -202,7 +202,7 @@ public class TeaShoppeFacadeTest
         
         // act
         IInventory testResults =  testShoppe.PerformQuery(testItem);
-        var results  = testResults.GetInventory();
+        var results  = testResults.GetInventory().ToList();
         var sorted = results.OrderBy(x => x.RatingValue);
         
         // assert

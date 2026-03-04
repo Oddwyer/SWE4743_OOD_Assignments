@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DD63123-D9F3-4E95-A6E6-B3F9525CFE0E}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
+		..\Dockerfile = ..\Dockerfile
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeaShoppe", "TeaShoppe.csproj", "{97AA03F2-C756-491B-93D0-86C40B517B22}"

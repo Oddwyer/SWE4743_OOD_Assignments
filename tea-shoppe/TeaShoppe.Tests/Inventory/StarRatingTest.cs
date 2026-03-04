@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using TeaShoppe.Domain;
 using Xunit;
@@ -14,11 +15,8 @@ public class StarRatingTest
         // arrange
         int rate1 = 6;
         
-        // act 
-        StarRating rating1 = new StarRating(rate1);
-        
-        // assert
-        Assert.Equal(rate1, rating1.Rating);
+        // act + assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => new StarRating(rate1));
     }
     
     [Fact]
@@ -27,11 +25,8 @@ public class StarRatingTest
         // arrange
         int rate2 = -1;
         
-        // act 
-        StarRating rating2 = new StarRating(rate2);
-        
-        // assert
-        Assert.Equal(rate2, rating2.Rating);
+        // act + assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => new StarRating(rate2));
     }
     
     
