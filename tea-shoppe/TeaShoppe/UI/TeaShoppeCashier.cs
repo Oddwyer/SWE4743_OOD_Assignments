@@ -175,7 +175,7 @@ public class TeaShoppeCashier
             }
         }
 
-        _output.Write("* Star rating minimum (1-5, default 1): ");
+        _output.Write("* Star rating minimum (1-5, default 3): ");
         input = _input.ReadLine();
         if (!string.IsNullOrWhiteSpace(input))
         {
@@ -236,7 +236,7 @@ public class TeaShoppeCashier
         return item;
     }
 
-    // Display filters.
+    // Display filters using default logic.
     public string BuildAppliedFilters(RequestedItem item)
     {
         var lines = new List<string>();
