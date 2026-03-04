@@ -171,7 +171,7 @@ class PaymentProcessor{
 - strategy: IPaymentStrategy
 - order: Order
 + SetStrategy(strategy: IPaymentStrategy): void
-+ Checkout(): void
++ ProcessPayment(): void
 }
 }
 'IV. Draft Classes - UI
@@ -179,7 +179,7 @@ class PaymentProcessor{
 package UI{
 class TeaShoppeFacade{
 - requestedItem: RequestedItem
-- checkout: PaymentProcessor
+- paymentProcessor: PaymentProcessor
 - teaShopRepository: IRepository
 + PerformQuery(item: RequestedItem): IRepository
 + DisplayQuery(): void

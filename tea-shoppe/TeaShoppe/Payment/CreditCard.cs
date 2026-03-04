@@ -34,6 +34,7 @@ public class CreditCard : IPaymentStrategy
         return true;
     }
 
+    // Strips and validates credit card number entry = 16 digits only.
     private bool CardNumberValidator(string input)
     {
         // Remove - and spaces from input. 

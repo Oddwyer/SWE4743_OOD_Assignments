@@ -2,6 +2,10 @@ using TeaShoppe.Domain;
 
 namespace TeaShoppe.Inventory;
 
+/// <summary>
+/// Catalog class to seed teas in inventory.
+/// </summary>
+
 public class TeaCatalog
 {
     //Keeps default catalog of items immutable. 

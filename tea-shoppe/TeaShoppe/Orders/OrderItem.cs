@@ -3,7 +3,7 @@ using TeaShoppe.Inventory;
 namespace TeaShoppe.Orders;
 
 /// <summary>
-/// Order Item class representing each order item in customer order.
+/// Class representing each order item in customer order.
 /// </summary>
 public class OrderItem
 {
@@ -11,7 +11,7 @@ public class OrderItem
     public string Name => Item.Name;
     public int SkuId { get; }
     public int ItemNumber { get; set; }
-    public int Quantity { get; private set; }
+    public int Quantity { get; private set; } = 0;
     public decimal Price { get; private set; }
 
     public OrderItem(InventoryItem item)
@@ -19,14 +19,15 @@ public class OrderItem
         SkuId = item.SkuId;
         Item = item.ShopItem;
         Price = item.RetailPrice;
-        Quantity = 1;
     }
 
+    // Increment quantity of order item.
     public void IncrementQuantity(int qty)
     {
         Quantity += qty;
     }
 
+    // Decrement quantity of inventory item.
     public void DecrementQuantity(int qty)
     {
         if (Quantity - qty < 0)

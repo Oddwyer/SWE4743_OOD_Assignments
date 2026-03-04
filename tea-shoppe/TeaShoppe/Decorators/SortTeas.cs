@@ -5,8 +5,7 @@ using TeaShoppe.Domain;
 namespace TeaShoppe.Decorators;
 
 /// <summary>
-/// Decorator class to sort search by price (ascending/descending)
-/// and/or rating (ascending/descending).
+/// Decorator class to sort search by price (ascending/descending) and/or rating (ascending/descending).
 /// </summary>
 
 public class SortTeas : InventoryQuery

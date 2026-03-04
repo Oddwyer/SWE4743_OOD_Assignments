@@ -2,14 +2,13 @@ using TeaShoppe.Domain;
 
 namespace TeaShoppe.Inventory;
 
-
-// In stock item of type tea for repository.
+// Stock item class for teas in inventory.
 public class InventoryItem
 {
     public Tea ShopItem { get; }
     public string Name => ShopItem.Name;
     public int SkuId { get; }
-    public int StockCount { get; private set; }
+    public int StockCount { get; private set; } = 0;
     public decimal RetailPrice { get; private set; }
     public bool InStock => StockCount > 0;
     public StarRating Rating { get; private set; }
@@ -21,7 +20,6 @@ public class InventoryItem
         RetailPrice = tea.Price;
         Rating = tea.Rating;
         SkuId = tea.SkuId;
-        StockCount = 1;
     }
     
     // Create inventory item with stock quantity > 1. 

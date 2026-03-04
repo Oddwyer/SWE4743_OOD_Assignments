@@ -11,14 +11,14 @@ public class TeaByAvailabilityTest
 {
 
     [Fact]
-    public void TestTeaByAvailability1()
+    public void TestAvailabilityNotInStock()
     {
         // arrange
         var catalog = new TeaCatalog();
         IInventory testRepo = new TeaInventory(catalog.Items);
         var tea = new RequestedItem
         {
-            IsInStock = true
+            IsInStock = false
         };
         
         // act 
@@ -31,7 +31,7 @@ public class TeaByAvailabilityTest
     }
     
     [Fact]
-    public void TestTeaByAvailability2()
+    public void TestAvailabilityInStock()
     {
         // arrange
         var catalog = new TeaCatalog();

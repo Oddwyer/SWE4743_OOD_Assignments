@@ -17,7 +17,7 @@ public class PaymentProcessor
         Strategy = strategy;
     }
     
-    public string Checkout(Order order)
+    public string ProcessPayment(Order order)
     {
         if (Strategy.Pay(order.OrderTotal()))
         {

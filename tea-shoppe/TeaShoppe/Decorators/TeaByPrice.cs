@@ -4,7 +4,7 @@ using TeaShoppe.UI;
 namespace TeaShoppe.Decorators;
 
 /// <summary>
-/// Decorator class to search by min/max pricing parameters. 
+/// Decorator class to search inventory by min/max pricing parameters. 
 /// </summary>
 
 public class TeaByPrice: InventoryQuery

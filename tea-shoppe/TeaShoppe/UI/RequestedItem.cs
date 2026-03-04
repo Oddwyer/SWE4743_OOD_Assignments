@@ -2,7 +2,7 @@ using TeaShoppe.Domain;
 
 namespace TeaShoppe.UI;
 
-// RequestedItem context object to encapsulate multiple search specifications.
+// Requested item context object to encapsulate multiple search specifications.
 public class RequestedItem
 {
     public string ? SearchName { get; set; }

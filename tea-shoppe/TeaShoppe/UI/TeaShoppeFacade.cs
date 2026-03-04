@@ -6,24 +6,22 @@ using TeaShoppe.Payment;
 namespace TeaShoppe.UI;
 
 /// <summary>
-/// TeaShoppe workflow class. 
+/// TeaShoppe workflow class using Facade pattern to keep composition root minimal.
 /// </summary>
 
-// TODO: Test Facade
 public class TeaShoppeFacade
 {
     private Order _order = new Order();
     private PaymentProcessor _paymentProcessor;
     private readonly TeaCatalog _catalog;
     private TeaInventory currentRepo;
-    IPaymentStrategy strategy;
-    
+
     public TeaShoppeFacade()
     {
         _catalog = new TeaCatalog();
         currentRepo = new TeaInventory(_catalog.Items);
     }
-    
+
     // Request an item from the shoppe.
     public IInventory PerformQuery(RequestedItem requestedItem)
     {
@@ -66,9 +64,9 @@ public class TeaShoppeFacade
     public void AddToOrder(InventoryItem item, int quantity)
     {
         OrderItem orderItem = new OrderItem(item);
-        
+
         _order.AddItem(orderItem, quantity);
-        
+
         currentRepo.Remove(item, quantity);
     }
 
@@ -85,29 +83,11 @@ public class TeaShoppeFacade
     {
         return _order.OrderDetails();
     }
-    
-    // Accept payment.
-    public void AcceptPayment(int paymentMethod)
-    {
-        switch (paymentMethod)
-        {
-            case 1:
-                TextReader input = new StringReader("");
-                TextWriter output = new StringWriter();
-                strategy = new CreditCard(input, output);
-                break;
-            case 2:
-                strategy = new ApplePay();
-                break;
-            case 3:
-                strategy = new CryptoCurrency();
-                break;
-            default:
-                Console.Write("Please enter a valid choice: ");
-                break;
-        }
 
+    // Accept payment.
+    public void AcceptPayment(IPaymentStrategy strategy)
+    {
         _paymentProcessor = new PaymentProcessor(strategy);
-        _paymentProcessor.Checkout(_order);
+        _paymentProcessor.ProcessPayment(_order);
     }
 }

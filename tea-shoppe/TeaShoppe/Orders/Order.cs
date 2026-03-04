@@ -1,7 +1,7 @@
 namespace TeaShoppe.Orders;
 
 /// <summary>
-/// Class for customer order, holds multiple order items.
+/// Class for customer order; holds multiple order items.
 /// </summary>
 /// 
 public class Order
@@ -9,18 +9,17 @@ public class Order
     private readonly List<OrderItem> _orderItems = new List<OrderItem>();
     private static int _next = 1;
 
-    // Default constructor to initializes order. 
+    // Constructor to initializes order. 
     public Order()
     {
-        
     }
+
     // Constructor to begin order.
     public Order(OrderItem item, int qty)
     {
         item.ItemNumber = _next++;
         item.IncrementQuantity(qty);
         _orderItems.Add(item);
-        
     }
 
     public void AddItem(OrderItem item, int qty)
@@ -43,13 +42,14 @@ public class Order
         {
             return;
         }
-        if (existing.Quantity > qty) 
-        { 
-            existing.DecrementQuantity(qty); 
+
+        if (existing.Quantity > qty)
+        {
+            existing.DecrementQuantity(qty);
         }
-        else 
-        { 
-            _orderItems.Remove(existing); 
+        else
+        {
+            _orderItems.Remove(existing);
         }
     }
 
@@ -59,8 +59,8 @@ public class Order
         foreach (OrderItem x in _orderItems)
         {
             total += x.Price * x.Quantity;
-        }  
-        
+        }
+
         return total;
     }
 
@@ -73,13 +73,13 @@ public class Order
     {
         return _orderItems.Count == 0;
     }
-    
-    
+
+
     public int NumberOfLineItems()
     {
         return _orderItems.Count;
     }
-    
+
     public string OrderDetails()
     {
         if (!isEmpty())
@@ -109,7 +109,7 @@ public class Order
                 return x;
             }
         }
+
         return null;
     }
-    
 }
