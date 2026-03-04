@@ -1,5 +1,4 @@
 using TeaShoppe.Inventory;
-using TeaShoppe.UI;
 
 namespace TeaShoppe.Decorators;
 

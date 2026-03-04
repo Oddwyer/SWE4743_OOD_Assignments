@@ -1,6 +1,6 @@
 # TeaShop
 
-- Console-based Tea Shop application that allows users to search, filter, sort, and purchase tea from an inventory.
+- Console-based Tea Shoppe application that allows users to search, filter, sort, and purchase tea from an inventory.
 
 ## OOD Principles Used:
 - Single Responsibility Principle
@@ -11,11 +11,11 @@
 - Polymorphism and Dynamic Dispatch
 
 ## How to Run the Application (Docker):
-- The Tea Shop is run via Docker to execute consistently across different environments. 
+- The Tea Shoppe is run via Docker to execute consistently across different environments. 
   - Simply open your CLI and use the commands below:
     ```bash
-    docker build -t tea-shop . 
-    docker run --rm -it tea-shop
+    docker build -t tea-shoppe . 
+    docker run --rm -it tea-shoppe
     ```
   - To exit at any time:
     ```bash

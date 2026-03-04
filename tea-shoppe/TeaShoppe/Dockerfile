@@ -5,17 +5,17 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["tea-shoppe.csproj", "./"]
-RUN dotnet restore "tea-shoppe.csproj"
+COPY ["TeaShoppe.csproj", "./"]
+RUN dotnet restore "TeaShoppe.csproj"
 COPY . .
 WORKDIR "/src/"
-RUN dotnet build "./tea-shoppe.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./TeaShoppe.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./tea-shoppe.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./TeaShoppe.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "tea-shoppe.dll"]
+ENTRYPOINT ["dotnet", "TeaShoppe.dll"]

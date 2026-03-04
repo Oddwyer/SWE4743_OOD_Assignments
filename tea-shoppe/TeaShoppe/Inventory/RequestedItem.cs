@@ -1,6 +1,6 @@
 using TeaShoppe.Domain;
 
-namespace TeaShoppe.UI;
+namespace TeaShoppe.Inventory;
 
 // Requested item context object to encapsulate multiple search specifications.
 public class RequestedItem

@@ -3,8 +3,11 @@ using TeaShoppe.Domain;
 using TeaShoppe.Inventory;
 using TeaShoppe.Payment;
 
-
 namespace TeaShoppe.UI;
+
+/// <summary>
+/// Cashier class to extract user prompts from composition root.
+/// </summary>
 
 public class TeaShoppeCashier
 {
@@ -25,7 +28,7 @@ public class TeaShoppeCashier
         _shoppe = shoppe;
     }
 
-    // Method to have cashier run shoppe.
+    // Cashier run shoppe.
 
     public void RunShoppe()
     {
@@ -87,9 +90,8 @@ public class TeaShoppeCashier
             }
         }
     }
-
-
-// Customer checkout
+    
+// Customer checkout.
     public void CheckOut()
     {
         _shoppe.DisplayOrder();
@@ -102,7 +104,7 @@ public class TeaShoppeCashier
         AcceptPayment(method);
     }
 
-// Open Shoppe and take requests.
+// Open shoppe and take requests.
     public static RequestedItem ShoppeOpen()
     {
         RequestedItem item = new RequestedItem();
@@ -230,7 +232,7 @@ public class TeaShoppeCashier
                 _shoppe.AcceptPayment(strategy);
                 break;
             default:
-                Console.Write("Please enter a valid choice: ");
+                Console.Write("Please enter a valid payment method: ");
                 break;
         }
     }
