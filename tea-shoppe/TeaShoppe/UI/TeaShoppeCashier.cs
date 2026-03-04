@@ -39,14 +39,23 @@ public class TeaShoppeCashier
 
         // Confirm purchase and quantity
         int count = list.Count();
-        Console.WriteLine($"Purchase an item? Enter item number 1-{count} or 0 to continue (default):");
+        Console.Write($"Purchase an item? Enter item number 1-{count} or 0 to continue (default):");
         int itemNumber = int.Parse(Console.ReadLine());
         InventoryItem selectedItem = list[itemNumber - 1];
-        Console.WriteLine($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.StockCount}: ");
+        while (selectedItem.StockCount == 0)
+        {
+            Console.Write(
+                "\nItem is currently out of stock. Is there another you'd like to purchase? Enter item number: ");
+            itemNumber = int.Parse(Console.ReadLine());
+            selectedItem = list[itemNumber - 1];
+        }
+
+        Console.Write($"Quantity for \"{selectedItem.Name}\" (1-{selectedItem.StockCount}): ");
         int quantity = int.Parse(Console.ReadLine());
 
         // Add to order
         _shoppe.AddToOrder(selectedItem, quantity);
+        Console.WriteLine("Item added to order.");
     }
 
     // Customer checkout

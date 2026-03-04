@@ -15,7 +15,7 @@ public class TeaShoppeFacade
     private PaymentProcessor _paymentProcessor;
     private readonly TeaCatalog _catalog;
     private TeaInventory currentRepo;
-
+    
     public TeaShoppeFacade()
     {
         _catalog = new TeaCatalog();
@@ -40,7 +40,8 @@ public class TeaShoppeFacade
     {
         string qty = "";
         var queryResults = query.GetInventory();
-        string results = $"{queryResults.Count} items match your query:";
+        Console.WriteLine();
+        string results = $"{queryResults.Count} items match your query:\n";
         int itemNumber = 1;
         foreach (var item in queryResults)
         {
@@ -53,7 +54,7 @@ public class TeaShoppeFacade
                 qty = item.StockCount.ToString();
             }
 
-            results += $"{itemNumber}. {item.Name}\t${item.RetailPrice}  Qty:{qty}\t{item.RatingValue} stars\n";
+            results += $"{itemNumber}. {item.Name, -15}\t${item.RetailPrice}\tQty: {qty, 15}  {item.RatingValue} stars\n";
             itemNumber++;
         }
 

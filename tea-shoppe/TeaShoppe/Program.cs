@@ -8,14 +8,15 @@ namespace TeaShoppe
     {
         public static void Main(string[] args)
         {
+            TeaShoppeFacade newShoppe = new TeaShoppeFacade();
             bool stillShopping = true;
 
             // Open shoppe
-            var cashier = new TeaShoppeCashier();
+            var cashier = new TeaShoppeCashier(newShoppe);
             do
             {
                 cashier.RunShoppe();
-                
+
                 // Confirm still shopping
                 Console.WriteLine("Search for more tea? (Y/N, default Y): ");
                 char selection = char.Parse(Console.ReadLine());

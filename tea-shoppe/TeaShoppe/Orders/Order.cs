@@ -22,25 +22,28 @@ public class Order
         _orderItems.Add(item);
     }
 
-    public void AddItem(OrderItem item, int qty)
+    public bool AddItem(OrderItem item, int qty)
     {
         OrderItem? existing = SearchOrder(item.SkuId);
         if (existing != null)
         {
+            int before = existing.Quantity;
             existing.IncrementQuantity(qty);
+            return existing.Quantity == before + qty;
         }
-        else
-        {
-            _orderItems.Add(item);
-        }
+
+        item.IncrementQuantity(qty);
+        _orderItems.Add(item);
+        return _orderItems.Contains(item);
     }
 
-    public void RemoveItem(OrderItem item, int qty)
+    public bool RemoveItem(OrderItem item, int qty)
     {
         OrderItem? existing = SearchOrder(item.SkuId);
+        int? count = existing.Quantity-qty;
         if (existing == null)
         {
-            return;
+            return false;
         }
 
         if (existing.Quantity > qty)
@@ -51,6 +54,12 @@ public class Order
         {
             _orderItems.Remove(existing);
         }
+
+        if (count == existing.Quantity)
+        {
+            return true;
+        }
+        return false;
     }
 
     public decimal OrderTotal()
