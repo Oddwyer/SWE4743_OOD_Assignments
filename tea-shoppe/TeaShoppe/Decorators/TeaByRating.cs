@@ -6,15 +6,14 @@ namespace TeaShoppe.Decorators;
 /// <summary>
 /// Decorator class to search inventory by min/max rating parameters.
 /// </summary>
-
-public class TeaByRating: InventoryQuery
+public class TeaByRating : InventoryQuery
 {
-    private readonly int ? _minRating;
-    private readonly int ? _maxRating;
-    
-    public TeaByRating(IInventory inner, RequestedItem item): base (inner)
+    private readonly int? _minRating;
+    private readonly int? _maxRating;
+
+    public TeaByRating(IInventory inner, RequestedItem item) : base(inner)
     {
-        _minRating =item.MinRating;
+        _minRating = item.MinRating;
         _maxRating = item.MaxRating;
     }
 
