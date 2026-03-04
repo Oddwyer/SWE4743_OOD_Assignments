@@ -8,8 +8,6 @@ public class InventoryItem
 {
     public Tea ShopItem { get; }
     public string Name => ShopItem.Name;
-    private static int _next = 1;
-    public int ItemId { get; private set; }
     public int SkuId { get; }
     public int StockCount { get; private set; }
     public decimal RetailPrice { get; private set; }
@@ -22,19 +20,16 @@ public class InventoryItem
         ShopItem = tea;
         RetailPrice = tea.Price;
         Rating = tea.Rating;
-        ItemId = _next++;
         SkuId = tea.SkuId;
         StockCount = 1;
     }
     
     // Create inventory item with stock quantity > 1. 
-    
     public InventoryItem(Tea tea, int qty)
     {
         ShopItem = tea;
         RetailPrice = tea.Price;
         Rating = tea.Rating;
-        ItemId = _next++;
         SkuId = tea.SkuId;
         StockCount = qty;
     }

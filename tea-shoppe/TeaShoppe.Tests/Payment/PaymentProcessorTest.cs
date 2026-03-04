@@ -24,8 +24,8 @@ public class PaymentProcessorTest
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
         InventoryItem orderItem = new InventoryItem(testTea, quantity);
-        OrderItem teaOrdered = new OrderItem(orderItem, quantity);
-        Order testOrder = new Order(teaOrdered);
+        OrderItem teaOrdered = new OrderItem(orderItem);
+        Order testOrder = new Order(teaOrdered, quantity);
         
         // act
         PaymentProcessor testProcessor = new PaymentProcessor(creditCard);
@@ -47,8 +47,8 @@ public class PaymentProcessorTest
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
         InventoryItem orderItem = new InventoryItem(testTea, quantity);
-        OrderItem teaOrdered = new OrderItem(orderItem, quantity);
-        Order testOrder = new Order(teaOrdered);
+        OrderItem teaOrdered = new OrderItem(orderItem);
+        Order testOrder = new Order(teaOrdered, quantity);
         
         // act
         PaymentProcessor testProcessor = new PaymentProcessor(creditCard);

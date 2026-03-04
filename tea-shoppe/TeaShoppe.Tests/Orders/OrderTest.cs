@@ -11,47 +11,43 @@ public class OrderTest
 {
 
     [Fact]
-    public void TestOrder1()
+    public void TestOrder()
     {
         // arrange
         int quantity = 2;
         int skuId = 103582;
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
-        InventoryItem orderItem = new InventoryItem(testTea, quantity);
-        OrderItem teaOrdered = new OrderItem(orderItem, quantity);
+        InventoryItem orderItem = new InventoryItem(testTea);
+        OrderItem teaOrdered = new OrderItem(orderItem);
         
         // act 
-        Order testOrder = new Order(teaOrdered);
+        Order testOrder = new Order(teaOrdered, quantity);
         
         // assert
         Assert.Equal(1, testOrder.NumberOfLineItems());
         Assert.Equal(2, testOrder.TotalItemCount() );
-        Assert.True(testOrder.SearchOrder(teaOrdered.ItemId));
         Assert.Equal(29.78m, testOrder.OrderTotal());
-        
     }
     
     [Fact]
-    public void TestOrder2()
+    public void TestRemoveOrderItem()
     {
         // arrange
         int quantity = 2;
         int skuId = 103582;
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
-        InventoryItem orderItem = new InventoryItem(testTea, quantity);
-        OrderItem teaOrdered = new OrderItem(orderItem, quantity);
+        InventoryItem orderItem = new InventoryItem(testTea);
+        OrderItem teaOrdered = new OrderItem(orderItem);
         
         // act 
-        Order testOrder = new Order(teaOrdered);
-        testOrder.RemoveItem(teaOrdered);
+        Order testOrder = new Order(teaOrdered, quantity);
+        testOrder.RemoveItem(teaOrdered, 1);
         
         // assert
         Assert.Equal(1, testOrder.NumberOfLineItems());
         Assert.Equal(1, testOrder.TotalItemCount() );
-        Assert.True(testOrder.SearchOrder(teaOrdered.ItemId));
         Assert.Equal(14.89m, testOrder.OrderTotal());
-        
     }
 }

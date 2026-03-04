@@ -65,9 +65,9 @@ public class TeaShoppeFacade
     // Add item(s) to order.
     public void AddToOrder(InventoryItem item, int quantity)
     {
-        OrderItem orderItem = new OrderItem(item, quantity);
+        OrderItem orderItem = new OrderItem(item);
         
-        _order.AddItem(orderItem);
+        _order.AddItem(orderItem, quantity);
         
         currentRepo.Remove(item, quantity);
     }
@@ -75,8 +75,8 @@ public class TeaShoppeFacade
     // Remove item(s) from order.
     public void RemoveFromOrder(InventoryItem item, int quantity)
     {
-        OrderItem orderItem = new OrderItem(item, quantity);
-        _order.RemoveItem(orderItem);
+        OrderItem orderItem = new OrderItem(item);
+        _order.RemoveItem(orderItem, quantity);
         currentRepo.Add(item, quantity);
     }
 

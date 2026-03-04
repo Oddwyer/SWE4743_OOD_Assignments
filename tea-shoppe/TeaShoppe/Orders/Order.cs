@@ -15,18 +15,20 @@ public class Order
         
     }
     // Constructor to begin order.
-    public Order(OrderItem item)
+    public Order(OrderItem item, int qty)
     {
         item.ItemNumber = _next++;
+        item.IncrementQuantity(qty);
         _orderItems.Add(item);
+        
     }
 
-    public void AddItem(OrderItem item)
+    public void AddItem(OrderItem item, int qty)
     {
-        int index = _orderItems.IndexOf(item);
-        if (_orderItems.Contains(item))
+        OrderItem? existing = SearchOrder(item.SkuId);
+        if (existing != null)
         {
-            _orderItems[index].IncrementQuantity();
+            existing.IncrementQuantity(qty);
         }
         else
         {
@@ -34,20 +36,20 @@ public class Order
         }
     }
 
-    public void RemoveItem(OrderItem item)
+    public void RemoveItem(OrderItem item, int qty)
     {
-        int index = _orderItems.IndexOf(item);
-        if (!_orderItems.Contains(item))
+        OrderItem? existing = SearchOrder(item.SkuId);
+        if (existing == null)
         {
             return;
         }
-        if (_orderItems[index].Quantity > 1) 
+        if (existing.Quantity > qty) 
         { 
-            _orderItems[index].DecrementQuantity(); 
+            existing.DecrementQuantity(qty); 
         }
         else 
         { 
-            _orderItems.RemoveAt(index); 
+            _orderItems.Remove(existing); 
         }
     }
 
@@ -80,27 +82,34 @@ public class Order
     
     public string OrderDetails()
     {
-       string details = "Current Order:\n";
-        foreach (OrderItem x in _orderItems)
+        if (!isEmpty())
         {
-            details += $"{x.ItemId}: {x.Name} - Quantity: {x.Quantity}\n";
-        }
+            string details = "Current Order:\n";
+            for (int i = 0; i < _orderItems.Count; i++)
+            {
+                details += $"{i}: {_orderItems[i].Name} - Quantity: {_orderItems[i].Quantity}\n";
+            }
 
-        details += $"To Items: {TotalItemCount()}\n";
-        details += $"Order Total: ${OrderTotal(): 0.00}\n";
-        return details;
+            details += $"To Items: {TotalItemCount()}\n";
+            details += $"Order Total: ${OrderTotal(): 0.00}\n";
+            return details;
+        }
+        else
+        {
+            return "Your order is currently empty.";
+        }
     }
 
-    public bool SearchOrder(int itemId)
+    public OrderItem? SearchOrder(int skuId)
     {
         foreach (OrderItem x in _orderItems)
         {
-            if (x.ItemId == itemId)
+            if (x.SkuId == skuId)
             {
-                return true;
+                return x;
             }
         }
-        return false;
+        return null;
     }
     
 }
