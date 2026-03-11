@@ -125,8 +125,7 @@ public class TeaShoppeCashier
         }
 
         // Accept payment
-        string receipt = _shoppe.AcceptPayment(strategy);
-        _output.WriteLine(receipt);
+         _shoppe.AcceptPayment(strategy);
     }
     
     // Open shoppe and take requests.

@@ -22,6 +22,6 @@ public class TeaByName : InventoryQuery
             return inner.GetInventory();
         }
 
-        return inner.GetInventory().Where(x => x.Name.Equals(_name, StringComparison.OrdinalIgnoreCase)).ToList();
+        return inner.GetInventory().Where(x => x.Name.Contains(_name, StringComparison.OrdinalIgnoreCase)).ToList();
     }
 }

@@ -28,9 +28,9 @@ public class TeaInventory : IInventory
     }
 
     // Remove specified quantity of select inventory item from inventory.
-    public void Remove(InventoryItem item, int quantity)
+    public void Remove(int sku, int quantity)
     {
-        InventoryItem? existing = SearchInventory(item.SkuId);
+        InventoryItem? existing = SearchInventory(sku);
         if (existing == null)
         {
             return;
@@ -41,7 +41,7 @@ public class TeaInventory : IInventory
     // Return list of inventory items.
     public IReadOnlyList<InventoryItem> GetInventory()
     {
-        return _inventoryItems;
+        return _inventoryItems.AsReadOnly();
     }
 
     // Return inventory count.

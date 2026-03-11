@@ -14,11 +14,15 @@ public class TeaShoppeFacade
     private PaymentProcessor _paymentProcessor;
     private readonly TeaCatalog _catalog;
     private TeaInventory currentRepo;
+    private TextReader _input;
+    private TextWriter _output;
 
-    public TeaShoppeFacade()
+    public TeaShoppeFacade(TextReader input, TextWriter output)
     {
         _catalog = new TeaCatalog();
         currentRepo = new TeaInventory(_catalog.Items);
+        _input = input;
+        _output = output;
     }
 
     // Request an item from the shoppe.
@@ -66,12 +70,8 @@ public class TeaShoppeFacade
 
         if (_order.AddItem(orderItem, quantity))
         {
-            currentRepo.Remove(item, quantity);
             return true;
         }
-
-        ;
-
         return false;
     }
 
@@ -95,10 +95,17 @@ public class TeaShoppeFacade
     }
 
     // Accept payment.
-    public string AcceptPayment(IPaymentStrategy strategy)
+    public void AcceptPayment(IPaymentStrategy strategy)
     {
-        _paymentProcessor = new PaymentProcessor(strategy);
-        string receipt = _paymentProcessor.ProcessPayment(_order);
-        return receipt;
+        _paymentProcessor = new PaymentProcessor(strategy, _input, _output);
+        if (_paymentProcessor.ProcessPayment(_order))
+        {
+            for (int i = 0; i < _order.TotalItemCount(); i++)
+            {
+                OrderItem item = _order.GetItem(i);
+                currentRepo.Remove(item.SkuId, item.Quantity);
+            }
+            
+        }
     }
 }

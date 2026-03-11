@@ -22,6 +22,7 @@ public class Order
         _orderItems.Add(item);
     }
 
+    // Add items to order.
     public bool AddItem(OrderItem item, int qty)
     {
         OrderItem? existing = SearchOrder(item.SkuId);
@@ -37,6 +38,7 @@ public class Order
         return _orderItems.Contains(item);
     }
 
+    // Remove items from order.
     public bool RemoveItem(OrderItem item, int qty)
     {
         OrderItem? existing = SearchOrder(item.SkuId);
@@ -56,6 +58,7 @@ public class Order
         return false;
     }
 
+    // Return order total cost. 
     public decimal OrderTotal()
     {
         decimal total = 0.00m;
@@ -66,26 +69,31 @@ public class Order
 
         return total;
     }
+    
+    // Return count of all items in order.
 
     public int TotalItemCount()
     {
         return _orderItems.Sum(x => x.Quantity);
     }
 
-    public bool isEmpty()
+    
+    // Return whether order is empty.
+    public bool IsEmpty()
     {
         return _orderItems.Count == 0;
     }
 
-
+    // Return number of line items on order. This number may differ from total count (note: number of items per line).
     public int NumberOfLineItems()
     {
         return _orderItems.Count;
     }
 
+    // Return order details.
     public string OrderDetails()
     {
-        if (!isEmpty())
+        if (!IsEmpty())
         {
             string details = "\nCurrent Order:\n";
             for (int i = 0; i < _orderItems.Count; i++)
@@ -103,6 +111,7 @@ public class Order
         }
     }
 
+    // Search order for specific item.
     public OrderItem? SearchOrder(int skuId)
     {
         foreach (OrderItem x in _orderItems)
@@ -114,5 +123,11 @@ public class Order
         }
 
         return null;
+    }
+
+    // Return item in order.
+    public OrderItem GetItem(int index)
+    {
+        return  _orderItems[index];
     }
 }

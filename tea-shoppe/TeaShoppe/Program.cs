@@ -8,7 +8,7 @@ namespace TeaShoppe
     {
         public static void Main(string[] args)
         {
-            TeaShoppeFacade newShoppe = new TeaShoppeFacade();
+            TeaShoppeFacade newShoppe = new TeaShoppeFacade(Console.In, Console.Out);
             bool stillShopping = true;
 
             // Open shoppe

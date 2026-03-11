@@ -28,7 +28,7 @@ public class PaymentProcessorTest
         Order testOrder = new Order(teaOrdered, quantity);
         
         // act
-        PaymentProcessor testProcessor = new PaymentProcessor(creditCard);
+        PaymentProcessor testProcessor = new PaymentProcessor(creditCard, input, output);
         
         // assert
         Assert.Equal(creditCard, testProcessor.GetStrategy);
@@ -51,7 +51,7 @@ public class PaymentProcessorTest
         Order testOrder = new Order(teaOrdered, quantity);
         
         // act
-        PaymentProcessor testProcessor = new PaymentProcessor(creditCard);
+        PaymentProcessor testProcessor = new PaymentProcessor(creditCard, input, output);
         IPaymentStrategy apple = new ApplePay(input, output);
         testProcessor.SetStrategy(apple);
         

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
 using TeaShoppe.Domain;
@@ -16,7 +17,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByName()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.SearchName = "Green Tea";
         
@@ -32,7 +35,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByRating()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinRating = 1;
         testItem.MaxRating = 4;
@@ -49,7 +54,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByQuantity()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Quantity = 6;
         testItem.MinRating = 1;
@@ -63,7 +70,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByMaxPrice()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.MaxPrice = 17.00m;
         testItem.MinRating = 1;
@@ -78,7 +87,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByMinPrice()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinPrice = 15.00m;
         
@@ -93,7 +104,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByMinMaxPrice()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinPrice = 1.00m;
         testItem.MaxPrice = 30.00m;
@@ -110,7 +123,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryIsInStock()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.IsInStock =  true;
         testItem.MinRating = 1;
@@ -126,7 +141,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryIsNotInStock()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.IsInStock =  false;
         
@@ -141,7 +158,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryPriceSortAscending()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
         
@@ -158,7 +177,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryPriceSortDescending()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
         testItem.PriceDirection = SortDirection.Descending;
@@ -176,7 +197,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryRatingSortAscending()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Rating;
         testItem.RatingDirection = SortDirection.Ascending;
@@ -194,7 +217,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryRatingPriceThenRatingSort()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
         testItem.RatingDirection = SortDirection.Ascending;
@@ -218,7 +243,9 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryRatingRatingThenPriceSort()
     {
         // arrange
-        TeaShoppeFacade testShoppe = new TeaShoppeFacade();
+        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
+        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Rating;
         testItem.RatingDirection = SortDirection.Ascending;
