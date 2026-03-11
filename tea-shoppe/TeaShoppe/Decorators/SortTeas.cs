@@ -19,7 +19,8 @@ public class SortTeas : InventoryQuery
         _ratingDirection = item.RatingDirection;
         _sort = item.Sort;
     }
-
+    
+    // Overidden GetInventory method.
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
         // Temporary list to sort. 

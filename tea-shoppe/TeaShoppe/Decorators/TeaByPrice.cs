@@ -17,6 +17,7 @@ public class TeaByPrice: InventoryQuery
         _max = item.MaxPrice;
     }
     
+    // Overriden GetInventory method.
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
         return inner.GetInventory().Where(x => x.RetailPrice <= _max && x.RetailPrice >= _min).ToList();

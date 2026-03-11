@@ -14,6 +14,7 @@ public class TeaByAvailability : InventoryQuery
         _inStock = item.IsInStock;
     }
 
+    // Overriden GetInventory method.
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
         if (_inStock.HasValue)

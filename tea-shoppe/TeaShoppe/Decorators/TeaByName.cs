@@ -15,6 +15,7 @@ public class TeaByName : InventoryQuery
         _name = item.SearchName;
     }
 
+    // Overriden GetInventory method.
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
         if (string.IsNullOrWhiteSpace(_name))

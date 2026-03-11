@@ -15,6 +15,7 @@ public class TeaByQuantity: InventoryQuery
         _quantity = item.Quantity;    
     }
 
+    // Overriden GetInventory method.
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
         return inner.GetInventory().Where(x => x.StockCount >= _quantity).ToList();

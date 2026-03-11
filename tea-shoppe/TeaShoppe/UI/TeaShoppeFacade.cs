@@ -38,7 +38,7 @@ public class TeaShoppeFacade
         return teaRepo;
     }
 
-    // Display search results
+    // Display search results.
     public string DisplayQuery(IInventory query)
     {
         string qty = "";

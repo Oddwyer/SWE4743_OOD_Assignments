@@ -11,13 +11,13 @@ namespace TeaShoppe
             TeaShoppeFacade newShoppe = new TeaShoppeFacade(Console.In, Console.Out);
             bool stillShopping = true;
 
-            // Open shoppe
+            // Open shoppe.
             var cashier = new TeaShoppeCashier(newShoppe, Console.In, Console.Out);
             while (stillShopping)
             {
                 cashier.RunShoppe();
 
-                // Confirm still shopping
+                // Confirm still shopping.
                 Console.Write("Search for more tea? (Y/N, default Y): ");
                 string? input = Console.ReadLine();
 

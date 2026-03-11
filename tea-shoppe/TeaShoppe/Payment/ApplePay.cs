@@ -14,6 +14,7 @@ public class ApplePay : IPaymentStrategy
         _output = output;
     }
 
+    // Overriden Pay method.
     public bool Pay(decimal amount)
     {
         _output.WriteLine($"\nProcessing Apple Pay for ${amount}");

@@ -14,6 +14,7 @@ public class CryptoCurrency : IPaymentStrategy
         _output = output;
     }
 
+    // Overriden Pay method.
     public bool Pay(decimal amount)
     {
         _output.WriteLine($"\nSubmitting transaction to blockchain for ${amount}");

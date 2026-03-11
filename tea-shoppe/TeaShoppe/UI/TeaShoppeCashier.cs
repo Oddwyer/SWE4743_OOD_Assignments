@@ -35,7 +35,7 @@ public class TeaShoppeCashier
     {
         var requestedItem = ShoppeOpen();
 
-        // Display search results
+        // Display search results.
         IInventory results = _shoppe.PerformQuery(requestedItem);
         var list = results.GetInventory();
         _output.WriteLine("\nApplied Filters and Sorts:");
@@ -102,7 +102,7 @@ public class TeaShoppeCashier
         IPaymentStrategy strategy;
         _output.WriteLine(order);
 
-        // Request payment type
+        // Request payment type.
         List<IPaymentStrategy> strategies = new List<IPaymentStrategy>
         {
             new CreditCard(_input, _output),
@@ -124,7 +124,7 @@ public class TeaShoppeCashier
             _output.WriteLine("Invalid method selection.");
         }
 
-        // Accept payment
+        // Accept payment.
          _shoppe.AcceptPayment(strategy);
     }
     

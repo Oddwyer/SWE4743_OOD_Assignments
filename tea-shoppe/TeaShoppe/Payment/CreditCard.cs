@@ -13,7 +13,8 @@ public class CreditCard : IPaymentStrategy
         _input = input;
         _output = output;
     }
-
+    
+    // Overriden Pay method.
     public bool Pay(decimal amount)
     {
         string input;
@@ -37,7 +38,7 @@ public class CreditCard : IPaymentStrategy
         // Remove - and spaces from input. 
         string cleanInput = input.Replace(" ", "").Replace("-", "");
 
-        // Must be all digits
+        // Must be all digits.
         if (!cleanInput.All(char.IsDigit))
         {
             return false;
