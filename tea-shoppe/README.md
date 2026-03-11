@@ -1,8 +1,9 @@
 # TeaShoppe
 
+## 1. Project Description
 Console-based Tea Shoppe application that allows users to search, filter, sort, and purchase tea from an inventory.
 
-## OOD Principles Used
+### OOD Principles Used
 - Single Responsibility Principle (SRP)
 - Open/Closed Principle (OCP)
 - Strategy Pattern (payment processing)
@@ -10,7 +11,13 @@ Console-based Tea Shoppe application that allows users to search, filter, sort, 
 - Encapsulation
 - Polymorphism / dynamic dispatch
 
-## How to Run the Application (Docker)
+## 2. How to Run the Application
+### Via Console
+```bash
+dotnet run --project TeaShoppe/TeaShoppe.csproj
+```
+
+### Via Docker
 **Prerequisite:** Docker Desktop / Docker Engine installed.
 
 From the repository root (the folder containing the `Dockerfile`):
@@ -23,4 +30,16 @@ docker run -it teashoppe
   ```bash
   Ctrl + C
     ```
-  
+## 3. Screenshot
+![TeaShoppe](TeaShoppe1.png)
+![TeaShoppe](TeaShoppe2.png)
+
+
+## 4. How to Run Tests
+
+Run the automated unit tests using the .NET CLI.
+
+From the repository root:
+
+```bash
+dotnet test TeaShoppe.Tests/TeaShoppe.Tests.csproj

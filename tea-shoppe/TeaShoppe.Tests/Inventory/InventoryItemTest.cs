@@ -24,7 +24,7 @@ public class InventoryItemTest
         // assert
         Assert.Equal(testTea.Name, newItem.Name);
         Assert.Equal(testTea.Price, newItem.RetailPrice);
-        Assert.Equal(1, newItem.StockCount);
+        Assert.Equal(10, newItem.StockCount);
         Assert.Equal(rating, newItem.Rating);
     }
     

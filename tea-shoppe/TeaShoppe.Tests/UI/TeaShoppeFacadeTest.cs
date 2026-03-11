@@ -16,9 +16,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByName()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.SearchName = "Green Tea";
         
@@ -34,9 +32,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByRating()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinRating = 1;
         testItem.MaxRating = 4;
@@ -53,12 +49,10 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByQuantity()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.Quantity = 6;
-        // act
+        testItem.MinRating = 1;
         IInventory testResults =  testShoppe.PerformQuery(testItem);
         
         // assert
@@ -69,11 +63,10 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByMaxPrice()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.MaxPrice = 17.00m;
+        testItem.MinRating = 1;
         // act
         IInventory testResults =  testShoppe.PerformQuery(testItem);
         
@@ -85,9 +78,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByMinPrice()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinPrice = 15.00m;
         
@@ -102,12 +93,11 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryByMinMaxPrice()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinPrice = 1.00m;
         testItem.MaxPrice = 30.00m;
+        testItem.MinRating = 1;
         
         // act
         IInventory testResults =  testShoppe.PerformQuery(testItem);
@@ -120,11 +110,10 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryIsInStock()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.IsInStock =  true;
+        testItem.MinRating = 1;
         
         // act
         IInventory testResults =  testShoppe.PerformQuery(testItem);
@@ -137,9 +126,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryIsNotInStock()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.IsInStock =  false;
         
@@ -154,9 +141,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryPriceSortAscending()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
         
@@ -173,9 +158,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryPriceSortDescending()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
         testItem.PriceDirection = SortDirection.Descending;
@@ -193,9 +176,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryRatingSortAscending()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Rating;
         testItem.RatingDirection = SortDirection.Ascending;
@@ -213,9 +194,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryRatingPriceThenRatingSort()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
         testItem.RatingDirection = SortDirection.Ascending;
@@ -239,9 +218,7 @@ public class TeaShoppeFacadeTest
     public void TestPerformQueryRatingRatingThenPriceSort()
     {
         // arrange
-        TeaCatalog testCatalog = new TeaCatalog();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade();
-        IInventory testRepo = new TeaInventory(testCatalog.Items);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Rating;
         testItem.RatingDirection = SortDirection.Ascending;
