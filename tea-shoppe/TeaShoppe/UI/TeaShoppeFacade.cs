@@ -99,7 +99,7 @@ public class TeaShoppeFacade
         _paymentProcessor = new PaymentProcessor(strategy, _input, _output);
         if (_paymentProcessor.ProcessPayment(_order))
         {
-            for (int i = 0; i < _order.TotalItemCount(); i++)
+            for (int i = 0; i < _order.NumberOfLineItems(); i++)
             {
                 OrderItem item = _order.GetItem(i);
                 _currentRepo.Remove(item.SkuId, item.Quantity);

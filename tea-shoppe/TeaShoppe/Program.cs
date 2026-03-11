@@ -13,27 +13,25 @@ namespace TeaShoppe
 
             // Open shoppe
             var cashier = new TeaShoppeCashier(newShoppe, Console.In, Console.Out);
-            while(stillShopping)
+            while (stillShopping)
             {
                 cashier.RunShoppe();
 
                 // Confirm still shopping
-                bool continueSearch = true;
-                do{
-                    Console.Write("Search for more tea? (Y/N, default Y): ");
-                    string? input = Console.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(input))
+                Console.Write("Search for more tea? (Y/N, default Y): ");
+                string? input = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(input))
+                {
+                    char selection = char.Parse(input);
+                    if (char.ToUpper(selection) == 'N')
                     {
-                        char selection = char.Parse(input);
-                        if (char.ToUpper(selection) == 'N')
-                        {
-                            stillShopping = false;
-                            cashier.CheckOut();
-                        }
-                        continueSearch = false;
+                        stillShopping = false;
+                        cashier.CheckOut();
                     }
-                }while(continueSearch);
-            } 
+                }
+                
+            }
         }
     }
 }
