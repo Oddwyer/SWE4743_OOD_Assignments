@@ -10,7 +10,7 @@ public class TeaByNameTest
 {
 
     [Fact]
-    public void TestTeaByName1()
+    public void TeaByName_WhenSearchNameIsGreenTea_ShouldReturnItem()
     {
         // arrange
         string name = "Green Tea";
@@ -30,7 +30,7 @@ public class TeaByNameTest
     }
     
     [Fact]
-    public void TestTeaByName2()
+    public void TeaByName_WhenSearchNameIsgreentea_ShouldReturnItem()
     {
         // arrange
         string name = "green tea";

@@ -13,14 +13,14 @@ public class TeaShoppeFacade
     private Order _order = new Order();
     private PaymentProcessor _paymentProcessor;
     private readonly TeaCatalog _catalog;
-    private TeaInventory currentRepo;
+    private TeaInventory _currentRepo;
     private TextReader _input;
     private TextWriter _output;
 
     public TeaShoppeFacade(TextReader input, TextWriter output)
     {
         _catalog = new TeaCatalog();
-        currentRepo = new TeaInventory(_catalog.Items);
+        _currentRepo = new TeaInventory(_catalog.Items);
         _input = input;
         _output = output;
     }
@@ -28,7 +28,7 @@ public class TeaShoppeFacade
     // Request an item from the shoppe.
     public IInventory PerformQuery(RequestedItem requestedItem)
     {
-        IInventory teaRepo = currentRepo;
+        IInventory teaRepo = _currentRepo;
         teaRepo = new TeaByName(teaRepo, requestedItem);
         teaRepo = new TeaByAvailability(teaRepo, requestedItem);
         teaRepo = new TeaByPrice(teaRepo, requestedItem);
@@ -81,7 +81,6 @@ public class TeaShoppeFacade
         OrderItem orderItem = new OrderItem(item);
         if (_order.RemoveItem(orderItem, quantity))
         {
-            currentRepo.Add(item, quantity);
             return true;
         }
 
@@ -103,7 +102,7 @@ public class TeaShoppeFacade
             for (int i = 0; i < _order.TotalItemCount(); i++)
             {
                 OrderItem item = _order.GetItem(i);
-                currentRepo.Remove(item.SkuId, item.Quantity);
+                _currentRepo.Remove(item.SkuId, item.Quantity);
             }
             
         }

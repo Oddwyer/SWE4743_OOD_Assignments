@@ -11,7 +11,7 @@ public class OrderTest
 {
 
     [Fact]
-    public void TestOrder()
+    public void Order_WhenNewOrderCreated_ShouldStoreProperCountsAndTotals()
     {
         // arrange
         int quantity = 2;
@@ -31,7 +31,7 @@ public class OrderTest
     }
     
     [Fact]
-    public void TestRemoveOrderItem()
+    public void Order_WhenItemRemovedFromOrder_ShouldUpdateCountsAndTotals()
     {
         // arrange
         int quantity = 2;

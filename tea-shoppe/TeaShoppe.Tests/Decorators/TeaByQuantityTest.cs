@@ -10,7 +10,7 @@ public class TeaByQuantityTest
 {
 
     [Fact]
-    public void TestTeaByQuantity()
+    public void TeaByQuantity_WhenQuantityIs10_ShouldReturnItemsGreaterOrEqualTo10()
     {
         // arrange
         var catalog = new TeaCatalog();

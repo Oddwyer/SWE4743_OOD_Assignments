@@ -13,7 +13,7 @@ public class PaymentProcessorTest
 {
 
     [Fact]
-    public void TestPaymentProcessor1()
+    public void PaymentProcessor_WhenStrategyIsCreditCard_ShouldStoreCreditCard()
     {
         // arrange
         var input = new StringReader("1234567890123456\n");
@@ -36,7 +36,7 @@ public class PaymentProcessorTest
     }
     
     [Fact]
-    public void TestPaymentProcessor2()
+    public void PaymentProcessor_WhenStrategyIsSet_ShouldReturnSetStrategy()
     {
         // arrange
         var input = new StringReader("1234567890123456\n");

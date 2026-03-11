@@ -10,7 +10,7 @@ public class CreditCardTest
 {
 
     [Fact]
-    public void TestCreditCard1()
+    public void CreditCard_WhenInputIs16Digits_ShouldReturnTrue()
     {
         // arrange
         var input = new StringReader("1234567890123456\n");
@@ -26,7 +26,7 @@ public class CreditCardTest
     }
     
     [Fact]
-    public void TestCreditCard2()
+    public void CreditCard_WhenEntryContainsDashesAndHas16Digits_ShouldReturnTrue()
     {
         // arrange
         var input = new StringReader("1234-5678-9012-3456\n");
@@ -42,7 +42,7 @@ public class CreditCardTest
     }
     
     [Fact]
-    public void TestCreditCard3()
+    public void CreditCard_WhenEntryContainsSpacesAndHas16Digits_ShouldReturnTrue()
     {
         // arrange
         var input = new StringReader("1234 5678 9012 3456\n");
@@ -58,7 +58,7 @@ public class CreditCardTest
     }
     
     [Fact]
-    public void TestCreditCard4()
+    public void CreditCard_WhenInputContainsLetters_ShouldReturnFalse()
     {
         // arrange
         var input = new StringReader("123A-5678-9012-3456\n");

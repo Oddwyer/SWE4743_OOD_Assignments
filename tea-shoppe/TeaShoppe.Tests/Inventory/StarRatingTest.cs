@@ -10,7 +10,7 @@ public class StarRatingTest
 {
 
     [Fact]
-    public void TestStarRating1()
+    public void StarRating_WhenRatingIsAboveRange_ShouldThrowException()
     {
         // arrange
         int rate1 = 6;
@@ -20,7 +20,7 @@ public class StarRatingTest
     }
     
     [Fact]
-    public void TestStarRating2()
+    public void StarRating_WhenRatingIsBelowRange_ShouldThrowException()
     {
         // arrange
         int rate2 = -1;
@@ -31,7 +31,7 @@ public class StarRatingTest
     
     
     [Fact]
-    public void TestStarRating3()
+    public void StarRating_WhenRatingisCreated_ShouldStorePassedRating()
     {
         // arrange
         int rate3 = 3;

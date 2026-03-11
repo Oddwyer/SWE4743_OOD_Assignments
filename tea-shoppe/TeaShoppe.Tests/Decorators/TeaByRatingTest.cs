@@ -10,7 +10,7 @@ public class TeaByRatingTest
 {
 
     [Fact]
-    public void TestByRating1()
+    public void TeaByRating_WhenMinAndMaxDefined_ShouldReturnItemsBetweenMinAndMax()
     {
         // arrange
         var catalog = new TeaCatalog();
@@ -33,7 +33,7 @@ public class TeaByRatingTest
     }
     
     [Fact]
-    public void TestByRating2()
+    public void TeaByRating_WhenMinAndMaxDefined_ShouldIncludeMinAndMaxRatings()
     {
         // arrange
         var catalog = new TeaCatalog();

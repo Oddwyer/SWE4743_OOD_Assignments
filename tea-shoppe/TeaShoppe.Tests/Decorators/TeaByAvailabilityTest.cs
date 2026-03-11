@@ -11,7 +11,7 @@ public class TeaByAvailabilityTest
 {
 
     [Fact]
-    public void TestAvailabilityNotInStock()
+    public void TeaByAvailability_WhenIsInStockFalse_ShouldReturnOutOfStockItems()
     {
         // arrange
         var catalog = new TeaCatalog();
@@ -31,7 +31,7 @@ public class TeaByAvailabilityTest
     }
     
     [Fact]
-    public void TestAvailabilityInStock()
+    public void TeaByAvailability_WhenIsInStockTrue_ShouldReturnInStockItems()
     {
         // arrange
         var catalog = new TeaCatalog();

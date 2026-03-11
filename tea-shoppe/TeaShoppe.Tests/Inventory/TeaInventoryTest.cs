@@ -10,7 +10,7 @@ public class TeaInventoryTest
 {
 
     [Fact]
-    public void TestTeaInventory1()
+    public void TeaInventory_WhenNewItemAddedToInventory_ShouldIncrementInventoryCount()
     {
         // arrange
         TeaCatalog testCatalog = new TeaCatalog();
@@ -30,7 +30,7 @@ public class TeaInventoryTest
     }
     
     [Fact]
-    public void TestTeaInventory2()
+    public void TeaInventory_WhenNewItemAddedToInventory_ShouldStoreItemInInventory()
     {
         // arrange
         TeaCatalog testCatalog = new TeaCatalog();
@@ -49,7 +49,7 @@ public class TeaInventoryTest
     }
  
     [Fact]
-    public void TestTeaInventory3()
+    public void TeaInventory_WhenNewItemAndQuantityAddedToInventory_ShouldUpdateStockCount()
     {
         // arrange
         TeaCatalog testCatalog = new TeaCatalog();
@@ -58,11 +58,13 @@ public class TeaInventoryTest
         StarRating rating = new StarRating(3);
         Tea testTea = new Tea("Test Tea", 14.89m, rating, skuId);
         InventoryItem newItem = new InventoryItem(testTea, quantity);
+        TeaInventory testInventory = new TeaInventory(testCatalog.Items);
         
         // act
-        TeaInventory testInventory = new TeaInventory(testCatalog.Items);
+        testInventory.Add(newItem, quantity);
         testInventory.Add(newItem, 3);
         var inventoryItem = testInventory.SearchInventory(newItem.SkuId);
+        
         // assert
         Assert.NotNull(inventoryItem);
         Assert.Equal(13, testInventory.InventoryCount);

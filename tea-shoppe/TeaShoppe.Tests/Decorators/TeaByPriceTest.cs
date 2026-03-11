@@ -10,7 +10,7 @@ public class TeaByPriceTest
 {
 
     [Fact]
-    public void TestTeaByPrice1()
+    public void TeaByPrice_WhenMinAndMaxDefined_ShouldReturnOnlyItemsWithinRange()
     {
         // arrange
         var catalog = new TeaCatalog();
@@ -32,7 +32,7 @@ public class TeaByPriceTest
     }
     
     [Fact]
-    public void TestTeaByPrice2()
+    public void TeaByPrice_WhenMinAndMaxDefined_ShouldContainMinandMaxPrices()
     {
         // arrange
         var catalog = new TeaCatalog();

@@ -10,7 +10,7 @@ public class InventoryItemTest
 {
 
     [Fact]
-    public void TestRepositoryItem()
+    public void TeaRepositoryItem_InventoryItemCreatedFromTea_ShouldIncludeTeaProperties()
     {
         // arrange
         int quantity = 10;
@@ -27,6 +27,4 @@ public class InventoryItemTest
         Assert.Equal(10, newItem.StockCount);
         Assert.Equal(rating, newItem.Rating);
     }
-    
-    
 }

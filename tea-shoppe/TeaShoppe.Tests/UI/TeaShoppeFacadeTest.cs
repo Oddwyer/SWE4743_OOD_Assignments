@@ -14,7 +14,7 @@ public class TeaShoppeFacadeTest
 {
 
     [Fact]
-    public void TestPerformQueryByName()
+    public void PerformQuery_WhenQueryByName_ShouldReturnItemsContainingSearchName()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -32,7 +32,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryByRating()
+    public void PerformQuery_WhenQueryByRating_ShouldReturnItemsBetweenMinAndMaxSearchRatings()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -51,7 +51,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryByQuantity()
+    public void PerformQuery_WhenQueryByQuantity_ShouldReturnItemsGreaterOrEqualToSearchQuantity()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -67,7 +67,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryByMaxPrice()
+    public void PerformQuery_WhenQueryByMaxPrice_ShouldReturnItemsLessOrEqualToSearchPrice()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -84,7 +84,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryByMinPrice()
+    public void PerformQuery_WhenQueryByMinPrice_ShouldReturnItemsGreaterOrEqualToSearchPrice()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -101,7 +101,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryByMinMaxPrice()
+    public void PerformQuery_WhenQueryByMinMaxPrice_ShouldReturnItemsBetweenMixAndMaxSearchPrices()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -120,7 +120,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryIsInStock()
+    public void PerformQuery_WhenQueryIsInStockTrue_ShouldReturnInStockItems()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -138,7 +138,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryIsNotInStock()
+    public void PerformQuery_WhenQueryIsInStockFalse_ShouldReturnOutOfStockItems()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -155,7 +155,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryPriceSortAscending()
+    public void PerformQuery_WhenQueryPriceSortAscending_ShouldReturnItemsByAscendingPrice()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -174,7 +174,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryPriceSortDescending()
+    public void PerformQuery_WhenQueryPriceSortDescending_ShouldReturnItemsByDescendingPrice()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -194,7 +194,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryRatingSortAscending()
+    public void PerformQuery_WhenQueryRatingSortAscending_ShouldReturnItemsByAscendingRating()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -214,7 +214,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryRatingPriceThenRatingSort()
+    public void PerformQuery_WhenQueryRatingPriceThenRatingSort_ShouldReturnItemsByPriceThenRating()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
@@ -240,7 +240,7 @@ public class TeaShoppeFacadeTest
     }
     
     [Fact]
-    public void TestPerformQueryRatingRatingThenPriceSort()
+    public void PerformQuery_WhenQueryByRatingThenPriceSort_ShouldReturnItemsByRatingThenPrice()
     {
         // arrange
         TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
