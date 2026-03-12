@@ -17,8 +17,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryByName_ShouldReturnItemsContainingSearchName()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.SearchName = "Green Tea";
@@ -35,8 +35,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryByRating_ShouldReturnItemsBetweenMinAndMaxSearchRatings()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinRating = 1;
@@ -54,8 +54,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryByQuantity_ShouldReturnItemsGreaterOrEqualToSearchQuantity()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Quantity = 6;
@@ -70,8 +70,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryByMaxPrice_ShouldReturnItemsLessOrEqualToSearchPrice()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.MaxPrice = 17.00m;
@@ -87,8 +87,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryByMinPrice_ShouldReturnItemsGreaterOrEqualToSearchPrice()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinPrice = 15.00m;
@@ -104,8 +104,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryByMinMaxPrice_ShouldReturnItemsBetweenMixAndMaxSearchPrices()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.MinPrice = 1.00m;
@@ -123,8 +123,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryIsInStockTrue_ShouldReturnInStockItems()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.IsInStock =  true;
@@ -141,8 +141,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryIsInStockFalse_ShouldReturnOutOfStockItems()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.IsInStock =  false;
@@ -158,8 +158,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryPriceSortAscending_ShouldReturnItemsByAscendingPrice()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
@@ -177,8 +177,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryPriceSortDescending_ShouldReturnItemsByDescendingPrice()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
@@ -197,8 +197,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryRatingSortAscending_ShouldReturnItemsByAscendingRating()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Rating;
@@ -217,8 +217,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryRatingPriceThenRatingSort_ShouldReturnItemsByPriceThenRating()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Price;
@@ -243,8 +243,8 @@ public class TeaShoppeFacadeTest
     public void PerformQuery_WhenQueryByRatingThenPriceSort_ShouldReturnItemsByRatingThenPrice()
     {
         // arrange
-        TextReader reader = new StreamReader("TeaShoppeFacadeTest.txt");
-        TextWriter writer = new StreamWriter("TeaShoppeFacadeTest2.txt");
+        TextReader reader = new StringReader("");
+        TextWriter writer = new StringWriter();
         TeaShoppeFacade testShoppe = new TeaShoppeFacade(reader,  writer);
         RequestedItem testItem =  new RequestedItem();
         testItem.Sort = PrimarySort.Rating;
