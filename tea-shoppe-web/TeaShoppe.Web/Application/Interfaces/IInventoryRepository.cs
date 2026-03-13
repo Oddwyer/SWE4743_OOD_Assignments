@@ -11,4 +11,5 @@ public interface IInventoryRepository
     // Return list of inventory items.
     public IReadOnlyList<InventoryItem> GetInventory();
     
+    
 }

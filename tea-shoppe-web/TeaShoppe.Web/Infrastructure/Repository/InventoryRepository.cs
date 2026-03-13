@@ -1,13 +1,21 @@
 using TeaShoppe.Web.Application.Interfaces;
 using TeaShoppe.Web.Domain.Common;
 using TeaShoppe.Web.Domain.Inventory;
+using System;
+using System.Collections.Generic;
 
 namespace TeaShoppe.Web.Infrastructure.Repository;
 
 public class InventoryRepository : IInventoryRepository
 {
-    private readonly List<InventoryItem> _items = new List<InventoryItem>
+
+    private readonly object _syncRoot = new();
+    private readonly List<InventoryItem> _items;
+
+    public InventoryRepository()
     {
+        _items = new List<InventoryItem>
+        {
             new(Guid.NewGuid(), "Green Tea", 15.99m, 50, new StarRating(4)),
             new(Guid.NewGuid(), "Black Tea", 12.49m, 75, new StarRating(5)),
             new(Guid.NewGuid(), "Herbal Tea", 14.29m, 30, new StarRating(3)),
@@ -58,29 +66,31 @@ public class InventoryRepository : IInventoryRepository
             new(Guid.NewGuid(), "Peach Oolong", 17.90m, 14, new StarRating(4)),
             new(Guid.NewGuid(), "Coconut Green", 16.40m, 0, new StarRating(3)),
             new(Guid.NewGuid(), "Caramel Rooibos", 18.35m, 19, new StarRating(4))
-    };
-
-    public InventoryRepository()
-    {
-
+        };
     }
-
-
+    
+    
     // Return list of inventory items.
     public IReadOnlyList<InventoryItem> GetInventory()
     {
         return _items.AsReadOnly();
     }
 
-    // Remove specified quantity of select inventory item from inventory.
-    public bool TryDecreaseQuantity(Guid sku, int quantity)
+    // Remove specified quantity of select inventory item from inventory in a thread safe manner.
+    public bool TryDecreaseQuantity(Guid inventoryItemId, int requestedQuantity)
     {
-        InventoryItem item = _items.FirstOrDefault(i => i.SkuId == sku);
-        if(item == null | item.StockCount < quantity)
+        if (requestedQuantity <= 0) return false;
+
+        lock (_syncRoot)
         {
-            return false;
+            var index = _items.FindIndex(i => i.InventoryItemId == inventoryItemId);
+            if (index == -1) return false;
+
+            var current = _items[index];
+            if (current.Quantity < requestedQuantity) return false;
+
+            _items[index] = current with { Quantity = current.Quantity - requestedQuantity };
+            return true;
         }
-        item.DecrementStock(quantity);
-        return true;
     }
 }
