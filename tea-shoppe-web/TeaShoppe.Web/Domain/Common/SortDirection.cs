@@ -1,0 +1,10 @@
+namespace TeaShoppe.Web.Domain.Common;
+
+/// <summary>
+/// Enum class to enforce sort direction as either ascending or descending.
+/// </summary>
+public enum SortDirection
+{
+    Ascending,
+    Descending
+}
