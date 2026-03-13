@@ -1,0 +1,7 @@
+﻿services:
+  teashoppemvc:
+    image: teashoppemvc
+    build:
+      context: .
+      dockerfile: TeaShoppeMVC/Dockerfile
+
