@@ -1,35 +1,119 @@
 @* Connects the view to the correct view model. *@
 @model TeaShoppe.Web.Web.ViewModels.InventorySearchViewModel
 
-<h1>Tea Shoppe Search</h1>
-
-<form asp-action="Search" method="post">
-
+<h1>Welcome to Sweet Teas</h1>
+<h2>Tea Shoppe Search</h2>
+<p>Complete the prompts to search our selection of fine teas.</p>
+@* Form fields mapping to QueryItem *@
+<form>
     <div>
         <label>Tea Name</label>
-        <input asp-for="SearchName" />
+        <input asp-for="SearchName"/>
     </div>
 
     <div>
-        <label>Minimum Rating</label>
-        <input asp-for="MinRating" />
-    </div>
-
-    <div>
-        <label>Maximum Rating</label>
-        <input asp-for="MaxRating" />
+        <label>Availability</label>
+        <select asp-for="IsInStock">
+            <option value="">All</option>
+            <option value="true">In Stock</option>
+            <option value="false">Out of Stock</option>
+        </select>
     </div>
 
     <div>
         <label>Minimum Price</label>
-        <input asp-for="MinPrice" />
+        <input asp-for="MinPrice"/>
     </div>
 
     <div>
         <label>Maximum Price</label>
-        <input asp-for="MaxPrice" />
+        <input asp-for="MaxPrice"/>
+    </div>
+
+    <div>
+        <label>Minimum Star Rating</label>
+        <input asp-for="MinRating"/>
+    </div>
+
+    <div>
+        <label>Maximum Star Rating</label>
+        <input asp-for="MaxRating"/>
+    </div>
+
+    <div>
+        <label>Minimum Quantity</label>
+        <input asp-for="Quantity"/>
+    </div>
+
+    <div>
+        <label>Primary Sort</label>
+        <select asp-for="Sort">
+            <option value="Price">Price</option>
+            <option value="Rating">Rating</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Sort by Price</label>
+        <select asp-for="PriceDirection">
+            <option value="Ascending">Ascending</option>
+            <option value="Descending">Descending</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Sort by Rating</label>
+        <select asp-for="RatingDirection">
+            <option value="Ascending">Ascending</option>
+            <option value="Descending">Descending</option>
+        </select>
     </div>
 
     <button type="submit">Search</button>
-
 </form>
+
+<h2>Applied Filters & Sorts</h2>
+<p>@Model.AppliedFilters</p>
+
+@* Results table. Note, since we initialize a list, a list will never be null, but could be 
+empty. So, we check if the list contains any items.*@
+@if (Model.Items != null && Model.Items.Any())
+{
+    <h2>Query Results</h2>
+    <p>@Model.Items</p>
+    <table>
+        <thead>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Star Rating</th>
+        </thead>
+        <tbody>
+        @{ int itemNumber = 1; }
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@itemNumber</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@if (item.Quantity <= 0)
+                    {
+                        <span>OUT OF STOCK</span>
+                    }
+                    else
+                    {
+                        @item.Quantity
+                    }
+                </td>
+                <td>@item.StarRating</td>
+            </tr>
+            itemNumber++;
+        }
+        </tbody>
+    </table>
+}
+else if (Model.Items != null)
+{
+    <h2>Query Results</h2>
+    <p>No teas matched your search.</p>
+}

@@ -14,6 +14,6 @@ public class QueryItem
     public PrimarySort Sort { get; set; } = PrimarySort.Price;
     public SortDirection PriceDirection { get; set; } =  SortDirection.Ascending;
     public SortDirection RatingDirection { get; set; } =  SortDirection.Descending;
-    public bool? IsInStock { get; set; }
-    
+    public bool? IsInStock { get; set; } = true;
+
 }
