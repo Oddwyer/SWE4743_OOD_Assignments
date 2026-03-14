@@ -1,4 +1,4 @@
-using TeaShoppe.Web.Domain.Inventory;
+using TeaShoppe.Web.Application.Services;
 using TeaShoppe.Web.Domain.InventoryQuery;
 
 namespace TeaShoppe.Web.Application.Interfaces;
@@ -11,6 +11,6 @@ namespace TeaShoppe.Web.Application.Interfaces;
 public interface IInventoryQueryService
 {
     // Search repository for query item.
-    public IReadOnlyList<InventoryItem> PerformQuery(QueryItem item);
+    public InventoryQueryResult Search(QueryItem item);
 
 }

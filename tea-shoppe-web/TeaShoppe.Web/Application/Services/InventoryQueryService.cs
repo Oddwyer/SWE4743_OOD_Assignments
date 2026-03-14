@@ -4,7 +4,7 @@ using TeaShoppe.Web.Domain.InventoryQuery;
 
 namespace TeaShoppe.Web.Application.Services;
 
-public class InventoryQueryService
+public class InventoryQueryService :  IInventoryQueryService
 {
 
     private readonly IInventoryRepository _repository;
@@ -30,11 +30,11 @@ public class InventoryQueryService
     
     // Provide InventoryQueryResult context object holding both
     // search results and applied filters.
-    public InventoryQueryResult GetResults(QueryItem item)
+    public InventoryQueryResult Search(QueryItem item)
     {
         InventoryQueryResult result = new InventoryQueryResult();
-        result.AppliedFilters = AppliedFilters(item);
         result.Items = PerformQuery(item);
+        result.AppliedFilters = AppliedFilters(item);
         return result;
     }
     

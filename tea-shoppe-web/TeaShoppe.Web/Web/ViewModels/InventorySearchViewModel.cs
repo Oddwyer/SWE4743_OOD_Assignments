@@ -8,6 +8,7 @@ namespace TeaShoppe.Web.Web.ViewModels;
 /// frontend by collecting necessary data to pass to the backend for creating QueryItems, performing
 /// queries, and returning query results.
 /// </summary>
+
 public class InventorySearchViewModel
 {
     // Search inputs.
