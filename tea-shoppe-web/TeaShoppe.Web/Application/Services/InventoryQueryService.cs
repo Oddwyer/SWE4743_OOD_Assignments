@@ -14,18 +14,6 @@ public class InventoryQueryService :  IInventoryQueryService
         _repository = repository;
     }
     
-    // Search repository for query item.
-    public IReadOnlyList<InventoryItem> PerformQuery(QueryItem item)
-    {
-        IInventory teaRepo = new TeaInventory(_repository.GetInventory());
-        teaRepo = new TeaByName(teaRepo, item);
-        teaRepo = new TeaByAvailability(teaRepo, item);
-        teaRepo = new TeaByPrice(teaRepo, item);
-        teaRepo = new TeaByRating(teaRepo, item);
-        teaRepo = new TeaByQuantity(teaRepo, item);
-        teaRepo = new SortTeas(teaRepo, item);
-        return teaRepo.GetInventory();
-    }
     
     
     // Provide InventoryQueryResult context object holding both
@@ -37,6 +25,22 @@ public class InventoryQueryService :  IInventoryQueryService
         result.AppliedFilters = AppliedFilters(item);
         return result;
     }
+
+    //=================Helper Methods==================
+    
+    // Search repository for query item.
+    private IReadOnlyList<InventoryItem> PerformQuery(QueryItem item)
+    {
+        IInventory teaRepo = new TeaInventory(_repository.GetInventory());
+        teaRepo = new TeaByName(teaRepo, item);
+        teaRepo = new TeaByAvailability(teaRepo, item);
+        teaRepo = new TeaByPrice(teaRepo, item);
+        teaRepo = new TeaByRating(teaRepo, item);
+        teaRepo = new TeaByQuantity(teaRepo, item);
+        teaRepo = new SortTeas(teaRepo, item);
+        return teaRepo.GetInventory();
+    }
+    
     
     // Return applied filters using default logic.
     private string AppliedFilters(QueryItem item)

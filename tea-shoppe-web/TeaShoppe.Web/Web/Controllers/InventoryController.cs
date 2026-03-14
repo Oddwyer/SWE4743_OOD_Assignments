@@ -17,7 +17,7 @@ public class InventoryController : Controller
     
     // Provides blank query form.
     [HttpGet]
-    public IActionResult Index()
+    public IActionResult Search()
     {
         var model = new InventorySearchViewModel();
         return View(model);
@@ -26,7 +26,7 @@ public class InventoryController : Controller
     // Upon submission of the form, QueryItem is built, search is performed,
     // results are returned.
     [HttpPost]
-    public IActionResult Index(InventorySearchViewModel model)
+    public IActionResult Search(InventorySearchViewModel model)
     {
         var query = new QueryItem
         {

@@ -7,8 +7,9 @@ using System.Collections.Generic;
 namespace TeaShoppe.Web.Infrastructure.Repository;
 
 /// <summary>
-/// DI-managed singleton repository for in-memory inventory storage
-/// and thread-safe quantity updates.
+/// DI-managed singleton repository class for in-memory inventory storage
+/// and thread-safe quantity updates. During registration in DI container,
+/// class will be added as AddSingleton to enforce singleton behavior.
 /// </summary>
 public class InventoryRepository : IInventoryRepository
 {

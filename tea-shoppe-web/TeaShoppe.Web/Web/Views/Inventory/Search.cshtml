@@ -1,0 +1,35 @@
+@* Connects the view to the correct view model. *@
+@model TeaShoppe.Web.Web.ViewModels.InventorySearchViewModel
+
+<h1>Tea Shoppe Search</h1>
+
+<form asp-action="Search" method="post">
+
+    <div>
+        <label>Tea Name</label>
+        <input asp-for="SearchName" />
+    </div>
+
+    <div>
+        <label>Minimum Rating</label>
+        <input asp-for="MinRating" />
+    </div>
+
+    <div>
+        <label>Maximum Rating</label>
+        <input asp-for="MaxRating" />
+    </div>
+
+    <div>
+        <label>Minimum Price</label>
+        <input asp-for="MinPrice" />
+    </div>
+
+    <div>
+        <label>Maximum Price</label>
+        <input asp-for="MaxPrice" />
+    </div>
+
+    <button type="submit">Search</button>
+
+</form>

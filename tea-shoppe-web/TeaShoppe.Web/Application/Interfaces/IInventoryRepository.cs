@@ -4,7 +4,7 @@ namespace TeaShoppe.Web.Application.Interfaces;
 
 /// <summary>
 /// Interface for singleton repository for in-memory inventory storage
-/// and thread-safe quantity updates.
+/// and thread-safe quantity updates. 
 /// </summary>
 
 public interface IInventoryRepository
