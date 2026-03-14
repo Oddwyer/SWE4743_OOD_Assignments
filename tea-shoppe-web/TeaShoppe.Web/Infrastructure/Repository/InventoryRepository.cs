@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 namespace TeaShoppe.Web.Infrastructure.Repository;
 
+/// <summary>
+/// DI-managed singleton repository for in-memory inventory storage
+/// and thread-safe quantity updates.
+/// </summary>
 public class InventoryRepository : IInventoryRepository
 {
 

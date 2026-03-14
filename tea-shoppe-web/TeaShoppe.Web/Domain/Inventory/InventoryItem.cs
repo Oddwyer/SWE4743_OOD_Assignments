@@ -2,7 +2,11 @@ using TeaShoppe.Web.Domain.Common;
 
 namespace TeaShoppe.Web.Domain.Inventory;
 
-// Positional record "tea item" for each tea in inventory.
+/// <summary>
+/// Positional record "tea item" for each tea in inventory. Allows
+/// items to be immutable. Changes require replacing the item
+/// int the inventory with a new record and updated properties.
+/// </summary>
 
 public record InventoryItem(
     Guid InventoryItemId,
@@ -11,3 +15,4 @@ public record InventoryItem(
     int Quantity,
     StarRating StarRating
 );
+

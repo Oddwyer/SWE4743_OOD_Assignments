@@ -1,11 +1,13 @@
-namespace TeaShoppe.Web.Domain.Inventory;
+using TeaShoppe.Web.Domain.Inventory;
 
+namespace TeaShoppe.Web.Domain.InventoryQuery;
 
 /// <summary>
 /// Concrete inventory class for tea shoppe inventory.
 /// Modification/search methods from TeaInventory in tea-shoppe console
 /// removed in tea-shoppe-web to introduce Singleton pattern: InventoryRepository.
 /// </summary>
+
 public class TeaInventory : IInventory
 {
     private readonly List<InventoryItem> _inventoryItems;
