@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TeaShoppe.Web.Models;
+using TeaShoppe.Web.Web.ViewModels;
 
-namespace TeaShoppe.Web.Controllers;
+namespace TeaShoppe.Web.Web.Controllers;
 
 public class HomeController : Controller
 {

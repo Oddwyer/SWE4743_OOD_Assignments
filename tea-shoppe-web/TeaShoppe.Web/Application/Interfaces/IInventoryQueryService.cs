@@ -5,8 +5,7 @@ namespace TeaShoppe.Web.Application.Interfaces;
 
 /// <summary>
 /// Interface for inventory query service honoring Dependency Inversion Principle;
-/// high-level modules (UI controllers) depend on abstractions, not
-/// concrete implementations.
+/// high-level modules (UI controllers) depend on abstractions, not concrete implementations.
 /// </summary>
 
 public interface IInventoryQueryService

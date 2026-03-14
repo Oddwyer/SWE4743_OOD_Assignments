@@ -14,7 +14,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Web\" />
+      <AdditionalFiles Include="Web\Views\Home\Index.cshtml" />
+      <AdditionalFiles Include="Web\Views\Home\Privacy.cshtml" />
+      <AdditionalFiles Include="Web\Views\Shared\Error.cshtml" />
+      <AdditionalFiles Include="Web\Views\Shared\_Layout.cshtml" />
+      <AdditionalFiles Include="Web\Views\Shared\_ValidationScriptsPartial.cshtml" />
+      <AdditionalFiles Include="Web\Views\_ViewImports.cshtml" />
+      <AdditionalFiles Include="Web\Views\_ViewStart.cshtml" />
     </ItemGroup>
 
 </Project>

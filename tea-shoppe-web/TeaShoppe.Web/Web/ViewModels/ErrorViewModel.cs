@@ -1,4 +1,4 @@
-namespace TeaShoppe.Web.Models;
+namespace TeaShoppe.Web.Web.ViewModels;
 
 public class ErrorViewModel
 {
