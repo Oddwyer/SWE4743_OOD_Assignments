@@ -10,7 +10,7 @@ public class TeaByQuantity: InventoryQuery
 {
     private readonly int ? _quantity;
     
-    public TeaByQuantity(IInventory inner, RequestedItem item): base (inner)
+    public TeaByQuantity(IInventory inner, QueryItem item): base (inner)
     {
         _quantity = item.Quantity;    
     }

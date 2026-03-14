@@ -3,9 +3,10 @@ using TeaShoppe.Web.Domain.Inventory;
 namespace TeaShoppe.Web.Domain.InventoryQuery;
 
 /// <summary>
-/// Concrete inventory class for tea shoppe inventory.
-/// Modification/search methods from TeaInventory in tea-shoppe console
-/// removed in tea-shoppe-web to introduce Singleton pattern: InventoryRepository.
+/// Concrete inventory class for tea shoppe inventory to serve as base for decorators.
+/// Modification/search methods from TeaInventory in tea-shoppe console have been removed
+/// in tea-shoppe-web version to introduce Singleton pattern: InventoryRepository which supplies
+/// TeaInventory.
 /// </summary>
 
 public class TeaInventory : IInventory
@@ -14,7 +15,7 @@ public class TeaInventory : IInventory
 
     public TeaInventory(IReadOnlyList<InventoryItem> items)
     {
-        // .ToList() ensures a copy of the catalog is generated to avoid changes to original seed catalog.
+        // .ToList() ensures a copy of the repository is generated to avoid changes to original seed repository.
         _inventoryItems = items.ToList();
     }
     

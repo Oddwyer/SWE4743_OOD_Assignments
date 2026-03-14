@@ -13,7 +13,7 @@ public class SortTeas : InventoryQuery
     private readonly SortDirection _ratingDirection = SortDirection.Descending;
     private readonly PrimarySort _sort;
 
-    public SortTeas(IInventory inner, RequestedItem item) : base(inner)
+    public SortTeas(IInventory inner, QueryItem item) : base(inner)
     {
         _priceDirection = item.PriceDirection;
         _ratingDirection = item.RatingDirection;

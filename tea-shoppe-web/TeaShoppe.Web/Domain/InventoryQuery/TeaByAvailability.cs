@@ -9,7 +9,7 @@ public class TeaByAvailability : InventoryQuery
 {
     private readonly bool? _inStock;
 
-    public TeaByAvailability(IInventory inner, RequestedItem item) : base(inner)
+    public TeaByAvailability(IInventory inner, QueryItem item) : base(inner)
     {
         _inStock = item.IsInStock;
     }

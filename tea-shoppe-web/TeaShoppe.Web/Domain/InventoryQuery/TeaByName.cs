@@ -10,7 +10,7 @@ public class TeaByName : InventoryQuery
 {
     private readonly string? _name;
 
-    public TeaByName(IInventory inner, RequestedItem item) : base(inner)
+    public TeaByName(IInventory inner, QueryItem item) : base(inner)
     {
         _name = item.SearchName;
     }

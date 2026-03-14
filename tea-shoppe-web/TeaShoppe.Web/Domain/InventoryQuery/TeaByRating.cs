@@ -10,7 +10,7 @@ public class TeaByRating : InventoryQuery
     private readonly int? _minRating;
     private readonly int? _maxRating;
 
-    public TeaByRating(IInventory inner, RequestedItem item) : base(inner)
+    public TeaByRating(IInventory inner, QueryItem item) : base(inner)
     {
         _minRating = item.MinRating;
         _maxRating = item.MaxRating;

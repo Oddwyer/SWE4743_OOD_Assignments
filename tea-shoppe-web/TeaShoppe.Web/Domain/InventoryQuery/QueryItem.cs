@@ -3,7 +3,7 @@ using TeaShoppe.Web.Domain.Common;
 namespace TeaShoppe.Web.Domain.InventoryQuery;
 
 // Requested item context object to encapsulate multiple search specifications.
-public class RequestedItem
+public class QueryItem
 {
     public string ? SearchName { get; set; }
     public int MinRating { get; set; } = 3;
