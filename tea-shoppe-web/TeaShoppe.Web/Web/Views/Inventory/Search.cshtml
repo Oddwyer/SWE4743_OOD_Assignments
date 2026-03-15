@@ -129,10 +129,10 @@ empty. So, we check if the list contains any items.*@
         @* Purchase form for desired teas. *@
         <h3>Purchase Tea</h3>
 
-        <form asp-controller="Checkout" asp-action="Purchase" method="post">
+        <form asp-controller="Checkout" asp-action="Checkout" method="post">
             <div>
-                <label for="itemId">Select Tea</label>
-                <select id="itemId" name="itemId">
+                <label for="SelectedItemId">Select Tea</label>
+                <select id="SelectedItemId" name="SelectedItemId">
                     @foreach (var item in Model.Items)
                     {
                         <option value="@item.InventoryItemId">
@@ -143,13 +143,13 @@ empty. So, we check if the list contains any items.*@
             </div>
 
             <div>
-                <label for="quantity">Quantity</label>
-                <input id="quantity" name="quantity" type="number" min="1" value="1" />
+                <label for="SelectedQuantity">Quantity</label>
+                <input id="SelectedQuantity" name="SelectedQuantity" type="number" min="1" value="1" />
             </div>
 
             <div>
-                <label for="paymentType">Payment Method</label>
-                <select id="paymentType" name="paymentType">
+                <label for="PaymentType">Payment Method</label>
+                <select id="PaymentType" name="PaymentType">
                     <option value="credit">Credit Card</option>
                     <option value="apple">Apple Pay</option>
                     <option value="crypto">CryptoCurrency</option>
@@ -157,8 +157,8 @@ empty. So, we check if the list contains any items.*@
             </div>
 
             <div>
-                <label for="cardNumber">Card Number</label>
-                <input id="cardNumber" name="cardNumber" type="text" />
+                <label for="CardNumber">Card Number</label>
+                <input id="CardNumber" name="CardNumber" type="text" />
             </div>
 
             <button type="submit">Complete Purchase</button>

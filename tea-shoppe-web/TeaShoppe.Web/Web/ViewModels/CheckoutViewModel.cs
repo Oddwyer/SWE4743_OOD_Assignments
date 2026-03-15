@@ -13,6 +13,6 @@ public class CheckoutViewModel
 
         // Checkout outputs.
         public bool Success { get; set; } = true;
-        public Order Order { get; set; } =  new Order();
+        public Order? Order { get; set; }
         public string Message { get; set; } = "";
 }

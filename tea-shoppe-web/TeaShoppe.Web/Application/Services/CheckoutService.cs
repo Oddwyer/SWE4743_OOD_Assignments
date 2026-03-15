@@ -7,7 +7,7 @@ using TeaShoppe.Web.Domain.Payment;
 
 namespace TeaShoppe.Web.Application.Services;
 
-public class CheckoutService
+public class CheckoutService : ICheckoutService
 {
     private readonly PaymentStrategyFactory _paymentStrategyFactory;
     private readonly IInventoryRepository _repository;

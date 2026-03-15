@@ -13,20 +13,11 @@ public class CheckoutController : Controller
         _checkoutService = checkoutService;
     }
 
-    // Provides blank query form.
-    [HttpGet]
-    public IActionResult Search()
-    {
-        var model = new CheckoutViewModel();
-        return View(model);
-    }
-
     // Upon submission of the payment, Checkout is processed and
     // results are returned.
     [HttpPost]
     public IActionResult Checkout(CheckoutViewModel model)
     {
-        
         var result = _checkoutService.Checkout(model.SelectedItemId, model.SelectedQuantity, model.PaymentType,
             model.CardNumber);
             
