@@ -21,33 +21,33 @@ public class Order
     }
 
     // Add items to order.
-    public bool AddItem(OrderItem item, int qty)
+    public bool AddItem(OrderItem item)
     {
         OrderItem? existing = SearchOrder(item.OrderItemId);
         if (existing != null)
         {
             int before = existing.Quantity;
-            existing.IncrementQuantity(qty);
-            return existing.Quantity == before + qty;
+            existing.IncrementQuantity(item.Quantity);
+            return existing.Quantity == before + item.Quantity;
         }
 
-        item.IncrementQuantity(qty);
+        item.IncrementQuantity(item.Quantity);
         _orderItems.Add(item);
         return _orderItems.Contains(item);
     }
 
     // Remove items from order.
-    public bool RemoveItem(OrderItem item, int qty)
+    public bool RemoveItem(OrderItem item)
     {
         OrderItem? existing = SearchOrder(item.OrderItemId);
-        int? count = existing.Quantity - qty;
+        int? count = existing.Quantity - item.Quantity;
         if (existing != null)
         {
             int before = existing.Quantity;
-            if (existing.Quantity > qty)
+            if (existing.Quantity > item.Quantity)
             {
-                existing.DecrementQuantity(qty);
-                return existing.Quantity == before - qty;
+                existing.DecrementQuantity(item.Quantity);
+                return existing.Quantity == before - item.Quantity;
             }
 
             _orderItems.Remove(existing);

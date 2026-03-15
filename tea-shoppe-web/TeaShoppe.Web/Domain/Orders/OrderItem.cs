@@ -13,12 +13,12 @@ public class OrderItem
     public int Quantity { get; private set; } = 0;
     public decimal Price { get; }
 
-    public OrderItem(InventoryItem item, int quantity)
+    public OrderItem(InventoryItem item, int requestedQuantity)
     {
         Name = item.Name;
         OrderItemId = item.InventoryItemId;
         Price = item.Price;
-        Quantity = quantity;
+        Quantity = requestedQuantity;
     }
 
     // Increment quantity of order item.
