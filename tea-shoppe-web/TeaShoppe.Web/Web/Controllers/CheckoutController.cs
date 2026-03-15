@@ -18,7 +18,7 @@ public class CheckoutController : Controller
     }
 
     // Upon submission of the payment, Checkout is processed and
-    // results are returned.
+    // results are returned view PGR (POST-REDIRECT-GET).
     [HttpPost]
     public IActionResult Checkout(CheckoutViewModel model)
     {
