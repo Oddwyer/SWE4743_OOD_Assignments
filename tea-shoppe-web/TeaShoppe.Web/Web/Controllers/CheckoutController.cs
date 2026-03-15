@@ -22,7 +22,6 @@ public class CheckoutController : Controller
             model.CardNumber);
             
         model.Success = result.Passed;
-        model.Order = result.Order;
         model.Message = result.Message;
 
         return View(model);

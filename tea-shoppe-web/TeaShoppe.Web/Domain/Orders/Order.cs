@@ -96,7 +96,7 @@ public class Order
             string details = "\nCurrent Order:\n";
             for (int i = 0; i < _orderItems.Count; i++)
             {
-                details += $"{i+1}: {_orderItems[i].Name} - Quantity: {_orderItems[i].Quantity}\n";
+                details += $"{_orderItems[i].Name} - Quantity: {_orderItems[i].Quantity}\n";
             }
 
             details += $"Total Items: {TotalItemCount()}\n";

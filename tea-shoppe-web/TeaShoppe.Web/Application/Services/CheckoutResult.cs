@@ -28,18 +28,21 @@ public class CheckoutResult
     {
         string details = order.OrderDetails();
         int receiptNumber = _next++;
+        decimal tax = total * 0.07m;
+        decimal receiptTotal = total + tax;
         return new CheckoutResult
         {
             Passed = true,
             Order = order,
             Message = $"""
-                       *** Purchase Complete ***
                        Your package is on the way.
                        Receipt Number: {receiptNumber}
+                       {details}
+                       7% Tax Applied: {tax:c} 
 
-                       Receipt Total ${total}
+                       Receipt Total {receiptTotal:C}
 
-                       **Thank you for shopping at Sweet Teas**
+                       Thank you for shopping at Sweet Teas!
                        """
         };
     }

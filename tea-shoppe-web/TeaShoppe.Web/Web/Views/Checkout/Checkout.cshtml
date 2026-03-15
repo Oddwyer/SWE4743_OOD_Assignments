@@ -1,9 +1,9 @@
 @model TeaShoppe.Web.Web.ViewModels.CheckoutViewModel
 
 
-<h2>Purchase Complete</h2>
+<h3>***Purchase Complete***</h3>
 
-<p>@Model.Message</p>
+<p>@Html.Raw(Model.Message.Replace("\n", "<br/>"))</p>
 
 @if (Model.Success && Model.Order != null)
 {
