@@ -15,6 +15,8 @@ public class CheckoutResult
     public CheckoutResult()
     {
     }
+    
+    // Method to return error result when checkout process fails.
     public static CheckoutResult Fail(string message)
     {
         return new CheckoutResult
@@ -24,6 +26,7 @@ public class CheckoutResult
         };
     }
 
+    // Method to return success details when checkout process succeeds.
     public static CheckoutResult Success(Order order, decimal total)
     {
         string details = order.OrderDetails();

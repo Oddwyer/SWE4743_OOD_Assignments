@@ -2,6 +2,11 @@ using TeaShoppe.Web.Domain.Orders;
 
 namespace TeaShoppe.Web.Web.ViewModels;
 
+/// <summary>
+/// Mirroring data fields in CheckoutService (servicing backend domain logic) this model class services the
+/// frontend by collecting necessary purchase and payment data to pass to the backend for completing the checkout
+/// process and displaying results.
+/// </summary>
 public class CheckoutViewModel
 {
     

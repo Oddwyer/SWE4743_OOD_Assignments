@@ -4,9 +4,11 @@ using TeaShoppe.Web.Application.Factories;
 using TeaShoppe.Web.Domain.Inventory;
 using TeaShoppe.Web.Domain.Payment;
 
-
 namespace TeaShoppe.Web.Application.Services;
 
+/// <summary>
+/// Facade pattern to handle checkout workflow.
+/// </summary>
 public class CheckoutService : ICheckoutService
 {
     private readonly PaymentStrategyFactory _paymentStrategyFactory;
@@ -18,6 +20,7 @@ public class CheckoutService : ICheckoutService
         _repository = repository;
     }
     
+    // Checkout method checks for valid quantity, payment details, and handles payment for purchase.
     public CheckoutResult Checkout(Guid selectedItemId, int selectedQuantity, string paymentType,
         string cardNumber)
     {
@@ -56,6 +59,7 @@ public class CheckoutService : ICheckoutService
         }
     }
 
+    // Private helper method to validate inventory quantity prior to payment process.
     private InventoryItem ValidateQuantity(Guid selectedItemId, int selectedQuantity)
     {
         if (selectedQuantity < 1)

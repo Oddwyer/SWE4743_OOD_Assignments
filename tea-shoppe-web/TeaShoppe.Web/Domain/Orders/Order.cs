@@ -12,14 +12,7 @@ public class Order
     public Order()
     {
     }
-
-    // Constructor to begin order.
-    public Order(OrderItem item, int qty)
-    {
-        item.IncrementQuantity(qty);
-        _orderItems.Add(item);
-    }
-
+    
     // Add items to order.
     public bool AddItem(OrderItem item)
     {
@@ -69,12 +62,10 @@ public class Order
     }
     
     // Return count of all items in order.
-
     public int TotalItemCount()
     {
         return _orderItems.Sum(x => x.Quantity);
     }
-
     
     // Return whether order is empty.
     public bool IsEmpty()

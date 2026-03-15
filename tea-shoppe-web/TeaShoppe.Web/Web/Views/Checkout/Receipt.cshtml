@@ -1,0 +1,17 @@
+@model TeaShoppe.Web.Web.ViewModels.CheckoutViewModel
+
+<div class="checkout-card">
+    <h3>@(Model.Success ? "Purchase Complete" : "Purchase Failed")</h3>
+
+    <p>@Html.Raw(Model.Message.Replace("\n", "<br/>"))</p>
+
+    @if (Model.Success && Model.Order != null)
+    {
+        <h3>Order Details</h3>
+        <p>@Model.Order.OrderDetails()</p>
+    }
+
+    <p>
+        <a asp-controller="Inventory" asp-action="Search">Return to Search</a>
+    </p>
+</div>

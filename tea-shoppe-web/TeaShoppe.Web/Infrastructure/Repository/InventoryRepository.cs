@@ -13,7 +13,6 @@ namespace TeaShoppe.Web.Infrastructure.Repository;
 /// </summary>
 public class InventoryRepository : IInventoryRepository
 {
-
     private readonly object _syncRoot = new();
     private readonly List<InventoryItem> _items;
 
@@ -73,7 +72,6 @@ public class InventoryRepository : IInventoryRepository
             new(Guid.NewGuid(), "Caramel Rooibos", 18.35m, 19, new StarRating(4))
         };
     }
-    
     
     // Return list of inventory items.
     public IReadOnlyList<InventoryItem> GetInventory()

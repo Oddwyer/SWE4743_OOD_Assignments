@@ -4,6 +4,9 @@ using TeaShoppe.Web.Domain.InventoryQuery;
 
 namespace TeaShoppe.Web.Application.Services;
 
+/// <summary>
+/// Facade pattern to handle query workflow.
+/// </summary>
 public class InventoryQueryService :  IInventoryQueryService
 {
 

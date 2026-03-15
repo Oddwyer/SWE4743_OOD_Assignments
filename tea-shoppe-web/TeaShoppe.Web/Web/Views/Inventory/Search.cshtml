@@ -1,8 +1,11 @@
 @* Connects the view to the correct view model. *@
 @model TeaShoppe.Web.Web.ViewModels.InventorySearchViewModel
 
-<h1>Welcome to Sweet Teas</h1>
-<h3>Tea Shoppe Search</h3>
+<div class="page-header">
+    <h1>Welcome to Sweet Teas</h1>
+    <h3>Tea Shoppe Search</h3>
+</div>
+
 <p>Complete the prompts to search our selection of fine teas.</p>
 
 @* Form fields mapping to QueryItem. 
@@ -74,10 +77,11 @@ POST -> submit data override of form default's GET.*@
     <button type="submit">Search</button>
 </form>
 
+
 @if (Model.HasSearched)
 {
     <div class="filter-section">
-        <h2>Applied Filters & Sorts</h2>
+        <h3>Applied Filters & Sorts</h3>
         <ul class="filter-summary">
             @foreach (var filter in Model.AppliedFilters)
             {

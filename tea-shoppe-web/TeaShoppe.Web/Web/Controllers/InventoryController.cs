@@ -3,9 +3,12 @@ using TeaShoppe.Web.Application.Interfaces;
 using TeaShoppe.Web.Domain.InventoryQuery;
 using TeaShoppe.Web.Web.ViewModels;
 
-
 namespace TeaShoppe.Web.Web.Controllers;
 
+/// <summary>
+/// Controller for inventory to connect frontend query inputs to backend query logic
+/// to perform and display queries.
+/// </summary>
 public class InventoryController : Controller
 {
     private readonly IInventoryQueryService _queryService;
