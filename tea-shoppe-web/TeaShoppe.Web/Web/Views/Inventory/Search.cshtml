@@ -125,9 +125,48 @@ empty. So, we check if the list contains any items.*@
             }
             </tbody>
         </table>
+        
+        @* Purchase form for desired teas. *@
+        <h3>Purchase Tea</h3>
+
+        <form asp-controller="Checkout" asp-action="Purchase" method="post">
+            <div>
+                <label for="itemId">Select Tea</label>
+                <select id="itemId" name="itemId">
+                    @foreach (var item in Model.Items)
+                    {
+                        <option value="@item.InventoryItemId">
+                            @item.Name - @item.Price.ToString("C") (@(item.Quantity > 0 ? $"Qty: {item.Quantity}" : "OUT OF STOCK"))
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div>
+                <label for="quantity">Quantity</label>
+                <input id="quantity" name="quantity" type="number" min="1" value="1" />
+            </div>
+
+            <div>
+                <label for="paymentType">Payment Method</label>
+                <select id="paymentType" name="paymentType">
+                    <option value="credit">Credit Card</option>
+                    <option value="apple">Apple Pay</option>
+                    <option value="crypto">CryptoCurrency</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="cardNumber">Card Number</label>
+                <input id="cardNumber" name="cardNumber" type="text" />
+            </div>
+
+            <button type="submit">Complete Purchase</button>
+        </form>
     }
     else
     {
+        @* No results match query. *@
         <h3>Query Results</h3>
         <p>No teas matched your search.</p>
     }
