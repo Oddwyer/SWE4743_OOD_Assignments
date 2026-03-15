@@ -1,6 +1,7 @@
 using TeaShoppe.Web.Application.Interfaces;
 using TeaShoppe.Web.Application.Services;
 using TeaShoppe.Web.Infrastructure.Repository;
+using TeaShoppe.Web.Application.Factories;
 
 // Create application builder which includes service collection (holds instructions).
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddControllersWithViews().AddRazorOptions(options =>
 // InventoryRepository is registered as a singleton shared across the app.
 builder.Services.AddScoped<IInventoryQueryService, InventoryQueryService>();
 builder.Services.AddSingleton<IInventoryRepository, InventoryRepository>();
+builder.Services.AddScoped<PaymentStrategyFactory>();
+builder.Services.AddScoped<ICheckoutService, CheckoutService>();
 
 // Build the application and finalize the DI container (uses service
 // collection instructions to build and supply objects at runtime).

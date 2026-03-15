@@ -33,8 +33,6 @@ public class CheckoutResult
             Passed = true,
             Order = order,
             Message = $"""
-                       {details}
-
                        *** Purchase Complete ***
                        Your package is on the way.
                        Receipt Number: {receiptNumber}
