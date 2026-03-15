@@ -1,6 +1,5 @@
-using TeaShoppe.Web.Application.Interfaces;
 using TeaShoppe.Web.Domain.Inventory;
-using TeaShoppe.Web.Domain.InventoryQuery;
+
 
 namespace TeaShoppe.Web.Application.Services;
 
