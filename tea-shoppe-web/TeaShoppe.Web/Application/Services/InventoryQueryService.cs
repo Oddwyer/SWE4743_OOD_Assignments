@@ -14,8 +14,6 @@ public class InventoryQueryService :  IInventoryQueryService
         _repository = repository;
     }
     
-    
-    
     // Provide InventoryQueryResult context object holding both
     // search results and applied filters.
     public InventoryQueryResult Search(QueryItem item)

@@ -4,21 +4,20 @@ using TeaShoppe.Web.Application.Factories;
 using TeaShoppe.Web.Domain.Inventory;
 using TeaShoppe.Web.Domain.Payment;
 
+
 namespace TeaShoppe.Web.Application.Services;
 
 public class CheckoutService
 {
     private readonly PaymentStrategyFactory _paymentStrategyFactory;
     private readonly IInventoryRepository _repository;
-
-
+    
     public CheckoutService(PaymentStrategyFactory paymentStrategyFactory, IInventoryRepository repository)
     {
         _paymentStrategyFactory = paymentStrategyFactory;
         _repository = repository;
     }
-
-
+    
     public CheckoutResult Checkout(Guid selectedItemId, int selectedQuantity, string paymentType,
         string cardNumber)
     {

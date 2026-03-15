@@ -3,14 +3,14 @@ using TeaShoppe.Web.Domain.Orders;
 namespace TeaShoppe.Web.Application.Services;
 
 /// <summary>
-/// Class to return the filtered inventory list and applied filters derived from InventoryQueryService. 
+/// Represents the result of a checkout attempt, including success/failure and confirmation details.
 /// </summary>
 public class CheckoutResult
 {
-    private bool _success { get; set; }
-    private Order _order { get; set; }
+    public bool Passed { get; private init; }
+    public Order? Order { get; private init; }
     private static int _next = 100;
-    public string Message { get; set; }
+    public string Message { get; private init; } = string.Empty;
 
     public CheckoutResult()
     {
@@ -19,7 +19,7 @@ public class CheckoutResult
     {
         return new CheckoutResult
         {
-            _success = false,
+            Passed = false,
             Message = message
         };
     }
@@ -30,8 +30,8 @@ public class CheckoutResult
         int receiptNumber = _next++;
         return new CheckoutResult
         {
-            _success = true,
-            _order = order,
+            Passed = true,
+            Order = order,
             Message = $"""
                        {details}
 
