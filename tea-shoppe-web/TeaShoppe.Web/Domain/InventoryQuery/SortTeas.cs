@@ -54,8 +54,8 @@ public class SortTeas : InventoryQuery
         SortDirection direction)
     {
         return direction == SortDirection.Ascending
-            ? items.OrderBy(x => x.StarRating)
-            : items.OrderByDescending(x => x.StarRating);
+            ? items.OrderBy(x => x.StarRating.Rating)
+            : items.OrderByDescending(x => x.StarRating.Rating);
     }
     
     private static IOrderedEnumerable<InventoryItem> ThenByPrice(IOrderedEnumerable<InventoryItem> items,
@@ -70,8 +70,8 @@ public class SortTeas : InventoryQuery
         SortDirection direction)
     {
         return direction == SortDirection.Ascending
-            ? items.ThenBy(x => x.StarRating)
-            : items.ThenByDescending(x => x.StarRating);
+            ? items.ThenBy(x => x.StarRating.Rating)
+            : items.ThenByDescending(x => x.StarRating.Rating);
     }
 }
 

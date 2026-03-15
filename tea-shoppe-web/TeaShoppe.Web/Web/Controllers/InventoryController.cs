@@ -44,6 +44,7 @@ public class InventoryController : Controller
 
         var result = _queryService.Search(query);
 
+        model.HasSearched = true;
         model.Items = result.Items;
         model.AppliedFilters = result.AppliedFilters;
 

@@ -43,7 +43,7 @@ public class InventoryQueryService :  IInventoryQueryService
     
     
     // Return applied filters using default logic.
-    private string AppliedFilters(QueryItem item)
+    private IReadOnlyList<string> AppliedFilters(QueryItem item)
     {
         var lines = new List<string>();
 
@@ -64,9 +64,10 @@ public class InventoryQueryService :  IInventoryQueryService
         if (item.Quantity > 0)
             lines.Add($"Filter: Minimum quantity {item.Quantity}");
 
-        lines.Add($"Sort: Price ({item.PriceDirection.ToString().ToLower()})");
-        lines.Add($"Sort: Star rating ({item.RatingDirection.ToString().ToLower()})");
+        lines.Add($"Primary Sort: {item.Sort}");
+        lines.Add($"Sort: Price ({item.PriceDirection.ToString()}");
+        lines.Add($"Sort: Star Rating ({item.RatingDirection.ToString()})");
 
-        return string.Join("\n", lines);
+        return lines;
     }
 }

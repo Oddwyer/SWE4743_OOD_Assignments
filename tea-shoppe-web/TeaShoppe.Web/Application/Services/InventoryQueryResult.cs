@@ -11,5 +11,5 @@ namespace TeaShoppe.Web.Application.Services;
 public class InventoryQueryResult
 {
     public IReadOnlyList<InventoryItem> Items { get; set; } = new List<InventoryItem>();
-    public string AppliedFilters { get; set; } = string.Empty;
+    public IReadOnlyList<string> AppliedFilters { get; set; } = new List<string>();
 }

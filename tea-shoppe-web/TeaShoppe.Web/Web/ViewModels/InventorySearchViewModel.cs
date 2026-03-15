@@ -22,8 +22,9 @@ public class InventorySearchViewModel
     public SortDirection PriceDirection { get; set; } = SortDirection.Ascending;
     public SortDirection RatingDirection { get; set; } = SortDirection.Descending;
     public bool? IsInStock { get; set; }
+    public bool HasSearched { get; set; } = false;
 
     // Search outputs.
     public IReadOnlyList<InventoryItem> Items { get; set; } = new List<InventoryItem>();
-    public string AppliedFilters { get; set; } = string.Empty;
+    public IReadOnlyList<string> AppliedFilters { get; set; } = new List<string>();
 }

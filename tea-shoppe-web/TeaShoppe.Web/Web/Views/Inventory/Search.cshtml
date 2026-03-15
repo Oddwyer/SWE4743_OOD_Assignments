@@ -2,10 +2,12 @@
 @model TeaShoppe.Web.Web.ViewModels.InventorySearchViewModel
 
 <h1>Welcome to Sweet Teas</h1>
-<h2>Tea Shoppe Search</h2>
+<h3>Tea Shoppe Search</h3>
 <p>Complete the prompts to search our selection of fine teas.</p>
-@* Form fields mapping to QueryItem *@
-<form>
+
+@* Form fields mapping to QueryItem. 
+POST -> submit data override of form default's GET.*@
+<form asp-action="Search" method="post">
     <div>
         <label>Tea Name</label>
         <input asp-for="SearchName"/>
@@ -72,48 +74,61 @@
     <button type="submit">Search</button>
 </form>
 
-<h2>Applied Filters & Sorts</h2>
-<p>@Model.AppliedFilters</p>
+@if (Model.HasSearched)
+{
+    <div class="filter-section">
+        <h2>Applied Filters & Sorts</h2>
+        <ul class="filter-summary">
+            @foreach (var filter in Model.AppliedFilters)
+            {
+                <li>@filter</li>
+            }
+        </ul>
+    </div>
 
-@* Results table. Note, since we initialize a list, a list will never be null, but could be 
+    @* Results table. Note, since we initialize a list, a list will never be null, but could be 
 empty. So, we check if the list contains any items.*@
-@if (Model.Items != null && Model.Items.Any())
-{
-    <h2>Query Results</h2>
-    <p>@Model.Items</p>
-    <table>
-        <thead>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Star Rating</th>
-        </thead>
-        <tbody>
-        @{ int itemNumber = 1; }
-        @foreach (var item in Model.Items)
-        {
+    @if (Model.Items.Any())
+    {
+        <h3>Query Results</h3>
+        <table>
+            <thead>
             <tr>
-                <td>@itemNumber</td>
-                <td>@item.Name</td>
-                <td>@item.Price</td>
-                <td>@if (item.Quantity <= 0)
-                    {
-                        <span>OUT OF STOCK</span>
-                    }
-                    else
-                    {
-                        @item.Quantity
-                    }
-                </td>
-                <td>@item.StarRating</td>
+                <th>Item Number</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Star Rating</th>
             </tr>
-            itemNumber++;
-        }
-        </tbody>
-    </table>
-}
-else if (Model.Items != null)
-{
-    <h2>Query Results</h2>
-    <p>No teas matched your search.</p>
+            </thead>
+            <tbody>
+            @{ int itemNumber = 1; }
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@itemNumber</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>
+                        @if (item.Quantity <= 0)
+                        {
+                            <span>OUT OF STOCK</span>
+                        }
+                        else
+                        {
+                            @item.Quantity
+                        }
+                    </td>
+                    <td>@item.StarRating.Rating</td>
+                </tr>
+                itemNumber++;
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3>Query Results</h3>
+        <p>No teas matched your search.</p>
+    }
 }
