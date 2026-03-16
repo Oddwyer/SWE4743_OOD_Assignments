@@ -31,6 +31,26 @@ public class InventoryController : Controller
     [HttpPost]
     public IActionResult Search(InventorySearchViewModel model)
     {
+        if (model.MinPrice > model.MaxPrice)
+        {
+            ModelState.AddModelError("", "Minimum price cannot be greater than maximum price.");
+        }
+
+        if (model.MinRating > model.MaxRating)
+        {
+            ModelState.AddModelError("", "Minimum rating cannot be greater than maximum rating.");
+        }
+
+        if (model.Quantity < 0)
+        {
+            ModelState.AddModelError("", "Minimum quantity cannot be negative.");
+        }
+
+        if (!ModelState.IsValid)
+        {
+            model.HasSearched = false;
+            return View(model);
+        }
         var query = new QueryItem
         {
             SearchName = model.SearchName,

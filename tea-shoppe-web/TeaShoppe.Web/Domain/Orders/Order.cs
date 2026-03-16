@@ -23,8 +23,7 @@ public class Order
             existing.IncrementQuantity(item.Quantity);
             return existing.Quantity == before + item.Quantity;
         }
-
-        item.IncrementQuantity(item.Quantity);
+        
         _orderItems.Add(item);
         return _orderItems.Contains(item);
     }

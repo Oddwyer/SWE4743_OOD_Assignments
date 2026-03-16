@@ -66,7 +66,7 @@ public class InventoryQueryService :  IInventoryQueryService
             lines.Add($"Filter: Minimum quantity {item.Quantity}");
 
         lines.Add($"Primary Sort: {item.Sort}");
-        lines.Add($"Sort: Price ({item.PriceDirection.ToString()}");
+        lines.Add($"Sort: Price ({item.PriceDirection.ToString()})");
         lines.Add($"Sort: Star Rating ({item.RatingDirection.ToString()})");
 
         return lines;

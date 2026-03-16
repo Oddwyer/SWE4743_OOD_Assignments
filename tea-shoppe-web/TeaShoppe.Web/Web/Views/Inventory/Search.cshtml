@@ -2,6 +2,7 @@
 @model TeaShoppe.Web.Web.ViewModels.InventorySearchViewModel
 
 <div class="search-background">
+<div class="search-content">
     <div class="page-header">
         <h1>Welcome to Sweet Teas</h1>
         <h3>Search Tea Shoppe</h3>
@@ -9,6 +10,7 @@
 
     <p>Complete the prompts to search our selection of fine teas.</p>
 
+    <div asp-validation-summary="All" class="text-danger"></div>
     @* Form fields mapping to QueryItem. 
 POST -> submit data override of form default's GET.*@
     <form asp-action="Search" method="post">
@@ -20,9 +22,9 @@ POST -> submit data override of form default's GET.*@
         <div>
             <label>Availability</label>
             <select asp-for="IsInStock">
-                <option value="">All</option>
                 <option value="true">In Stock</option>
                 <option value="false">Out of Stock</option>
+                <option value="">All</option>
             </select>
         </div>
 
@@ -140,7 +142,7 @@ empty. So, we check if the list contains any items.*@
                     <select id="SelectedItemId" name="SelectedItemId">
                         @foreach (var item in Model.Items)
                         {
-                            <option value="@item.InventoryItemId">
+                            <option value="@item.InventoryItemId" data-price="@item.Price">
                                 @item.Name - @item.Price.ToString("C") (@(item.Quantity > 0 ? $"Qty: {item.Quantity}" : "OUT OF STOCK"))
                             </option>
                         }
@@ -153,11 +155,15 @@ empty. So, we check if the list contains any items.*@
                 </div>
 
                 <div>
+                    <strong>Estimated Total: </strong> <span id="estimatedTotal">$0.00</span>
+                </div>
+
+                <div>
                     <label for="PaymentType">Payment Method</label>
                     <select id="PaymentType" name="PaymentType">
                         <option value="credit">Credit Card</option>
                         <option value="apple">Apple Pay</option>
-                        <option value="crypto">CryptoCurrency</option>
+                        <option value="crypto">Cryptocurrency</option>
                     </select>
                 </div>
 
@@ -177,3 +183,40 @@ empty. So, we check if the list contains any items.*@
         }
     }
 </div>
+</div>
+
+<script>
+    function updateEstimatedTotal() {
+        const select = document.getElementById("SelectedItemId");
+        const quantityInput = document.getElementById("SelectedQuantity");
+        const totalDisplay = document.getElementById("estimatedTotal");
+
+        if (!select || !quantityInput || !totalDisplay) return;
+
+        const selectedOption = select.options[select.selectedIndex];
+        const price = parseFloat(selectedOption.dataset.price || "0");
+        const quantity = parseInt(quantityInput.value || "0", 10);
+
+        const total = price * Math.max(quantity, 0);
+
+        totalDisplay.textContent = total.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD"
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const select = document.getElementById("SelectedItemId");
+        const quantityInput = document.getElementById("SelectedQuantity");
+
+        if (select) {
+            select.addEventListener("change", updateEstimatedTotal);
+        }
+
+        if (quantityInput) {
+            quantityInput.addEventListener("input", updateEstimatedTotal);
+        }
+
+        updateEstimatedTotal();
+    });
+</script>
