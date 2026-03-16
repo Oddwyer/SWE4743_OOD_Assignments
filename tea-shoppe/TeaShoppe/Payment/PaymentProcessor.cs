@@ -1,5 +1,7 @@
+using tea_shoppe.UI.PaymentBuilders;
 using TeaShoppe.Inventory;
 using TeaShoppe.Orders;
+using TeaShoppe.UI;
 
 namespace TeaShoppe.Payment;
 
@@ -9,24 +11,28 @@ namespace TeaShoppe.Payment;
 /// </summary>
 public class PaymentProcessor
 {
-    private IPaymentStrategy Strategy { get; set; } 
+    private IPaymentStrategy Strategy { get; set; }
+    private PaymentBuilderListFactory paymentBuilder;
     private static int _next = 100;
     private int _receiptNumber;
     private TextReader _input;
     private TextWriter _output;
 
-    public PaymentProcessor(IPaymentStrategy strategy, TextReader input, TextWriter output)
+    public PaymentProcessor(TextReader input, TextWriter output)
     {
-        Strategy = strategy;
         _input = input;
         _output = output;
+        paymentBuilder = new PaymentBuilderListFactory(output, input);
     }
     
     // Process payment.
-    public bool ProcessPayment(Order order)
+    public bool ProcessPayment(Order order, string paymentType)
     {
+        Strategy = paymentBuilder.BuildPayment(paymentType);
+        
         if (Strategy.Pay(order.OrderTotal()))
         {
+            _output.WriteLine("Transaction Complete.");
             _receiptNumber = _next++;
             string receipt = MakeReceipt(order, _receiptNumber);
             _output.WriteLine(receipt);

@@ -1,4 +1,4 @@
-namespace TeaShoppe.UI;
+namespace tea_shoppe.UI.InventoryQuery;
 
 public class InventoryQueryOutputWriter
 {

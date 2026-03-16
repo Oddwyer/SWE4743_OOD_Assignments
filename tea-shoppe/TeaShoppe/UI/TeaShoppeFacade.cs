@@ -1,3 +1,4 @@
+using tea_shoppe.UI.InventoryQuery;
 using TeaShoppe.Orders;
 using TeaShoppe.Inventory;
 using TeaShoppe.Decorators;
@@ -55,10 +56,10 @@ public class TeaShoppeFacade
     }
 
     // Accept payment.
-    public void AcceptPayment(IPaymentStrategy strategy)
+    public void AcceptPayment(string paymentType)
     {
-        _paymentProcessor = new PaymentProcessor(strategy, _input, _output);
-        if (_paymentProcessor.ProcessPayment(_order))
+        _paymentProcessor = new PaymentProcessor(_input, _output);
+        if (_paymentProcessor.ProcessPayment(_order, paymentType))
         {
             for (int i = 0; i < _order.NumberOfLineItems(); i++)
             {

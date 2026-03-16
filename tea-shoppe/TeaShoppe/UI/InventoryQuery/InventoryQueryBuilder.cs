@@ -1,7 +1,8 @@
-using TeaShoppe.Inventory;
 using TeaShoppe.Decorators;
+using TeaShoppe.Inventory;
+using TeaShoppe.UI;
 
-namespace TeaShoppe.UI;
+namespace tea_shoppe.UI.InventoryQuery;
 
 /// <summary>
 /// Builds query using decorator pattern and returns results.
