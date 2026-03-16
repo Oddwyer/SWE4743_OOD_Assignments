@@ -45,6 +45,6 @@ public class CheckoutController : Controller
             Message = TempData["Receipt"]?.ToString()
         };
 
-        return View(model);
+        return View("Receipt", model);
     }
 }

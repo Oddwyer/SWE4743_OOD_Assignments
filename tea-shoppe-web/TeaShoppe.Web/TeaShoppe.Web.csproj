@@ -14,8 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Web\Views\Home\Index.cshtml" />
-      <AdditionalFiles Include="Web\Views\Home\Privacy.cshtml" />
       <AdditionalFiles Include="Web\Views\Shared\Error.cshtml" />
       <AdditionalFiles Include="Web\Views\Shared\_Layout.cshtml" />
       <AdditionalFiles Include="Web\Views\Shared\_ValidationScriptsPartial.cshtml" />

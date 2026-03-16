@@ -44,7 +44,7 @@ app.MapStaticAssets();
 // Map default controller route.
 app.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}")
+        pattern: "{controller=Inventory}/{action=Search}/{id?}")
     .WithStaticAssets();
 
 
