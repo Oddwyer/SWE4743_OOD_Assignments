@@ -21,7 +21,7 @@ ASP.NET Core MVC and SOLID design principles.
 ## 2. How to Run the Application
 ### Via Console
 ```bash
-dotnet run --project TeaShoppe/TeaShoppe.csproj
+dotnet run --project TeaShoppe.Web/TeaShoppe.Web.csproj
 ```
 
 ### Via Docker
@@ -37,7 +37,10 @@ docker run -it teashoppe
   ```bash
   Ctrl + C
     ```
-## 3. Screenshot (In Progress)
+## 3. Screenshot
+![TeaShoppe.Web](Screenshot1.png)
+![TeaShoppe.Web](Screenshot2.png)
+![TeaShoppe.Web](Screenshot3.png)
 
 ## 4. How to Run Tests
 
