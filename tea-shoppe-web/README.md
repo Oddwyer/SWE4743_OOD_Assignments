@@ -39,6 +39,14 @@ dotnet run --project TeaShoppe.Web/TeaShoppe.Web.csproj
 ### Docker:
 **Prerequisite:** Docker Desktop / Docker Engine installed.
 
+#### Option 1: Docker Compose (Recommended)
+From the project root:
+```bash
+docker-compose up
+```
+The application will be accessible at `http://localhost:8080`.
+
+#### Option 2: Standalone Docker Build
 From the directory containing the Dockerfile:
 
 ```bash

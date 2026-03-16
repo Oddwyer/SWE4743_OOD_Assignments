@@ -1,7 +1,9 @@
 ﻿services:
-  teashoppemvc:
-    image: teashoppemvc
+  tea-shoppe-web:
+    image: tea-shoppe-web
     build:
       context: .
-      dockerfile: TeaShoppeMVC/Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
 
