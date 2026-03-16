@@ -1,21 +1,15 @@
 # TeaShoppe
 
 ## 1. Project Description
-Tea Shop MVC Web Application
-
-This project evolves the console-based Tea Shop application from
-Assignment 2 into a server-rendered MVC web application using
-ASP.NET Core MVC and SOLID design principles.
+Console-based Tea Shoppe application that allows users to search, filter, sort, and purchase tea from an inventory.
 
 ### OOD Principles Used
 - Single Responsibility Principle (SRP)
 - Open/Closed Principle (OCP)
 - Strategy Pattern (payment processing)
-- Factory Pattern (strategy creation)
 - Decorator Pattern (tea search filters)
 - Encapsulation
-- Polymorphism / Dynamic dispatch
-- Dependency Injection
+- Polymorphism / dynamic dispatch
 
 ## 2. How to Run the Application
 ### Via Console
@@ -36,7 +30,10 @@ docker run -it teashoppe
   ```bash
   Ctrl + C
     ```
-## 3. Screenshot (In Progress)
+## 3. Screenshot
+![TeaShoppe](TeaShoppe1.png)
+![TeaShoppe](TeaShoppe2.png)
+
 
 ## 4. How to Run Tests
 
