@@ -8,27 +8,23 @@ public class PaymentBuilderListFactory
     private readonly TextWriter _output;
     private readonly TextReader _input;
     private IPaymentBuilder _builder;
-    
+
     public PaymentBuilderListFactory(TextWriter output, TextReader input)
     {
         _output = output;
         _input = input;
     }
 
-    public IPaymentStrategy BuildPayment(string paymentType)
+    public IPaymentStrategy BuildPayment(decimal amount, string paymentType)
     {
-        
         switch (paymentType)
         {
             case "apple":
-                _builder = new ApplePayPaymentBuilder(_input,  _output);
-                return new ApplePay();
+                return new ApplePayPaymentBuilder(_input, _output).CreateStrategy(amount);
             case "crypto":
-                return new CryptoCurrencyPaymentBuilder(_output, _input);
+                return new CryptoCurrencyPaymentBuilder(_input, _output).CreateStrategy(amount);
             case "credit":
-                return new CreditCardPaymentBuilder(_output, _input);
+                return new CreditCardPaymentBuilder(_input, _output).CreateStrategy(amount);
         }
-        
     }
-    
 }

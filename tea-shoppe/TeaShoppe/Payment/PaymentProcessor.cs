@@ -28,7 +28,8 @@ public class PaymentProcessor
     // Process payment.
     public bool ProcessPayment(Order order, string paymentType)
     {
-        Strategy = paymentBuilder.BuildPayment(paymentType);
+        decimal amount = order.OrderTotal();
+        Strategy = paymentBuilder.BuildPayment(amount, paymentType);
         
         if (Strategy.Pay(order.OrderTotal()))
         {
@@ -39,10 +40,14 @@ public class PaymentProcessor
             return true;
         }
         _output.WriteLine("\nPayment failed. Please try again.");
+        
+        //TODO: Add success script for credit card, ApplePay, cryptocurrency payments.
+        /*"ApplePay payment approved."*/
+        /*"Cryptocurrency blockchain transaction complete."*/
         return false;
     }
 
-    
+
     // Create receipt.
     private string MakeReceipt(Order order, int  receiptNumber)
     {
@@ -50,16 +55,16 @@ public class PaymentProcessor
                 *** Purchase Complete ***
                 Your package is on the way.
                 Receipt Number: {receiptNumber}
-                
+
                 Receipt Total ${order.OrderTotal()}
-                
+
                 **Thank you for shopping at Sweet Teas**
                 """;
     }
-    
+
     // Return payment strategy.
     public IPaymentStrategy GetStrategy =>  Strategy;
-    
+
     // Update current strategy.
     public void SetStrategy(IPaymentStrategy strategy)
     {

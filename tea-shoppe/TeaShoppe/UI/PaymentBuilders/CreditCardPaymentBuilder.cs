@@ -1,8 +1,9 @@
 using TeaShoppe.Payment;
+using tea_shoppe.UI.PaymentBuilders;
 
 namespace tea_shoppe.UI.Builders;
 
-public class CreditCardPaymentBuilder
+public class CreditCardPaymentBuilder : IPaymentBuilder
 {
     private readonly TextReader _input;
     private readonly TextWriter _output;

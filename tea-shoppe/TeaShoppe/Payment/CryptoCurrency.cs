@@ -5,20 +5,14 @@ namespace TeaShoppe.Payment;
 /// </summary>
 public class CryptoCurrency : IPaymentStrategy
 {
-    private readonly TextReader _input;
-    private readonly TextWriter _output;
-
-    public CryptoCurrency(TextReader input, TextWriter output)
+    
+    public CryptoCurrency()
     {
-        _input = input;
-        _output = output;
     }
 
     // Overriden Pay method.
     public bool Pay(decimal amount)
     {
-        _output.WriteLine($"\nSubmitting transaction to blockchain for ${amount}");
-        _output.WriteLine("Crypto payment confirmed.");
-        return true;
+       return true;
     }
 }
