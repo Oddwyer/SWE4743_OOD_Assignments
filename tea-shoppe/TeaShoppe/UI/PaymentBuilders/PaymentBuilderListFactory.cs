@@ -7,7 +7,6 @@ public class PaymentBuilderListFactory
 {
     private readonly TextWriter _output;
     private readonly TextReader _input;
-    private IPaymentBuilder _builder;
 
     public PaymentBuilderListFactory(TextWriter output, TextReader input)
     {
@@ -25,6 +24,8 @@ public class PaymentBuilderListFactory
                 return new CryptoCurrencyPaymentBuilder(_input, _output).CreateStrategy(amount);
             case "credit":
                 return new CreditCardPaymentBuilder(_input, _output).CreateStrategy(amount);
+            default:
+                throw new NotImplementedException("Please enter accepted form of payment.");
         }
     }
 }
