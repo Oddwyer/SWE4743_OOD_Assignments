@@ -8,7 +8,10 @@
 
 <div class="receipt-card">
     <p class="receipt-message">@Html.Raw(Model.Message.Replace("\n", "<br/>"))</p>
-
+    @if (Model.Success)
+    {
+        <p>Payment Method: <strong>@Model.PaymentType</strong></p>
+    }
     <p>
         <a class="return-link" asp-controller="Inventory" asp-action="Search">Return to Search</a>
     </p>

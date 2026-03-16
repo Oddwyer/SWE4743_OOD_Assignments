@@ -25,24 +25,30 @@ public class CheckoutController : Controller
         var result = _checkoutService.Checkout(model.SelectedItemId, model.SelectedQuantity, model.PaymentType,
             model.CardNumber);
 
-        if (!result.Passed)
+        var paymentLabel = model.PaymentType switch
         {
-            model.Success = false;
-            model.Message = result.Message;
-            return View(model);
-        }
+            "apple" => "ApplePay",
+            "credit" => "CreditCard",
+            "crypto" => "CryptoCurrency",
+            _ => "Unknown"
+        };
+        
+        TempData["Success"] = result.Passed;
         TempData["Receipt"] = result.Message;
+        TempData["PaymentLabel"] = paymentLabel;
 
-        return RedirectToAction("Receipt");
+        return RedirectToAction(nameof(Receipt));
     }
 
     [HttpGet]
     public IActionResult Receipt()
     {
+        
         var model = new CheckoutViewModel
         {
-            Success = true,
-            Message = TempData["Receipt"]?.ToString()
+            Success = TempData["Success"] != null,
+            Message = TempData["Receipt"]?.ToString(),
+            PaymentType = TempData["PaymentLabel"]?.ToString()
         };
 
         return View("Receipt", model);

@@ -25,8 +25,12 @@ public class CreditCard : IPaymentStrategy
     }
 
     // Strips and validates credit card number entry = 16 digits only.
-    private bool CardNumberValidator(string input)
+    private bool CardNumberValidator(string? input)
     {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return false;
+        }
         // Remove - and spaces from input. 
         string cleanInput = input.Replace(" ", "").Replace("-", "");
 
