@@ -44,7 +44,7 @@ docker run --rm -p 8080:8080 tea-shoppe-web
   ```bash
   Ctrl + C
     ```
-## 3. Screenshot
+## 3. Screenshots
 ![TeaShoppe.Web](Screenshot1.png)
 ![TeaShoppe.Web](Screenshot2.png)
 ![TeaShoppe.Web](Screenshot3.png)
