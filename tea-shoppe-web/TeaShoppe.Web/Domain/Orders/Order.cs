@@ -84,7 +84,7 @@ public class Order
     {
         if (!IsEmpty())
         {
-            string details = "\nCurrent Order:\n";
+            string details = "<strong>Current Order:</strong>";
             for (int i = 0; i < _orderItems.Count; i++)
             {
                 details += $"{_orderItems[i].Name} - Quantity: {_orderItems[i].Quantity}\n";

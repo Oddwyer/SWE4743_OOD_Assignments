@@ -46,7 +46,7 @@ public class CheckoutController : Controller
         
         var model = new CheckoutViewModel
         {
-            Success = TempData["Success"] != null,
+            Success = bool.TryParse(TempData["Success"]?.ToString(), out var success) && success,
             Message = TempData["Receipt"]?.ToString(),
             PaymentType = TempData["PaymentLabel"]?.ToString()
         };

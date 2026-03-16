@@ -38,12 +38,12 @@ public class CheckoutResult
             Passed = true,
             Order = order,
             Message = $"""
-                       Your package is on the way.
-                       Receipt Number: {receiptNumber}
+                       <strong>Your package is on the way.</strong>
+                       <strong>Receipt Number:</strong> {receiptNumber}
                        {details}
-                       7% Tax Applied: {tax:c} 
+                       <strong>7% Tax Applied:</strong> {tax:c} 
 
-                       Receipt Total {receiptTotal:C}
+                       <strong>Receipt Total</strong> {receiptTotal:C}
 
                        Thank you for shopping at Sweet Teas!
                        """

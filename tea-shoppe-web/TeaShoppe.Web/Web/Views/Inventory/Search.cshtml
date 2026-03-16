@@ -1,177 +1,179 @@
 @* Connects the view to the correct view model. *@
 @model TeaShoppe.Web.Web.ViewModels.InventorySearchViewModel
 
-<div class="page-header">
-    <h1>Welcome to Sweet Teas</h1>
-    <h3>Search Tea Shoppe</h3>
-</div>
+<div class="search-background">
+    <div class="page-header">
+        <h1>Welcome to Sweet Teas</h1>
+        <h3>Search Tea Shoppe</h3>
+    </div>
 
-<p>Complete the prompts to search our selection of fine teas.</p>
+    <p>Complete the prompts to search our selection of fine teas.</p>
 
-@* Form fields mapping to QueryItem. 
+    @* Form fields mapping to QueryItem. 
 POST -> submit data override of form default's GET.*@
-<form asp-action="Search" method="post">
-    <div>
-        <label>Tea Name</label>
-        <input asp-for="SearchName"/>
-    </div>
+    <form asp-action="Search" method="post">
+        <div>
+            <label>Tea Name</label>
+            <input asp-for="SearchName"/>
+        </div>
 
-    <div>
-        <label>Availability</label>
-        <select asp-for="IsInStock">
-            <option value="">All</option>
-            <option value="true">In Stock</option>
-            <option value="false">Out of Stock</option>
-        </select>
-    </div>
+        <div>
+            <label>Availability</label>
+            <select asp-for="IsInStock">
+                <option value="">All</option>
+                <option value="true">In Stock</option>
+                <option value="false">Out of Stock</option>
+            </select>
+        </div>
 
-    <div>
-        <label>Minimum Price</label>
-        <input asp-for="MinPrice"/>
-    </div>
+        <div>
+            <label>Minimum Price</label>
+            <input asp-for="MinPrice"/>
+        </div>
 
-    <div>
-        <label>Maximum Price</label>
-        <input asp-for="MaxPrice"/>
-    </div>
+        <div>
+            <label>Maximum Price</label>
+            <input asp-for="MaxPrice"/>
+        </div>
 
-    <div>
-        <label>Minimum Star Rating</label>
-        <input asp-for="MinRating"/>
-    </div>
+        <div>
+            <label>Minimum Star Rating</label>
+            <input asp-for="MinRating"/>
+        </div>
 
-    <div>
-        <label>Maximum Star Rating</label>
-        <input asp-for="MaxRating"/>
-    </div>
+        <div>
+            <label>Maximum Star Rating</label>
+            <input asp-for="MaxRating"/>
+        </div>
 
-    <div>
-        <label>Minimum Quantity</label>
-        <input asp-for="Quantity"/>
-    </div>
+        <div>
+            <label>Minimum Quantity</label>
+            <input asp-for="Quantity"/>
+        </div>
 
-    <div>
-        <label>Primary Sort</label>
-        <select asp-for="Sort">
-            <option value="Price">Price</option>
-            <option value="Rating">Rating</option>
-        </select>
-    </div>
+        <div>
+            <label>Primary Sort</label>
+            <select asp-for="Sort">
+                <option value="Price">Price</option>
+                <option value="Rating">Rating</option>
+            </select>
+        </div>
 
-    <div>
-        <label>Sort by Price</label>
-        <select asp-for="PriceDirection">
-            <option value="Ascending">Ascending</option>
-            <option value="Descending">Descending</option>
-        </select>
-    </div>
+        <div>
+            <label>Sort by Price</label>
+            <select asp-for="PriceDirection">
+                <option value="Ascending">Ascending</option>
+                <option value="Descending">Descending</option>
+            </select>
+        </div>
 
-    <div>
-        <label>Sort by Rating</label>
-        <select asp-for="RatingDirection">
-            <option value="Ascending">Ascending</option>
-            <option value="Descending">Descending</option>
-        </select>
-    </div>
+        <div>
+            <label>Sort by Rating</label>
+            <select asp-for="RatingDirection">
+                <option value="Ascending">Ascending</option>
+                <option value="Descending">Descending</option>
+            </select>
+        </div>
 
-    <button type="submit">Search</button>
-</form>
+        <button type="submit">Search</button>
+    </form>
 
 
-@if (Model.HasSearched)
-{
-    <div class="filter-section">
-        <h3>Applied Filters & Sorts</h3>
-        <ul class="filter-summary">
-            @foreach (var filter in Model.AppliedFilters)
-            {
-                <li>@filter</li>
-            }
-        </ul>
-    </div>
+    @if (Model.HasSearched)
+    {
+        <div class="filter-section">
+            <h3>Applied Filters & Sorts</h3>
+            <ul class="filter-summary">
+                @foreach (var filter in Model.AppliedFilters)
+                {
+                    <li>@filter</li>
+                }
+            </ul>
+        </div>
 
-    @* Results table. Note, since we initialize a list, a list will never be null, but could be 
+        @* Results table. Note, since we initialize a list, a list will never be null, but could be 
 empty. So, we check if the list contains any items.*@
-    @if (Model.Items.Any())
-    {
-        <h3>Query Results</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>Item Number</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Star Rating</th>
-            </tr>
-            </thead>
-            <tbody>
-            @{ int itemNumber = 1; }
-            @foreach (var item in Model.Items)
-            {
+        @if (Model.Items.Any())
+        {
+            <h3>Query Results</h3>
+            <table>
+                <thead>
                 <tr>
-                    <td>@itemNumber</td>
-                    <td>@item.Name</td>
-                    <td>@item.Price.ToString("C")</td>
-                    <td>
-                        @if (item.Quantity <= 0)
-                        {
-                            <span>OUT OF STOCK</span>
-                        }
-                        else
-                        {
-                            @item.Quantity
-                        }
-                    </td>
-                    <td>@item.StarRating.Rating</td>
+                    <th>Item Number</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Star Rating</th>
                 </tr>
-                itemNumber++;
-            }
-            </tbody>
-        </table>
-        
-        @* Purchase form for desired teas. *@
-        <h3>Purchase Tea</h3>
+                </thead>
+                <tbody>
+                @{ int itemNumber = 1; }
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@itemNumber</td>
+                        <td>@item.Name</td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>
+                            @if (item.Quantity <= 0)
+                            {
+                                <span>OUT OF STOCK</span>
+                            }
+                            else
+                            {
+                                @item.Quantity
+                            }
+                        </td>
+                        <td>@item.StarRating.Rating</td>
+                    </tr>
+                    itemNumber++;
+                }
+                </tbody>
+            </table>
 
-        <form asp-controller="Checkout" asp-action="Checkout" method="post">
-            <div>
-                <label for="SelectedItemId">Select Tea</label>
-                <select id="SelectedItemId" name="SelectedItemId">
-                    @foreach (var item in Model.Items)
-                    {
-                        <option value="@item.InventoryItemId">
-                            @item.Name - @item.Price.ToString("C") (@(item.Quantity > 0 ? $"Qty: {item.Quantity}" : "OUT OF STOCK"))
-                        </option>
-                    }
-                </select>
-            </div>
+            @* Purchase form for desired teas. *@
+            <h3>Purchase Tea</h3>
 
-            <div>
-                <label for="SelectedQuantity">Quantity</label>
-                <input id="SelectedQuantity" name="SelectedQuantity" type="number" min="1" value="1" />
-            </div>
+            <form asp-controller="Checkout" asp-action="Checkout" method="post">
+                <div>
+                    <label for="SelectedItemId">Select Tea</label>
+                    <select id="SelectedItemId" name="SelectedItemId">
+                        @foreach (var item in Model.Items)
+                        {
+                            <option value="@item.InventoryItemId">
+                                @item.Name - @item.Price.ToString("C") (@(item.Quantity > 0 ? $"Qty: {item.Quantity}" : "OUT OF STOCK"))
+                            </option>
+                        }
+                    </select>
+                </div>
 
-            <div>
-                <label for="PaymentType">Payment Method</label>
-                <select id="PaymentType" name="PaymentType">
-                    <option value="credit">Credit Card</option>
-                    <option value="apple">Apple Pay</option>
-                    <option value="crypto">CryptoCurrency</option>
-                </select>
-            </div>
+                <div>
+                    <label for="SelectedQuantity">Quantity</label>
+                    <input id="SelectedQuantity" name="SelectedQuantity" type="number" min="1" value="1"/>
+                </div>
 
-            <div>
-                <label for="CardNumber">Card Number</label>
-                <input id="CardNumber" name="CardNumber" type="text" />
-            </div>
+                <div>
+                    <label for="PaymentType">Payment Method</label>
+                    <select id="PaymentType" name="PaymentType">
+                        <option value="credit">Credit Card</option>
+                        <option value="apple">Apple Pay</option>
+                        <option value="crypto">CryptoCurrency</option>
+                    </select>
+                </div>
 
-            <button type="submit">Complete Purchase</button>
-        </form>
+                <div>
+                    <label for="CardNumber">Card Number</label>
+                    <input id="CardNumber" name="CardNumber" type="text"/>
+                </div>
+
+                <button type="submit">Complete Purchase</button>
+            </form>
+        }
+        else
+        {
+            @* No results match query. *@
+            <h3>Query Results</h3>
+            <p>No teas matched your search.</p>
+        }
     }
-    else
-    {
-        @* No results match query. *@
-        <h3>Query Results</h3>
-        <p>No teas matched your search.</p>
-    }
-}
+</div>

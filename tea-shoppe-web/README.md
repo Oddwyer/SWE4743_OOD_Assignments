@@ -53,10 +53,10 @@ docker run --rm -p 8080:8080 tea-shoppe-web
 
 This version was validated through manual testing of the MVC workflow, including:
 
-- search and filter behavior
-- sorting behavior
-- successful checkout
-- invalid quantity handling
-- invalid payment input handling
-- inventory quantity decrease after purchase
+- Search and filter behavior
+- Sorting behavior
+- Successful checkout
+- Invalid quantity handling
+- Invalid payment input handling
+- Inventory quantity decrease after purchase
 - PRG flow after successful checkout
