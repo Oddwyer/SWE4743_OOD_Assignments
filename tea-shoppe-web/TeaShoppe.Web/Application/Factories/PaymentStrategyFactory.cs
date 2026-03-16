@@ -13,7 +13,7 @@ public class PaymentStrategyFactory
     {
     }
 
-    // Accepts inputs to determine respective strategy to create and returns strategy.
+    // Accepts user input, selects the appropriate payment strategy, and returns it.
     public IPaymentStrategy CreateStrategy(string paymentType, string? cardNumber = null)
     {
         if (paymentType == "credit")

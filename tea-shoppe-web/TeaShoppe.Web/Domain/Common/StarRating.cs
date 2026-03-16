@@ -1,7 +1,7 @@
 namespace TeaShoppe.Web.Domain.Common;
 
 /// <summary>
-/// Rating class to prevent rating invariants.
+/// Rating value object to enforce rating invariants.
 /// </summary>
 public class StarRating
 {

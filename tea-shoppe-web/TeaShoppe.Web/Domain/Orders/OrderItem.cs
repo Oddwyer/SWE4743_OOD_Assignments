@@ -27,7 +27,7 @@ public class OrderItem
         Quantity += qty;
     }
 
-    // Decrement quantity of inventory item.
+    // Decrement quantity of order item.
     public void DecrementQuantity(int qty)
     {
         if (Quantity - qty < 0)

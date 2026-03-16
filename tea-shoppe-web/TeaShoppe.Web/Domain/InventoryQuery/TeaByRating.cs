@@ -16,7 +16,7 @@ public class TeaByRating : InventoryQuery
         _maxRating = item.MaxRating;
     }
 
-    // Overriden GetInventory method.
+    // Overridden GetInventory method.
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
         return inner.GetInventory().Where(x => x.StarRating.Rating <= _maxRating && x.StarRating.Rating >= _minRating).ToList();

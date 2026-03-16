@@ -20,7 +20,7 @@ public class SortTeas : InventoryQuery
         _sort = item.Sort;
     }
     
-    // Overidden GetInventory method.
+    // Overridden GetInventory method.
     public override IReadOnlyList<InventoryItem> GetInventory()
     {
         // Temporary list to sort. 

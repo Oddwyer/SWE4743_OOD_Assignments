@@ -20,7 +20,10 @@ public class CheckoutService : ICheckoutService
         _repository = repository;
     }
     
-    // Checkout method checks for valid quantity, payment details, and handles payment for purchase.
+    /// <summary>
+    /// Executes the checkout process including inventory verification and payment processing.
+    /// </summary>
+    /// <returns>A CheckoutResult containing success status and receipt/error messages.</returns>
     public CheckoutResult Checkout(Guid selectedItemId, int selectedQuantity, string paymentType,
         string cardNumber)
     {

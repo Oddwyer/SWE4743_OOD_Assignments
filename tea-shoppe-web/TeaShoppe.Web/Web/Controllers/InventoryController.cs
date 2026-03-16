@@ -18,7 +18,11 @@ public class InventoryController : Controller
         _queryService = queryService;
     }
     
-    // Provides blank query form.
+    /// <summary>
+    /// Displays the tea search form with default filter values.
+    /// </summary>
+    /// <returns>Search view with initial ViewModel.</returns>
+    
     [HttpGet]
     public IActionResult Search()
     {
@@ -26,8 +30,12 @@ public class InventoryController : Controller
         return View(model);
     }
     
-    // Upon submission of the form, QueryItem is built, search is performed,
-    // results are returned.
+    /// <summary>
+    /// Processes the search form submission and applies filtering/sorting decorators.
+    /// </summary>
+    /// <param name="model">The search criteria submitted by the user.</param>
+    /// <returns>Search view populated with filtering results and applied filter summaries.</returns>
+    
     [HttpPost]
     public IActionResult Search(InventorySearchViewModel model)
     {

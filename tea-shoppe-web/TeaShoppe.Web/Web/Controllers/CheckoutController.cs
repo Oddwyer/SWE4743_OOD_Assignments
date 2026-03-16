@@ -17,8 +17,12 @@ public class CheckoutController : Controller
         _checkoutService = checkoutService;
     }
 
-    // Upon submission of the payment, Checkout is processed and
-    // results are returned view PGR (POST-REDIRECT-GET).
+    /// <summary>
+    /// Upon submission of the payment, Checkout is processed and results are returned view PRG (POST-REDIRECT-GET).
+    /// The PRG pattern prevents duplicate form submissions and provides a smoother user experience after a successful
+    /// data-modifying operation (like a purchase or a logout).
+    /// </summary>
+   
     [HttpPost]
     public IActionResult Checkout(CheckoutViewModel model)
     {
@@ -40,6 +44,10 @@ public class CheckoutController : Controller
         return RedirectToAction(nameof(Receipt));
     }
 
+    /// <summary>
+    /// Displays the receipt view after a successful checkout.
+    /// This is the "GET" part of the Post-Redirect-Get pattern.
+    /// </summary>
     [HttpGet]
     public IActionResult Receipt()
     {

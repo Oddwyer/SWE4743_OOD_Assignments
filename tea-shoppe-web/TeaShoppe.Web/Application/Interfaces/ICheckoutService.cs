@@ -10,6 +10,7 @@ namespace TeaShoppe.Web.Application.Interfaces;
 
 public interface ICheckoutService
 {
+    // Method to accept purchase and payment details to perform checkout transaction.
     public CheckoutResult Checkout(Guid selectedItemId, int selectedQuantity, string paymentType,
         string cardNumber);
 }

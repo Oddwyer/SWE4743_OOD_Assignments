@@ -8,7 +8,7 @@ public class Order
 {
     private readonly List<OrderItem> _orderItems = new();
 
-    // Constructor to initializes order. 
+    // Constructor to initialize order. 
     public Order()
     {
     }
