@@ -15,7 +15,7 @@ public class InventoryQueryBuilder
     }
     
     // Request an item from the shoppe and return results.
-    public InventoryQueryOutput PerformQuery(RequestedItem requestedItem, TeaInventory currentRepo)
+    public InventoryQueryOutput PerformQuery(RequestedItem requestedItem, IInventory currentRepo)
     {
         IInventory teaRepo = currentRepo;
         teaRepo = new TeaByName(teaRepo, requestedItem);

@@ -14,8 +14,10 @@ public class TeaShoppeFacade
     private PaymentProcessor _paymentProcessor;
     private readonly TeaCatalog _catalog;
     private TeaInventory _currentRepo;
-    private TextReader _input;
+    private InventoryQueryBuilder _queryBuilder = new();
+    private InventoryQueryOutputWriter _writer;
     private TextWriter _output;
+    private TextReader _input;
 
     public TeaShoppeFacade(TextReader input, TextWriter output)
     {
@@ -25,44 +27,15 @@ public class TeaShoppeFacade
         _output = output;
     }
 
-    // Request an item from the shoppe.
-    public IInventory PerformQuery(RequestedItem requestedItem)
+    // Perform query and display results.
+    public void PerformQuery(RequestedItem requestedItem)
     {
         IInventory teaRepo = _currentRepo;
-        teaRepo = new TeaByName(teaRepo, requestedItem);
-        teaRepo = new TeaByAvailability(teaRepo, requestedItem);
-        teaRepo = new TeaByPrice(teaRepo, requestedItem);
-        teaRepo = new TeaByRating(teaRepo, requestedItem);
-        teaRepo = new TeaByQuantity(teaRepo, requestedItem);
-        teaRepo = new SortTeas(teaRepo, requestedItem);
-        return teaRepo;
+        var output = _queryBuilder.PerformQuery(requestedItem, teaRepo);
+        string results = output.DisplayQuery(teaRepo);
+        _writer.Writer.WriteLine(results);
     }
-
-    // Display search results.
-    public string DisplayQuery(IInventory query)
-    {
-        string qty = "";
-        var queryResults = query.GetInventory();
-        string results = $"\n{queryResults.Count} items match your query:\n";
-        int itemNumber = 1;
-        foreach (var item in queryResults)
-        {
-            if (!item.InStock)
-            {
-                qty = "(OUT OF STOCK)";
-            }
-            else
-            {
-                qty = item.StockCount.ToString();
-            }
-
-            results += $"{itemNumber}. {item.Name,-15}\t${item.RetailPrice}\tQty: {qty,15}  {item.RatingValue} stars\n";
-            itemNumber++;
-        }
-
-        return results;
-    }
-
+    
     // Add item(s) to order.
     public bool AddToOrder(InventoryItem item, int quantity)
     {
@@ -74,19 +47,7 @@ public class TeaShoppeFacade
         }
         return false;
     }
-
-    // Remove item(s) from order.
-    public bool RemoveFromOrder(InventoryItem item, int quantity)
-    {
-        OrderItem orderItem = new OrderItem(item);
-        if (_order.RemoveItem(orderItem, quantity))
-        {
-            return true;
-        }
-
-        return false;
-    }
-
+    
     // Display order.
     public string DisplayOrder()
     {

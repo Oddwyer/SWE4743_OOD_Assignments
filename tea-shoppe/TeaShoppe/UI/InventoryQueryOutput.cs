@@ -9,8 +9,17 @@ public class InventoryQueryOutput
     {
     }
     
+    
     // Display results from query.
     public string DisplayQuery(IInventory query)
+    {
+        string results = QueryResults(query);
+        return results;
+    }
+    
+    
+    // Helper method to build results.
+    private string QueryResults(IInventory query)
     {
         string qty = "";
         var queryResults = query.GetInventory();
